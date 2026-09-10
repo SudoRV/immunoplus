@@ -147,7 +147,7 @@ export function Home() {
                                         <span className="text-sm lg:text-base text-white leading-tight">
                                             {item.line1}
                                         </span>
-                                        <span className="text-sm lg:text-base text-white leading-tight">
+                                        <span className="text-xs lg:text-sm text-slate-100/80 leading-tight">
                                             {item.line2}
                                         </span>
                                     </div>
@@ -182,10 +182,10 @@ export function Home() {
                                     >
                                         <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-sky-400 shrink-0" strokeWidth={1.5} />
                                         <div>
-                                            <p className="text-xs md:text-sm lg:text-xl font-semibold text-neutral-100 leading-tight">
+                                            <p className="text-sm md:text-sm lg:text-xl font-semibold text-neutral-100 leading-tight">
                                                 {item.title}
                                             </p>
-                                            <p className="text-[10px] md:text-xs lg:text-base text-neutral-400 leading-tight mt-0.5">
+                                            <p className="text-xs md:text-sm lg:text-base text-neutral-400 leading-tight mt-0.5">
                                                 {item.subtitle}
                                             </p>
                                         </div>

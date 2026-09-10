@@ -326,7 +326,7 @@ export function WhyChooseImmuno() {
                     <h3 className="text-sm font-bold text-neutral-100 whitespace-pre-line leading-tight">
                       {pillar.title}
                     </h3>
-                    <p className="text-[11px] sm:text-xs text-neutral-400 leading-relaxed">
+                    <p className="text-sm text-neutral-400 leading-relaxed">
                       {pillar.desc}
                     </p>
                   </div>
@@ -338,7 +338,7 @@ export function WhyChooseImmuno() {
         </div>
 
         {/* Bottom Feature Card: Grow With Immuno+ */}
-        <div className="relative w-full rounded-t-3xl border border-sky-500/30 border-b-0 bg-linear-to-r from-[#061e3f]/70 via-[#03152d]/70 to-[#020b18]/70  p-8 sm:p-12 lg:p-12 shadow-[0_10px_40px_rgba(2,132,199,0.15)] overflow-hidden"
+        <div className="relative w-full rounded-t-3xl border border-sky-500/30 border-b-0 bg-linear-to-r from-[#061e3f]/70 via-[#03152d]/70 to-[#020b18]/70  p-6 sm:p-12 lg:p-12 shadow-[0_10px_40px_rgba(2,132,199,0.15)] overflow-hidden"
         >
 
           <div className="relative z-10 flex justify-between gap-12 max-[690px]:flex-wrap">
@@ -354,7 +354,7 @@ export function WhyChooseImmuno() {
                 Advanced Water Technology.
               </h3>
 
-              <p className="text-xs sm:text-sm text-neutral-300 max-w-lg leading-relaxed font-light">
+              <p className="text-sm text-neutral-300 max-w-lg leading-relaxed font-light">
                 Join our growing network of distributors and business partners. Get access
                 to premium products, sales support, and an opportunity to serve your local market.
               </p>
@@ -392,7 +392,7 @@ export function WhyChooseImmuno() {
             {/* Card Right: Benefit Checkmarks Grid */}
             <div className="flex flex-col w-2/6 max-[690px]:w-full">
               {partnerBenefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-2.5 sm:text-base text-neutral-300 font-medium space-y-4">
+                <div key={index} className="flex items-start gap-2.5 text-sm sm:text-base text-neutral-300 font-medium space-y-2 sm:space-y-4">
                   <Check className="w-3.5 h-3.5 stroke-[2.5] mt-2 text-sky-400" />
                   <span>{benefit}</span>
                 </div>
@@ -525,7 +525,7 @@ export function Products() {
                     <div className="relative flex items-center justify-center w-12 h-12 rounded-full border-2 border-sky-400 bg-blue-950/20 shadow-[0_0_20px_rgba(6,182,212,0.4)]">
                       <Icon className="w-6 h-6 text-sky-400 stroke-[1.75]" />
                     </div>
-                    <h4 className="text-sm tracking-wide leading-snug whitespace-pre-line">
+                    <h4 className="text-xs lg:text-sm text-slate-100/80 tracking-wide leading-snug whitespace-pre-line">
                       {item.title}
                     </h4>
                   </div>

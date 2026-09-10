@@ -238,12 +238,12 @@ export function About() {
                                         </div>
 
                                         {/* Title */}
-                                        <h3 className="text-sm lg:text-base tracking-tight text-white pt-2 whitespace-pre-line">
+                                        <h3 className="text-xs lg:text-sm tracking-tight text-slate-100/80 pt-2 whitespace-pre-line">
                                             {item.title}
                                         </h3>
 
                                         {/* Description */}
-                                        {/* <p className="text-sm text-slate-300/80  leading-relaxed max-w-xs">
+                                        {/* <p className="text-xs lg:text-sm text-slate-100/80  leading-relaxed max-w-xs">
                                             {item.description}
                                         </p> */}
                                     </div>
@@ -421,7 +421,7 @@ export function About() {
                                     <Heart className="w-5 h-5 text-blue-500 flex-shrink-0 stroke-[2]" />
                                     <h4 className="text-base md:text-lg font-bold text-slate-900">Integrity</h4>
                                 </div>
-                                <p className="text-xs md:text-base text-slate-500 leading-relaxed">
+                                <p className="text-sm md:text-base text-slate-500 leading-relaxed">
                                     We believe in honest communication and transparent business practices.
                                 </p>
                             </div>
@@ -432,7 +432,7 @@ export function About() {
                                     <UserCheck className="w-5 h-5 text-blue-500 flex-shrink-0 stroke-[2]" />
                                     <h4 className="text-base md:text-lg font-bold text-slate-900">Excellence</h4>
                                 </div>
-                                <p className="text-xs sm:text-base text-slate-500 leading-relaxed">
+                                <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
                                     We are committed to delivering the highest standards in technology and service.
                                 </p>
                             </div>
@@ -443,7 +443,7 @@ export function About() {
                                     <Lightbulb className="w-5 h-5 text-blue-500 flex-shrink-0 stroke-[2]" />
                                     <h4 className="text-base md:text-lg font-bold text-slate-900">Innovation</h4>
                                 </div>
-                                <p className="text-xs sm:text-base text-slate-500 leading-relaxed">
+                                <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
                                     We continuously innovate to bring better solutions for our partners.
                                 </p>
                             </div>
@@ -454,7 +454,7 @@ export function About() {
                                     <Users className="w-5 h-5 text-blue-500 flex-shrink-0 stroke-[2]" />
                                     <h4 className="text-base md:text-lg font-bold text-slate-900">Impact</h4>
                                 </div>
-                                <p className="text-xs sm:text-base text-slate-500 leading-relaxed">
+                                <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
                                     We create solutions that positively impact health, businesses and communities.
                                 </p>
                             </div>

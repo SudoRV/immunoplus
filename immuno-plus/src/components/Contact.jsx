@@ -14,6 +14,7 @@ import {
   Check
 } from 'lucide-react';
 import { logByEvent } from '../services/fcmAnalytics';
+import { QRCodeSVG } from 'qrcode.react';
 
 const directContacts = [
   {
@@ -398,12 +399,16 @@ export default function PartnerContactSection({ formType }) {
 
                 <div className="flex flex-col sm:flex-row items-center gap-5 pt-4">
                   <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-inner shrink-0">
-                    <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${qrUrl}`}
-                      alt={`QR code to ${selectedContact.title}`}
-                      className="w-28 h-28 object-contain rounded"
-                      loading="lazy"
-                    />
+                    <QRCodeSVG
+  value={qrUrl}
+  size={200}
+  level="M"
+  fgColor="#000000"
+  bgColor="#ffffff"
+  marginSize={1}
+  
+  className="w-50 h-50 sm:w-35 h-35"
+/>
                   </div>
                   <div className="space-y-1.5 text-center sm:text-left">
                     <div className="flex items-center justify-center sm:justify-start gap-1.5 text-sm font-semibold text-blue-600">

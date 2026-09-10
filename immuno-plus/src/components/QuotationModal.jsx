@@ -1,6 +1,7 @@
 import { Check, Loader2, X } from 'lucide-react';
 import React, { useState, useMemo, useEffect } from 'react';
 import { logByEvent } from '../services/fcmAnalytics';
+import { QRCodeSVG } from 'qrcode.react';
 
 // Target business details
 const BUSINESS_PHONE = "919762170838"; // Country code without '+' or special characters
@@ -215,14 +216,14 @@ export default function QuotationModal({
                 }`}
         >
             <div
-                className={`relative w-full max-w-4xl max-h-[80vh] sm:max-h[90vh] mx-6 overflow-y-auto hide-scollbar rounded-xl md:roumded-3xl bg-white shadow-2xl ring-1 ring-neutral-900/5 transition-all duration-300 ${quotationModal?.status ? 'scale-100 translate-y-0' : 'scale-95 translate-y-2'
+                className={`relative w-full max-w-4xl max-h-[80vh] sm:max-h-[90vh] mx-6 overflow-y-auto hide-scrollbar rounded-3xl md:rounded-3xl bg-white shadow-2xl ring-1 ring-neutral-900/5 transition-all duration-300 ${quotationModal?.status ? 'scale-100 translate-y-0' : 'scale-95 translate-y-2'
                     }`}
             >
-
-                <button className='static top-4 right-4 text-neutral-800' onClick={handleClose}>
+                <button className='absolute top-4 right-4 z-50 text-neutral-800' onClick={handleClose}>
                     <X className='w-6 h-6 stroke-2.5' />
                 </button>
 
+                <div className="max-h-[80vh] sm:max-h-[90vh] overflow-y-auto hide-scrollbar">
                 <div className="grid grid-cols-1 md:grid-cols-12 mt-2">
                     {/* Left Column: Dynamic Form Section */}
                     <div className="relative p-6 sm:p-8 md:col-span-7">
@@ -432,14 +433,15 @@ export default function QuotationModal({
                             {/* Dynamic QR Code Card */}
                             <div className="mt-4 flex flex-col items-center justify-center rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-sm">
                                 <div className="overflow-hidden rounded-lg bg-white p-1">
-                                    <img
-                                        key={`${qrMode}-${quotationModal?.type}`}
-                                        src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${activeQrUrl}`}
-                                        alt={`${qrMode === 'whatsapp' ? 'WhatsApp' : 'Email'} QR Code`}
-                                        width={130}
-                                        height={130}
-                                        className="h-50 w-50 rounded-lg transition-opacity duration-200"
-                                    />
+                                    <QRCodeSVG
+  value={targetDestination}
+  size={130}
+  level="M"
+  fgColor="#000000"
+  bgColor="#ffffff"
+  marginSize={1}
+  className="h-50 w-50 transition-opacity duration-200"
+/>
                                 </div>
                                 <span className="mt-2.5 text-[11px] font-medium text-neutral-500">
                                     Scan to {isOrder ? 'order' : 'request'} via {qrMode === 'whatsapp' ? 'WhatsApp' : 'Email'}
@@ -517,6 +519,7 @@ export default function QuotationModal({
                             </a>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

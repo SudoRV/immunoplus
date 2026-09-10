@@ -209,7 +209,7 @@ export function Join() {
                     <div className="w-full max-w-6xl lg:max-w-360 flex flex-wrap lg:flex-nowrap items-center justify-between gap-4 md:gap-6 px-6 md:px-10 py-5 lg:py-8 bg-gradient-to-b from-[#062047]/60 via-[#02142d]/60 to-[#010b1a]/60 backdrop-blur-sm rounded-t-2xl border-t border-x border-blue-400/30 shadow-2xl">
 
                         {/* Feature Columns */}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 flex-1 z-10 sm:divide-x divide-blue-400/30">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 flex-1 z-10 items-start space-y-3 sm:divide-x divide-blue-400/30">
                             {joinFeatures.map((item, index) => {
                                 const IconComponent = item.icon;
                                 return (
@@ -222,7 +222,7 @@ export function Join() {
                                             <p className="text-sm md:text-xl font-bold text-sky-500 leading-tight">
                                                 {item.title}
                                             </p>
-                                            <p className="text-[10px] md:text-sm text-neutral-400 leading-tight mt-0.5">
+                                            <p className="text-xs md:text-sm text-slate-100/80 leading-tight mt-0.5">
                                                 {item.subtitle}
                                             </p>
                                         </div>
@@ -309,7 +309,7 @@ export function Join() {
                             </p>
                         </div>
 
-                        <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 items-stretch">
+                        <div className="lg:col-span-8 grid max-[420px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 items-stretch">
                             {partnerBenefits.map((item, index) => {
                                 const Icon = item.icon;
                                 return (
@@ -341,12 +341,15 @@ export function Join() {
 
             {/* 2. HOW IT WORKS (STEP-BY-STEP) */}
             <section className="bg-blue-50">
-                <div className="relative max-w-7xl mx-auto overflow-hidden border-y border-blue-100/60 py-10 md:py-12 px-6 md:px-12 lg:px-6 max-[960px]:" style={{
-                    backgroundImage: `url(${waterDropSplash2})`,
-                    backgroundSize: "35%",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "right center"
-                }}>
+                <div
+  className="relative max-w-7xl mx-auto overflow-hidden border-y border-blue-100/60 py-10 md:py-12 px-6 md:px-12 lg:px-6 [background-image:var(--bg-image)] max-[640px]:[background-image:none]"
+  style={{
+    "--bg-image": `url(${waterDropSplash2})`,
+    backgroundSize: "35%",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "right center"
+  }}
+>
 
                     <div className="absolute w-full h-full top-0 left-0 bg-linear-to-r from-blue-50 from-60% to-transparent" />
 
@@ -363,7 +366,7 @@ export function Join() {
                         <div className="relative max-w-3xl">
                             <div className="absolute top-10 left-10 right-10 h-0.5 bg-blue-200/80 z-0 hidden md:block" />
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 relative z-10">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 relative z-10">
                                 {processSteps.map((item, index) => {
                                     const Icon = item.icon;
                                     return (
@@ -404,7 +407,7 @@ export function Join() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-4 divide-x divide-slate-200/80 pt-2">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-4 lg:divide-x divide-slate-200/80 pt-2">
                         {targetPartners.map((item, index) => {
                             const Icon = item.icon;
                             return (
