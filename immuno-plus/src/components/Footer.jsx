@@ -196,7 +196,7 @@ export default function Footer({
                             </li>
                             <li>
                                 <a
-                                    href="wa.me/:919762170838"
+                                    href="https://wa.me/+919762170838"
                                     className="group flex items-start gap-3 text-slate-400 hover:text-blue-400 transition-colors"
                                     onClick={() => {
                                         logByEvent("generate_lead", {
