@@ -136,9 +136,9 @@ export function Navbar() {
                 </button>
 
                 <button className={`sm:hidden bg-white w-9 h-9 rounded-lg text-neutral-700 flex flex-col justify-center items-center ${navbarExpanded ? "space-y-0.5" : "space-y-1"}`} onClick={() => setNavBarExpended(prev => !prev)}>
-                    <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "rotate-z-36" : ""}`}></span>
-                    <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "hidden" : "block"}`}></span>
-                    <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "-rotate-z-36" : ""}`}></span>
+                    <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "translate-y-0.5 rotate-z-36" : ""}`}></span>
+                    <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "translate-y-0.5 -rotate-z-36 opacity-0" : "opacity-100"}`}></span>
+                    <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "-translate-y-0.5 -rotate-z-36" : ""}`}></span>
                 </button>
             </div>
         </div>

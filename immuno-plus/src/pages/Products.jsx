@@ -514,7 +514,7 @@ export function Products() {
               Discover our range of advanced water ionizers designed with Japanese & Korean technology to deliver superior performance, reliability, and long-term value.
             </p>
 
-            <div className="w-full max-w-6xl mx-auto grid grid-cols-3 min-[400px]:grid-cols-4 space-y-4 divide-y md:divide-y-0 md:divide-x divide-blue-500/20 text-white lg:-ml-12 mt-8">
+            <div className="w-full max-w-6xl mx-auto grid grid-cols-3 min-[400px]:grid-cols-4 space-y-4 md:divide-x divide-blue-500/20 text-white lg:-ml-12 mt-8">
               {features.map((item, index) => {
                 const Icon = item.icon;
                 return (
