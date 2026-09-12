@@ -65,14 +65,14 @@ export default function Features() {
         {/* MAIN HEADING */}
         <div className="max-w-4xl mx-auto text-center">
 
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0284c7]">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
             The Immuno+ Difference
           </p>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#051937] mt-4">
             Water Designed Around
             <br />
-            <span className="text-[#0284c7]">
+            <span className="text-blue-500">
               Everyday Wellness
             </span>
           </h2>
@@ -206,7 +206,7 @@ export default function Features() {
 
           <div className="max-w-3xl mx-auto text-center mb-9">
 
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0284c7]">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
               Water Comparison
             </p>
 
@@ -241,7 +241,7 @@ export default function Features() {
                     RO Water
                   </th>
 
-                  <th className="py-5 px-6 text-xs font-bold text-[#0284c7] uppercase tracking-wider bg-sky-50 w-[26%]">
+                  <th className="py-5 px-6 text-xs font-bold text-blue-500 uppercase tracking-wider bg-sky-50 w-[26%]">
                     Ionized Water
                   </th>
 
