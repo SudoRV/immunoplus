@@ -11,6 +11,7 @@ import {
 
 import heroBg from "../assets/hero_bg4.png";
 import heroBgRock from "../assets/hero_bg_rock.png";
+import Features from "../components/Features";
 import { WhoWeAre } from "./About";
 import { ProductSolutions, WhyChooseImmuno } from "./Products";
 import TrackedCTA from "../components/ui/TrackedCTA";
@@ -198,6 +199,9 @@ export function Home() {
                     </div>
                 </div>
             </section>
+            
+            {/* Features */}
+            <Features />
 
             {/* About Section */}
             <WhoWeAre />
