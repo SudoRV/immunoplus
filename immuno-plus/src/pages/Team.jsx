@@ -191,7 +191,7 @@ export function Team() {
                         </div>
                     </div>
 
-                    <div className="max-w-md text-xs md:text-base text-slate-600 leading-relaxed space-y-2 pl-4 lg:pl-8 pt-2">
+                    <div className="max-w-md text-sm md:text-base text-slate-600 leading-relaxed space-y-2 pl-4 lg:pl-8 pt-2">
                         <p>
                             Our team brings together experts from diverse backgrounds — engineering, healthcare, business and customer support — working with one mission:
                         </p>
@@ -236,13 +236,13 @@ export function Team() {
                                         <h4 className="text-base md:text-lg font-bold text-slate-900 leading-tight">
                                             {leader.name}
                                         </h4>
-                                        <p className="text-xs md:text-base font-medium text-blue-500">
+                                        <p className="text-sm md:text-base font-medium text-blue-500">
                                             {leader.role}
                                         </p>
                                     </div>
 
                                     {/* Bio */}
-                                    <p className="text-xs md:text-sm text-slate-500 leading-relaxed flex-1">
+                                    <p className="text-sm text-slate-500 leading-relaxed flex-1">
                                         {leader.bio}
                                     </p>
 
@@ -328,7 +328,7 @@ export function Team() {
 
                                 {/* Right: Subtext & Button */}
                                 <div className="flex flex-col items-center md:items-end text-center md:text-right space-y-4 max-w-sm">
-                                    <p className="text-xs sm:text-base text-slate-300 leading-relaxed">
+                                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                                         We believe great things happen when passionate people work together with a shared purpose.
                                     </p>
 

@@ -167,7 +167,7 @@ const partnerBenefits = [
 
 export function ProductSolutions() {
   return (
-    <section className="relative w-full bg-[#f8fbff] py-16 lg:py-12 text-slate-800">
+    <section className="relative w-full bg-[#f8fbff] py-12 lg:py-16 lg:py-12 text-slate-800">
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-12">
 
         {/* Section Header */}
@@ -183,7 +183,7 @@ export function ProductSolutions() {
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-6 lg:gap-8">
-            <p className="text-xs sm:text-sm lg:text-base text-slate-500 leading-relaxed max-w-xs">
+            <p className="text-sm lg:text-base text-slate-500 leading-relaxed max-w-xs">
               Three series. Multiple possibilities. <br />
               Engineered for performance. <br />
               Built for your success.
@@ -238,7 +238,7 @@ export function ProductSolutions() {
                     {item.name}{" "}
                     <span className="text-blue-500">{item.variant}</span>
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1 font-medium">
+                  <p className="text-sm text-slate-500 mt-1 font-medium">
                     {item.description}
                   </p>
                 </div>
@@ -246,7 +246,7 @@ export function ProductSolutions() {
                 {/* Feature Bullet List */}
                 <ul className="space-y-1 mb-4">
                   {item.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-600">
+                    <li key={fIdx} className="flex items-center gap-2.5 text-sm text-slate-600">
                       <CheckCircle2 className="w-4 h-4 text-sky-500 shrink-0" />
                       <span>{feature}</span>
                     </li>
@@ -543,13 +543,13 @@ export function Products() {
       <section className="w-full bg-white py-12 px-6 md:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto">
           <div className="w-full max-w-xl mx-auto space-y-1">
-            <h2 className="text-xs lg:text-lg font-bold tracking-widest text-blue-500 uppercase text-center">
+            <h2 className="text-sm lg:text-lg font-bold tracking-widest text-blue-500 uppercase text-center">
               three tiers. multiple possibilities.
             </h2>
             <h1 className="text-2xl lg:text-4xl font-bold text-neutral-800 text-center">
               Choose the Right Solution for Your Needs
             </h1>
-            <p className="text-neutral-600 text-sm lg:text-base text-center">From wellness to high-demand commerical environments professionals,<br />immuno+ offers the perfect balance of technology, performance and value.</p>
+            <p className="text-neutral-600 text-base text-center">From wellness to high-demand commerical environments professionals,<br />immuno+ offers the perfect balance of technology, performance and value.</p>
 
           </div>
 
@@ -588,7 +588,7 @@ export function Products() {
                       {item.name}{" "}
                       <span className="text-blue-500">{item.variant}</span>
                     </h3>
-                    <p className="text-xs text-slate-500 mt-1 font-medium">
+                    <p className="text-sm text-slate-500 mt-1 font-medium">
                       {item.description}
                     </p>
                   </div>
@@ -596,7 +596,7 @@ export function Products() {
                   {/* Feature Bullet List */}
                   <ul className="space-y-1 mb-4">
                     {item.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-600">
+                      <li key={fIdx} className="flex items-center gap-2.5 text-sm text-slate-600">
                         <CheckCircle2 className="w-4 h-4 text-sky-500 shrink-0" />
                         <span>{feature}</span>
                       </li>

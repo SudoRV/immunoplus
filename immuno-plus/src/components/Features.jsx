@@ -77,7 +77,7 @@ export default function Features() {
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 leading-8 mt-5 max-w-3xl mx-auto">
+          <p className="text-base text-slate-600 mt-5 max-w-3xl mx-auto">
             Immuno+ brings together advanced filtration and electrolysis to
             create freshly produced ionized water. Understanding these two
             processes makes it easier to see how ionized water differs from
@@ -97,7 +97,7 @@ export default function Features() {
               Ionized Alkaline Water
             </h3>
 
-            <p className="text-base text-slate-600 leading-7 mt-3">
+            <p className="text-base text-slate-600   mt-3">
               Ionized water is produced by passing filtered water through an
               electrolysis chamber. An electrical current interacts with the
               water through specially designed electrodes, creating separate
@@ -115,7 +115,7 @@ export default function Features() {
               Molecular Hydrogen & ORP
             </h4>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-7 mt-2">
+            <p className="text-sm sm:text-base text-slate-600   mt-2">
               Electrolysis can also produce dissolved molecular hydrogen in
               the alkaline water and change its oxidation-reduction
               potential, commonly referred to as ORP. These are measurable
@@ -133,7 +133,7 @@ export default function Features() {
               Alkalinity & Mineral Content
             </h4>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-7 mt-2">
+            <p className="text-sm sm:text-base text-slate-600   mt-2">
               Alkaline water has a pH above 7. During ionization, the water
               is separated into streams with different pH levels. The final
               mineral content depends on the original source water because
@@ -151,7 +151,7 @@ export default function Features() {
               Filtration Meets Ionization
             </h3>
 
-            <p className="text-base text-slate-600 leading-7 mt-3">
+            <p className="text-base text-slate-600   mt-3">
               Filtration and ionization perform different functions.
               Filtration focuses on reducing unwanted substances from the
               incoming water, while ionization changes its electrochemical
@@ -170,7 +170,7 @@ export default function Features() {
               From Purification to Personal Use
             </h4>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-7 mt-2">
+            <p className="text-sm sm:text-base text-slate-600   mt-2">
               The system produces water when you need it, rather than
               requiring you to continuously purchase and store packaged
               water. This makes it practical for everyday drinking and
@@ -188,7 +188,7 @@ export default function Features() {
               Water for Different Needs
             </h4>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-7 mt-2">
+            <p className="text-sm sm:text-base text-slate-600   mt-2">
               Different water settings can be selected according to the
               intended use. Drinking water, cooking water and other
               applications can therefore be approached differently, while

@@ -75,11 +75,11 @@ export function WhoWeAre() {
                         <div className="absolute -left-6 -bottom-6 bg-white p-4 px-5 sm:p-7 rounded-3xl shadow-[0_20px_50px_rgba(8,112,184,0.15)] border border-slate-100 sm:aspect-square max-w-50">
                             <div className="flex items-center gap-2 mb-3">
                                 <Droplet className="w-6 h-6 text-sky-500 fill-sky-500" />
-                                <span className="text-sm font-bold tracking-tight text-slate-800">
+                                <span className="text-base font-bold tracking-tight text-slate-800">
                                     Our Mission
                                 </span>
                             </div>
-                            <p className="text-xs text-slate-500 leading-relaxed">
+                            <p className="text-sm text-slate-500 leading-relaxed">
                                 To make premium water technology accessible through trusted
                                 partnerships and exceptional support.
                             </p>
@@ -102,7 +102,7 @@ export function WhoWeAre() {
                     </h2>
 
                     {/* Body Paragraphs */}
-                    <div className="space-y-4 text-neutral-800 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl">
+                    <div className="space-y-4 text-neutral-800 text-base lg:text-lg leading-relaxed max-w-xl">
                         <p>
                             Immuno+ is dedicated to delivering advanced water ionization
                             solutions for businesses, healthcare professionals, wellness
@@ -127,10 +127,10 @@ export function WhoWeAre() {
 
                                     {/* Two-line label */}
                                     <div className="flex flex-col items-center min-[400px]:items-start">
-                                        <p className="text-xs lg:text-sm font-bold text-slate-800 leading-snug">
+                                        <p className="text-sm lg:text-lg font-bold text-slate-800 leading-snug">
                                             {badge.title}
                                         </p>
-                                        <p className="text-xs lg:text-sm text-slate-500 leading-snug">
+                                        <p className="text-sm lg:text-base text-slate-500 leading-snug">
                                             {badge.subtitle}
                                         </p>
                                     </div>

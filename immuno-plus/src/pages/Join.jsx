@@ -280,7 +280,7 @@ export function Join() {
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-xs md:text-sm text-slate-500 leading-relaxed">
+                                    <p className="text-sm text-slate-500 leading-relaxed">
                                         {item.description}
                                     </p>
                                 </div>
@@ -323,7 +323,7 @@ export function Join() {
                                         <h4 className="text-base md:text-lg font-bold text-slate-900 leading-tight whitespace-pre-line">
                                             {item.title}
                                         </h4>
-                                        <p className="text-[12px] md:text-sm text-slate-400 leading-relaxed">
+                                        <p className="text-sm text-slate-400 leading-relaxed">
                                             {item.description}
                                         </p>
                                     </div>
@@ -378,7 +378,7 @@ export function Join() {
                                                 <Icon className="w-6 h-6 stroke-[1.75]" />
                                             </div>
                                             <h4 className="text-sm md:text-lg font-bold text-slate-900">{item.title}</h4>
-                                            <p className="text-xs md:text-sm text-slate-700 leading-relaxed max-w-37.5">
+                                            <p className="text-sm text-slate-700 leading-relaxed max-w-37.5">
                                                 {item.description}
                                             </p>
                                         </div>
@@ -402,7 +402,7 @@ export function Join() {
                                 We Partner With <span className="text-blue-600">Visionaries Like You.</span>
                             </h3>
                         </div>
-                        <p className="text-xs sm:text-base text-slate-500 max-w-md leading-relaxed">
+                        <p className="text-sm sm:text-base text-slate-500 max-w-md leading-relaxed">
                             Immuno+ welcomes passionate individuals and organizations who want to grow with a future-ready health and wellness brand.
                         </p>
                     </div>
@@ -411,7 +411,7 @@ export function Join() {
                         {targetPartners.map((item, index) => {
                             const Icon = item.icon;
                             return (
-                                <div key={index} className="flex flex-col items-center text-center px-4 space-y-3">
+                                <div key={index} className="flex flex-col items-center text-center">
                                     <div className="p-2 text-blue-600">
                                         <Icon className="w-8 h-8 stroke-[1.5]" />
                                     </div>

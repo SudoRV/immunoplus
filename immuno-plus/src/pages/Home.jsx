@@ -15,6 +15,7 @@ import Features from "../components/Features";
 import { WhoWeAre } from "./About";
 import { ProductSolutions, WhyChooseImmuno } from "./Products";
 import TrackedCTA from "../components/ui/TrackedCTA";
+import Gallery from "../components/HeroGallery";
 
 const pageMetadata = [
     <title key="title">Immuno+ | Advanced Water Ionization Solutions</title>,
@@ -74,10 +75,15 @@ export function Home() {
                 <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.75)" }} />
 
                 {/* Navigation Bar */}
-                <Navbar />
-
+                <Navbar />                                                     
+                                  
                 {/* Hero Content */}
-                <div className="px-6 md:px-20 lg:px-20 py-6 w-full max-w-400 mx-auto z-20">
+                <div className="px-6 md:px-20 lg:px-20 py-6 w-full max-w-400 mx-auto z-20">                                       
+                    
+                    <div className="pb-8 md:pb-12">
+                        <Gallery />
+                    </div>  
+                    
                     <div className="w-full max-[640px]:max-w-sm sm:max-w-md lg:max-w-xl my-auto flex flex-col justify-center">
                         {/* Subheading Badge / Kicker */}
                         <p className="text-sky-400 font-semibold tracking-wider text-xs md:text-xs lg:text-sm mb-3 uppercase">

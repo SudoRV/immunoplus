@@ -96,8 +96,9 @@ export function Contact() {
         // log faq open
         if (openIndex !== index) {
             logByEvent("select_content", {
-                content_type: "faq",
+                content_type: "faq",       
                 question: defaultFaqs[index].question,
+                placement: "contact_page"
             })
         }
     };
