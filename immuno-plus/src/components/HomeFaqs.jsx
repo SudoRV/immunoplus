@@ -78,9 +78,8 @@ export default function FAQs() {
             <div className="max-w-5xl mx-auto">
 
                 {/* Section Header */}
-                    <p className="text-base sm:text-lg text-slate-800 text-semibold">
-                        Learn more about ionized water, Immuno+ technology,
-                        installation, delivery and ordering.
+                    <p className="text-lg sm:text-2xl font-bold text-slate-800 text-center">
+                        Got Questions? We’ve Got Answers
                     </p>
 
                 {/* FAQ LIST */}
