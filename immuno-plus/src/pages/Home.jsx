@@ -16,6 +16,7 @@ import { WhoWeAre } from "./About";
 import { ProductSolutions, WhyChooseImmuno } from "./Products";
 import TrackedCTA from "../components/ui/TrackedCTA";
 import Gallery from "../components/HeroGallery";
+import FAQs from "../components/HomeFaqs";
 
 const pageMetadata = [
     <title key="title">Immuno+ | Advanced Water Ionization Solutions</title>,
@@ -214,6 +215,9 @@ export function Home() {
 
             {/* Products Solutions */}
             <ProductSolutions />
+                
+            {/* faqs */}
+            <FAQs />
 
             {/* WhyChooseImmuno */}
             <WhyChooseImmuno />
