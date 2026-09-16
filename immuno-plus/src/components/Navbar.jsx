@@ -3,7 +3,10 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { useRef, useState } from 'react';
 
 import logo from "../assets/logo.png";
+import horizontalLogo from "../assets/logo_horizontal.png";
 import { logByEvent } from '../services/fcmAnalytics';
+
+import Logo from "./ui/Logo";
 
 const navItems = [
     { name: 'Home', path: '/' },
@@ -22,20 +25,9 @@ export function Navbar() {
     const [navbarExpanded, setNavBarExpended] = useState(false);
 
     return (
-        <div ref={desktopNavRef} className="relative z-100 w-full h-fit flex justify-between items-center p-3 sm:p-2 sm:px-4 bg-transparent">
-            {/* Brand Logo */}
-            <div className="relative flex items-center select-none cursor-pointer" onClick={() => {
-                window.location.href = "/"
-            }}>
-                <img className='h-10 sm:h-14' src={logo} />
-
-                <div className='flex flex-col justify-center'>
-                    <p className="text-white font-bold tracking-wider text-lg sm:text-xl lg:text-2xl leading-tight">IMMUNO</p>
-                    <span className="font-bold text-lg sm:text-xl md:text-2xl text-blue-400 absolute -right-4 -top-2 sm:-top-1.5">+</span>
-
-                    <p className='text-xs sm:text-[12px] leading-tight'>Alkaline Ionizer</p>
-                </div>
-            </div>
+        <div ref={desktopNavRef} className="relative z-100 w-full h-fit flex justify-between items-center p-2 px-3 sm:px-4 bg-transparent">
+            {/* Brand Logo */}                                
+            <Logo type={"custom"} />
 
             {/* Pill Navigation Bar */}
             <nav className="hidden sm:block border border-neutral-100/30 bg-linear-to-r from-white/10 via-white/10 to-black/50 backdrop-blur-xs rounded-full px-7 py-2 shadow-lg">

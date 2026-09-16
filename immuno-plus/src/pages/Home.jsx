@@ -17,6 +17,7 @@ import { ProductSolutions, WhyChooseImmuno } from "./Products";
 import TrackedCTA from "../components/ui/TrackedCTA";
 import Gallery from "../components/HeroGallery";
 import FAQs from "../components/HomeFaqs";
+import TestimonialGallery from "../components/TestimonialGallery";
 
 const pageMetadata = [
     <title key="title">Immuno+ | Advanced Water Ionization Solutions</title>,
@@ -73,7 +74,7 @@ export function Home() {
                 style={{ backgroundImage: `url(${heroBg})`, }}
             >
                 {/* The filter layer: filters the background image behind it */}
-                <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.75)" }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.6)" }} />
 
                 {/* Navigation Bar */}
                 <Navbar />                                                     
@@ -215,6 +216,9 @@ export function Home() {
 
             {/* Products Solutions */}
             <ProductSolutions />
+                
+            {/* Testimonials */}
+            <TestimonialGallery />
                 
             {/* faqs */}
             <FAQs />

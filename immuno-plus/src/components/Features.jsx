@@ -4,57 +4,108 @@ export default function Features() {
   const comparisonRows = [
     {
       parameter: "Filtration",
-      normal:
-        "Depends on the quality and source of the water.",
-      ro:
-        "Uses reverse osmosis to remove many dissolved impurities.",
-      ionized:
-        "Multi-stage filtration followed by water ionization.",
+      normal: "Depends on the quality and source of the water.",
+      ro: "Uses reverse osmosis to remove many dissolved impurities.",
+      ionized: "Multi-stage filtration followed by water ionization.",
     },
     {
       parameter: "pH",
-      normal:
-        "Generally close to neutral, depending on the source.",
-      ro:
-        "Usually neutral to slightly acidic after filtration.",
-      ionized:
-        "Produces alkaline water with adjustable pH levels.",
+      normal: "Generally close to neutral, depending on the source.",
+      ro: "Usually neutral to slightly acidic after filtration.",
+      ionized: "Produces alkaline water with adjustable pH levels.",
     },
     {
       parameter: "Natural Minerals",
-      normal:
-        "May naturally contain minerals such as calcium and magnesium.",
-      ro:
-        "A significant amount of dissolved minerals can be removed during RO filtration.",
-      ionized:
-        "Retains naturally occurring minerals while producing alkaline water.",
+      normal: "May naturally contain minerals such as calcium and magnesium.",
+      ro: "A significant amount of dissolved minerals can be removed during RO filtration.",
+      ionized: "Retains naturally occurring minerals while producing alkaline water.",
     },
     {
       parameter: "Oxidation-Reduction Potential",
-      normal:
-        "Varies depending on the water source.",
-      ro:
-        "Varies depending on the source and filtration process.",
-      ionized:
-        "Electrolysis can produce water with a lower ORP.",
+      normal: "Varies depending on the water source.",
+      ro: "Varies depending on the source and filtration process.",
+      ionized: "Electrolysis can produce water with a lower ORP.",
     },
     {
       parameter: "Molecular Hydrogen",
-      normal:
-        "No intentionally added molecular hydrogen.",
-      ro:
-        "No intentionally added molecular hydrogen.",
-      ionized:
-        "Electrolysis can produce dissolved molecular hydrogen.",
+      normal: "No intentionally added molecular hydrogen.",
+      ro: "No intentionally added molecular hydrogen.",
+      ionized: "Electrolysis can produce dissolved molecular hydrogen.",
     },
     {
       parameter: "Everyday Use",
-      normal:
-        "Drinking, cooking and general household use.",
-      ro:
-        "Drinking and cooking where highly filtered water is preferred.",
-      ionized:
-        "Drinking, cooking and selected household or commercial uses.",
+      normal: "Drinking, cooking and general household use.",
+      ro: "Drinking and cooking where highly filtered water is preferred.",
+      ionized: "Drinking, cooking and selected household or commercial uses.",
+    },
+  ];
+
+  // IMMUNO+ vs Competitor comparison data
+  const productComparisonRows = [
+    {
+      feature: "Water Restructuring",
+      immuno: "100% natural process (no chemical use)",
+      competitor: "Uses sodium hypochlorite (bleaching powder)",
+    },
+    {
+      feature: "Electrolytic Chamber",
+      immuno: "7/9/11 solid Titanium plates (99.99% pure), double-dipped & triple-baked platinum coating",
+      competitor: "7 solid Titanium plates (99.97% pure), single-dipped platinum coating",
+    },
+    {
+      feature: "Chamber Integrity",
+      immuno: "Chamber can be opened by service technician",
+      competitor: "Sealed chamber (cannot be opened; WQA standard)",
+    },
+    {
+      feature: "pH Range",
+      immuno: "1.8 to 12.2",
+      competitor: "2.5 to 11.5 (based on chemical additive)",
+    },
+    {
+      feature: "ORP Level",
+      immuno: "Negative ORP up to -1700 mV",
+      competitor: "Negative ORP up to -800 mV",
+    },
+    {
+      feature: "Active Hydrogen Boost",
+      immuno: "Up to 1600 PPB",
+      competitor: "No hydrogen support",
+    },
+    {
+      feature: "Water Preset Levels",
+      immuno: "8 Levels (4 Alkaline, 1 Purified, 3 Acidic)",
+      competitor: "6 Levels (3 Alkaline, 1 Purified, 2 Acidic)",
+    },
+    {
+      feature: "Display & Cleaning",
+      immuno: "Full color display with touch capacitive buttons with automatic deep cleaning function",
+      competitor: "Half-color display with no automatic deep cleaning",
+    },
+    {
+      feature: "Filter Replacement Cost",
+      immuno: "₹6,000 (after 9,000 L or 1 year)",
+      competitor: "₹10,500 (after 6,000 L)",
+    },
+    {
+      feature: "Internal Filtration",
+      immuno: "4-stage filter (Silver carbon, PP, sediment, UF; WQA certified)",
+      competitor: "Requires sodium hypochlorite filter additive for higher pH/ORP",
+    },
+    {
+      feature: "Power Consumption",
+      immuno: "50 – 150 Watts",
+      competitor: "7 Amps / Over 300 Watts",
+    },
+    {
+      feature: "Plate Surface Area",
+      immuno: "247 sq. inches (6.3 x 2.75 in)",
+      competitor: "219 sq. inches (5.31 x 2.95 in)",
+    },
+    {
+      feature: "Warranty",
+      immuno: "3+5 Warranty and Guarantee with Extendable Option up to 2 times (applicable for full machine)",
+      competitor: "5-year warranty (applicable to plates only)",
     },
   ];
 
@@ -64,11 +115,9 @@ export default function Features() {
 
         {/* MAIN HEADING */}
         <div className="max-w-4xl mx-auto text-center">
-
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
             The Immuno+ Difference
           </p>
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#051937] mt-4">
             Water Designed Around
             <br />
@@ -76,82 +125,61 @@ export default function Features() {
               Everyday Wellness
             </span>
           </h2>
-
           <p className="text-base text-slate-600 mt-5 max-w-3xl mx-auto">
             Immuno+ brings together advanced filtration and electrolysis to
             create freshly produced ionized water. Understanding these two
             processes makes it easier to see how ionized water differs from
             ordinary and RO water.
           </p>
-
         </div>
-
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto mt-14">
-
-          {/* MAIN HEADING */}
+          
           <div>
-
             <h3 className="text-2xl sm:text-3xl font-bold text-[#051937]">
               Ionized Alkaline Water
             </h3>
-
-            <p className="text-base text-slate-600   mt-3">
+            <p className="text-base text-slate-600 mt-3">
               Ionized water is produced by passing filtered water through an
               electrolysis chamber. An electrical current interacts with the
               water through specially designed electrodes, creating separate
               streams with different characteristics. The alkaline stream is
               the one generally selected for drinking.
             </p>
-
           </div>
 
-
-          {/* NESTED CONTENT */}
           <div className="ml-6 sm:ml-10 mt-7">
-
             <h4 className="text-lg sm:text-xl font-semibold text-[#051937]">
               Molecular Hydrogen & ORP
             </h4>
-
-            <p className="text-sm sm:text-base text-slate-600   mt-2">
+            <p className="text-sm sm:text-base text-slate-600 mt-2">
               Electrolysis can also produce dissolved molecular hydrogen in
               the alkaline water and change its oxidation-reduction
               potential, commonly referred to as ORP. These are measurable
               characteristics of ionized water and are part of what
               distinguishes it from conventionally filtered water.
             </p>
-
           </div>
 
-
-          {/* NESTED CONTENT */}
           <div className="ml-6 sm:ml-10 mt-7">
-
             <h4 className="text-lg sm:text-xl font-semibold text-[#051937]">
               Alkalinity & Mineral Content
             </h4>
-
-            <p className="text-sm sm:text-base text-slate-600   mt-2">
+            <p className="text-sm sm:text-base text-slate-600 mt-2">
               Alkaline water has a pH above 7. During ionization, the water
               is separated into streams with different pH levels. The final
               mineral content depends on the original source water because
               ionization works with the minerals already present rather than
               simply adding them to the water.
             </p>
-
           </div>
 
-
-          {/* MAIN HEADING */}
           <div className="mt-12">
-
             <h3 className="text-2xl sm:text-3xl font-bold text-[#051937]">
               Filtration Meets Ionization
             </h3>
-
-            <p className="text-base text-slate-600   mt-3">
+            <p className="text-base text-slate-600 mt-3">
               Filtration and ionization perform different functions.
               Filtration focuses on reducing unwanted substances from the
               incoming water, while ionization changes its electrochemical
@@ -159,130 +187,140 @@ export default function Features() {
               complete water-treatment approach than relying on either
               process alone.
             </p>
-
           </div>
 
-
-          {/* NESTED CONTENT */}
           <div className="ml-6 sm:ml-10 mt-7">
-
             <h4 className="text-lg sm:text-xl font-semibold text-[#051937]">
               From Purification to Personal Use
             </h4>
-
-            <p className="text-sm sm:text-base text-slate-600   mt-2">
+            <p className="text-sm sm:text-base text-slate-600 mt-2">
               The system produces water when you need it, rather than
               requiring you to continuously purchase and store packaged
               water. This makes it practical for everyday drinking and
               cooking at home, as well as for offices, fitness centres,
               clinics, hotels and other commercial environments.
             </p>
-
           </div>
 
-
-          {/* NESTED CONTENT */}
           <div className="ml-6 sm:ml-10 mt-7">
-
             <h4 className="text-lg sm:text-xl font-semibold text-[#051937]">
               Water for Different Needs
             </h4>
-
-            <p className="text-sm sm:text-base text-slate-600   mt-2">
+            <p className="text-sm sm:text-base text-slate-600 mt-2">
               Different water settings can be selected according to the
               intended use. Drinking water, cooking water and other
               applications can therefore be approached differently, while
               the system provides a convenient source from a single
               installation.
             </p>
-
           </div>
-
         </div>
 
 
-        {/* COMPARISON TABLE */}
-        <div className="mt-20">
-
+        {/* WATER TYPES COMPARISON TABLE */}
+        <div className="mt-16 max-w-4xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-9">
-
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
               Water Comparison
             </p>
-
             <h3 className="text-2xl sm:text-3xl font-bold text-[#051937] mt-3">
               Normal Water vs RO Water vs Ionized Water
             </h3>
-
             <p className="text-sm sm:text-base text-slate-500 mt-3">
               A clear comparison of the characteristics that set each type
               of water apart.
             </p>
-
           </div>
 
-
-          <div className="overflow-x-auto rounded-xl border border-slate-200">
-
-            <table className="w-full min-w-[900px] text-left border-collapse bg-white">
-
+          {/* Added max-w-5xl to constrain total width */}
+          <div className="max-w-5xl mx-auto overflow-x-auto rounded-xl border border-slate-200">
+            <table className="w-full min-w-[800px] table-fixed text-left border-collapse bg-white">
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200">
-
-                  <th className="py-5 px-6 text-xs font-bold text-slate-500 uppercase tracking-wider w-[22%]">
+                  <th className="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider w-[15%]">
                     Water Feature
                   </th>
-
-                  <th className="py-5 px-6 text-xs font-bold text-slate-600 uppercase tracking-wider w-[26%]">
+                  <th className="p-4 text-xs font-bold text-slate-600 uppercase tracking-wider w-[26.66%]">
                     Normal Water
                   </th>
-
-                  <th className="py-5 px-6 text-xs font-bold text-slate-600 uppercase tracking-wider w-[26%]">
+                  <th className="p-4 text-xs font-bold text-slate-600 uppercase tracking-wider w-[26.66%]">
                     RO Water
                   </th>
-
-                  <th className="py-5 px-6 text-xs font-bold text-blue-500 uppercase tracking-wider bg-sky-50 w-[26%]">
+                  <th className="p-4 text-xs font-bold text-blue-500 uppercase tracking-wider bg-sky-50 w-[26.66%]">
                     Ionized Water
                   </th>
-
                 </tr>
               </thead>
-
               <tbody className="divide-y divide-slate-100">
-
                 {comparisonRows.map((row, index) => (
-
-                  <tr
-                    key={index}
-                    className="hover:bg-slate-50/50 transition-colors"
-                  >
-
-                    <td className="py-5 px-6 font-semibold text-[#051937] align-top bg-slate-50/40">
+                  <tr key={index} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="p-4 text-sm font-semibold text-[#051937] align-top bg-slate-50/40">
                       {row.parameter}
                     </td>
-
-                    <td className="py-5 px-6 text-sm text-slate-600 align-top leading-relaxed">
+                    <td className="p-4 text-sm text-slate-600 align-top leading-relaxed">
                       {row.normal}
                     </td>
-
-                    <td className="py-5 px-6 text-sm text-slate-600 align-top leading-relaxed">
+                    <td className="p-4 text-sm text-slate-600 align-top leading-relaxed">
                       {row.ro}
                     </td>
-
-                    <td className="py-5 px-6 text-sm font-medium text-slate-900 bg-sky-50/50 align-top leading-relaxed border-l border-r border-sky-100">
+                    <td className="p-4 text-sm font-medium text-slate-900 bg-sky-50/50 align-top leading-relaxed border-l border-r border-sky-100">
                       {row.ionized}
                     </td>
-
                   </tr>
-
                 ))}
-
               </tbody>
-
             </table>
+          </div>
+        </div>
 
+
+        {/* IMMUNO+ VS COMPETITOR COMPARISON TABLE */}
+        <div className="mt-20">
+          <div className="max-w-3xl mx-auto text-center mb-9">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
+              Product Specifications
+            </p>
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#051937] mt-3">
+              IMMUNO+ vs Competitor
+            </h3>
+            <p className="text-sm sm:text-base text-slate-500 mt-3">
+              See how IMMUNO+ technology, safety, and performance compare head-to-head.
+            </p>
           </div>
 
+          {/* Added max-w-4xl to constrain total width and stop columns from stretching */}
+          <div className="max-w-4xl mx-auto overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+            <table className="w-full min-w-[700px] table-fixed text-left border-collapse bg-white">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200">
+                  <th className="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider w-[13%]">
+                    Feature / Parameter
+                  </th>
+                  <th className="p-4 text-xs font-bold text-blue-600 uppercase tracking-wider bg-sky-50/80 w-[24%] border-l border-r border-sky-100">
+                    IMMUNO+
+                  </th>
+                  <th className="p-4 text-xs font-bold text-slate-600 uppercase tracking-wider w-[24%]">
+                    Competitor
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {productComparisonRows.map((row, index) => (
+                  <tr key={index} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="p-4 text-sm font-semibold text-[#051937] align-top bg-slate-50/40">
+                      {row.feature}
+                    </td>
+                    <td className="p-4 text-sm font-medium text-slate-900 bg-sky-50/40 align-top leading-relaxed border-l border-r border-sky-100">
+                      {row.immuno}
+                    </td>
+                    <td className="p-4 text-sm text-slate-600 align-top leading-relaxed">
+                      {row.competitor}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>

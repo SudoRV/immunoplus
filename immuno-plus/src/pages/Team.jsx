@@ -15,6 +15,11 @@ import { FaLinkedinIn } from "react-icons/fa";
 import heroBg from "../assets/hero_bg4.png";
 import TrackedCTA from "../components/ui/TrackedCTA";
 
+// team profile pictures
+import ManagingDirector from "../assets/team/MDF_Vineeta_Saxena.jpg";
+import TechnicalDirector from "../assets/team/TD_Nivid_Saxena.jpg";
+import MarketingHead from "../assets/team/MH_Abhay_Saxena.jpg";
+
 const pageMetadata = [
     <title key="title">Our Team | Immuno+</title>,
 ];
@@ -39,41 +44,28 @@ const features = [
 
 const leaders = [
     {
-        name: 'Rahul Sharma',
+        name: 'Dr. Vineeta Saxena',
         role: 'Founder & Managing Director',
-        bio: 'Visionary leader with 15+ years of experience in technology, business strategy and operations.',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop',
+        bio: 'Overseeing executive leadership, institutional governance, and long-term organizational strategy.',
+        image: ManagingDirector,
         linkedin: '#',
     },
     {
-        name: 'Vikram Mehta',
-        role: 'Chief Business Officer',
-        bio: 'Expert in business development and partnerships with a strong focus on growth and innovation.',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop',
-        linkedin: '#',
-    },
-    {
-        name: 'Dr. Amit Verma',
+        name: 'Er. Nivid Saxena',
         role: 'Technical Director',
-        bio: 'PhD in Water Technology. Leads our research, product innovation and quality assurance.',
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop',
+        bio: 'Directing technical strategy, system architecture, and core engineering operations.',
+        image: TechnicalDirector,
         linkedin: '#',
     },
     {
-        name: 'Neha Kapoor',
-        role: 'Operations Head',
-        bio: 'Operations expert ensuring seamless supply chain, delivery and customer satisfaction.',
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
-        linkedin: '#',
-    },
-    {
-        name: 'Arjun Singh',
+        name: 'Mr. Abhay Kumar Saxena',
         role: 'Marketing Head',
-        bio: 'Strategic marketer focused on brand development, marketing and partner enablement.',
-        image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop',
+        bio: 'Managing brand positioning, business development, and market engagement initiatives.',
+        image: MarketingHead,
         linkedin: '#',
-    },
+    },    
 ];
+
 
 const extendedTeam = [
     {
@@ -220,7 +212,7 @@ export function Team() {
                             {leaders.map((leader, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-b from-blue-100/60 via-blue-50/40 to-blue-50/10 transition-all shadow-sm hover:shadow-lg hover:shadow-blue-900/10 hover:scale-105 space-y-4"
+                                    className="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-b from-blue-100/60 via-blue-50/40 to-blue-50/10 transition-all shadow-sm hover:shadow-lg hover:shadow-blue-900/10 hover:scale-105 space-y-2"
                                 >
                                     {/* Profile Photo */}
                                     <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden p-1 border-2 border-blue-500/30">

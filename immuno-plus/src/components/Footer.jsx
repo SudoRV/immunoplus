@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa"
 
 import { logByEvent } from "../services/fcmAnalytics";
+import Logo from "./ui/Logo";
 
 export default function Footer({
     developerName = "Rahul Verma",
@@ -33,18 +34,12 @@ export default function Footer({
             />
 
             {/* Main Footer Content */}
-            <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-12 pb-8 relative z-10">
+            <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-8 pb-8 relative z-10">
                 <div className="flex flex-wrap md:flex-nowrap gap-10 lg:gap-8">
 
                     {/* Brand & Mission */}
                     <div className="min-w-[200px] flex flex-col gap-5">
-                        <div className="flex items-center gap-0.5 text-2xl font-black tracking-wider text-white">
-                            <span>IMMUNO</span>
-                            <span className="text-blue-500 font-bold text-3xl  leading-none -mt-5">+</span>
-                        </div>
-                        <p className="text-[11px] font-bold tracking-widest text-slate-400 uppercase -mt-4">
-                            Advanced Water Technology
-                        </p>
+                        <Logo type={"custom"} />
 
                         <p className="text-sm lg:text-base text-slate-400 leading-relaxed max-w-sm">
                             Advanced water ionization solutions for healthcare, wellness, and commercial environments.

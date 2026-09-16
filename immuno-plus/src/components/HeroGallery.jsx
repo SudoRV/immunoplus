@@ -156,9 +156,9 @@ const Gallery = () => {
               <div
                 key={card.id}
                 onClick={() => setActiveIndex(index)}
-                className={`absolute left-1/2 top-1/2 w-[90%] md:w-[60%] aspect-video rounded-2xl bg-cover bg-center overflow-hidden flex flex-col justify-end text-center p-2 md:p-4 cursor-pointer border transition-all duration-500 ease-out shadow-[0_15px_35px_rgba(0,0,0,0.7)] ${
+                className={`absolute left-1/2 top-1/2 w-[90%] md:w-[60%] lg:w-[50%] aspect-video rounded-2xl bg-cover bg-center overflow-hidden flex flex-col justify-end text-center p-2 md:p-4 cursor-pointer border transition-all duration-500 ease-out shadow-[0_15px_35px_rgba(0,0,0,0.7)] ${
                   isCenter
-                    ? 'border-[#00f0ffcc] shadow-[0_0_30px_rgba(0,240,255,0.3)]'
+                    ? 'border-neutral-50 shadow-[0_0_30px_rgba(0,240,255,0.3)]'
                     : 'border-[#00f0ff33]'
                 }`}
                 style={{

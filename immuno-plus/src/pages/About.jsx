@@ -142,7 +142,7 @@ export function WhoWeAre() {
                     {/* Outlined Action Button */}
                     {
                         window.location.pathname !== "/about" && (
-                            <div className="pt-4 ml-auto sm:ml-0">
+                            <div className="pt-4">
                                 <TrackedCTA className="group flex items-center gap-4 border border-sky-500 hover:border-blue-600 hover:bg-sky-50/50 text-blue-500 font-semibold text-sm lg:text-base px-6 py-2.5 rounded-full transition-all duration-200 active:scale-95 shadow-sm"
                                     as="Link"
                                     to="/about"
