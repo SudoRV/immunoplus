@@ -131,20 +131,19 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                 </p>
               </div>
 
-              <div className="pt-2 sm:pt-0">
-                {
-                  selectedProduct?.price ? (
-                    <div>
-                      <span className="text-2xl font-bold text-neutral-900">
-                        Rs {selectedProduct?.price}
-                      </span>
-                      <span className="text-xs lg:text-sm text-neutral-600 ml-2 font-semibold">Standard MRP</span>
-                    </div>
-                  ) : (
-                    <p className="font-semibold text-neutral-400">Contact for Customized Quotation</p>
-                  )
-                }
-              </div>
+              <div className="flex items-start gap-3">
+  <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">
+    ₹{selectedProduct.price}
+  </h3>
+  <div className="flex flex-col justify-center">
+    <span className="text-sm text-gray-500 line-through font-medium">
+      MRP ₹{selectedProduct.mrp}
+    </span>
+    <span className="text-xs font-bold text-green-600 uppercase tracking-wide">
+      Save {(selectedProduct.price/selectedProduct.mrp*100).toFixed()}%
+    </span>
+  </div>
+</div>
 
             </div>
           </div>
@@ -211,13 +210,33 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                       {selectedProduct.details.electrodePlates && (
                         <tr>
                           <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
-                            Electrode Chamber
+                            Electrode Plates
                           </td>
                           <td className="py-2.5 px-4 text-neutral-900">
                             {selectedProduct.details.electrodePlates}
                           </td>
                         </tr>
                       )}
+                      {selectedProduct.details.electrodeMaterial && (
+                        <tr>
+                          <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
+                            Electrode Material
+                          </td>
+                          <td className="py-2.5 px-4 text-neutral-900">
+                            {selectedProduct.details.electrodeMaterial}
+                          </td>
+                        </tr>
+                      )}
+                      {selectedProduct.details.platesSize && (
+                        <tr>
+                          <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
+                            Plates Size
+                          </td>
+                          <td className="py-2.5 px-4 text-neutral-900">
+                            {selectedProduct.details.platesSize}
+                          </td>
+                        </tr>
+                      )}                      
                       {selectedProduct.details.pHRange && (
                         <tr>
                           <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
@@ -227,17 +246,17 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                             {selectedProduct.details.pHRange}
                           </td>
                         </tr>
-                      )}
-                      {selectedProduct.details.orpPerformance && (
+                      )}   
+                      {selectedProduct.details.waterPressure && (
                         <tr>
                           <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
-                            ORP Range
+                            Water Pressure
                           </td>
-                          <td className="py-2.5 px-4 text-neutral-900 font-medium">
-                            {selectedProduct.details.orpPerformance}
+                          <td className="py-2.5 px-4 text-neutral-900">
+                            {selectedProduct.details.waterPressure}
                           </td>
                         </tr>
-                      )}
+                      )}                  
                       {selectedProduct.details.cleaningSystem && (
                         <tr>
                           <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">

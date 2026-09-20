@@ -96,7 +96,7 @@ const extendedTeam = [
 
 export function Team() {
     return (
-        <div className="w-full min-h-screen bg-neutral-950 text-white flex flex-col overflow-x-hidden">
+        <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden">
             {pageMetadata}
             {/* Hero Section */}
             <section
@@ -288,10 +288,9 @@ export function Team() {
                             })}
                         </div>
 
-
                     </div>
 
-                    <div className="w-full max-w-7xl mx-auto px-4">
+                    <div className="w-full max-w-7xl mx-auto md:px-4">
                         <div className="relative overflow-hidden rounded-3xl bg-[#021024] bg-gradient-to-r from-[#020b18] via-[#031d42] to-[#025091] px-6 sm:px-10 py-8 lg:py-10 text-white shadow-xl">
 
                             {/* Subtle Water/Rays Glow Texture on the right */}

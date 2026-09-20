@@ -19,8 +19,34 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import waterDropSplash from "../assets/water_drop_splash.png";
-import product1 from "../assets/products/ionizer_machine.png";
 import waterSplashBT from "../assets/water_splash_bt.png";
+
+//products 
+import hydrogenBottle from "../assets/products/hydrogen_bottle.png";
+import mistMaker from "../assets/products/mist_maker.png"
+
+// layer 9
+import layer9_front from "../assets/products/9 layer/front.png";
+import layer9_frontSide from "../assets/products/9 layer/front_side.png";
+import layer9_side from "../assets/products/9 layer/side.png";
+import layer9_back from "../assets/products/9 layer/back.png";
+
+// layer 7
+import layer7_front from "../assets/products/7 layer/front.png";
+import layer7_frontSide from "../assets/products/7 layer/front_side.png";
+import layer7_side from "../assets/products/7 layer/side.png";
+import layer7_back from "../assets/products/7 layer/back.png";
+
+// layer 5
+import layer5_front from "../assets/products/5 layer/front.png";
+import layer5_frontSide from "../assets/products/5 layer/front_side.png";
+import layer5_sideFront from "../assets/products/5 layer/side_front.png";
+import layer5_back from "../assets/products/5 layer/back.png";
+import layer5_sideBack from "../assets/products/5 layer/side_back.png";
+
+//benefits 
+import immunoBenifits from "../assets/products/benefits.png"
+
 
 import { Navbar } from "../components/Navbar";
 import heroBg from "../assets/hero_bg4.png";
@@ -36,103 +62,209 @@ const pageMetadata = [
 
 const products = [
   {
-    id: "immuno-essential",
-    name: "IMMUNO+",
-    variant: "Essential",
-    description: "Entry-level premium solution",
-    image: product1,
-    popular: false,
-    ctaText: "View Details",
-    ctaPrimary: false,
-    features: [
-      "Advanced electrolysis",
-      "Multiple water modes",
-      "Compact design",
-      "Ideal for clinics & homes",
-    ],
-    price: 249999,
-    details: {
-      overview:
-        "A compact domestic electrolysis system engineered for home and small clinic settings, delivering mineral-rich alkaline and antioxidant water on demand.",
-      workingPrinciple:
-        "Direct-flow continuous electrolysis using a specialized solid platinum-coated titanium multi-plate chamber. Water is first filtered to remove sediment and chlorine, then separated by ion-permeable membranes into alkaline (rich in OH⁻ and dissolved molecular hydrogen) and mildly acidic streams.",
-      outputCapacity: "1.5 – 2.0 Liters/min (LPM)",
-      powerConsumption: "150W – 180W (Operational) / < 2W (Standby)",
-      powerSupply: "220V - 240V AC, 50/60 Hz (Integrated SMPS)",
-      electrodePlates: "5 Solid Platinum-Coated Titanium Plates",
-      pHRange: "4.0 – 10.0 pH",
-      orpPerformance: "Up to -450 mV (Oxidation-Reduction Potential)",
-      waterModes: [
-        "4 Alkaline levels (Daily Drinking, Cooking, Tea/Coffee, High Alkaline)",
-        "1 Purified/Neutral water level (Medication & Baby formula)",
-        "2 Acidic levels (Facial astringent & Surface sanitization)",
-      ],
-      cleaningSystem: "Automatic reverse polarity self-cleaning cycle after every dispense",
-      images: [product1, product1]
-    },
-  },
-  {
-    id: "immuno-professional",
-    name: "IMMUNO+",
-    variant: "Professional",
-    description: "Professional-grade ionization",
-    image: product1,
+    id: "ionizer-layer-9",
+    name: "Water Ionizer",
+    variant: "Layer 9",
+    description: "Premium 9-plate hydrogen water ionizer",
+    image: layer9_front,
     popular: true,
     ctaText: "View Details",
     ctaPrimary: true,
     features: [
-      "Enhanced plate technology",
-      "Higher output capacity",
-      "Advanced controls",
-      "Ideal for wellness & commercial spaces",
+      "9-layer electrolysis technology",
+      "Advanced water ionization",
+      "High-performance operation",
+      "Premium home & wellness use",
     ],
-    price: 349999,
+    mrp: 189999,
+    price: 119999,
     details: {
+      mrp: "₹1,89,999",
+      launchPrice: "₹1,19,999",
       overview:
-        "High-performance alkaline ionization system built for heavy daily usage in wellness centers, premium residences, and healthcare facilities requiring wider pH customizability and higher dissolved hydrogen concentrations.",
+        "Our flagship 9-plate alkaline ionization system built for heavy daily usage in premium residences and wellness spaces, delivering maximum dissolved hydrogen concentration and wide pH customizability.",
       workingPrinciple:
-        "High-amperage Switched-Mode Power Supply (SMPS) driven electrolysis through large-surface-area mesh/slotted platinum-titanium electrodes. It leverages a dual multi-stage carbon block and ultra-filtration core to purify inlet water before precision-splitting it into high-ORP negative antioxidant streams.",
+        "High-amperage Switched-Mode Power Supply (SMPS) driven electrolysis through 9 large-surface-area solid platinum-titanium electrodes. Integrates multi-stage carbon and ultra-filtration to purify inlet water before separating it into potent antioxidant streams.",
       outputCapacity: "3.0 – 4.0 Liters/min (LPM)",
-      powerConsumption: "250W – 320W (Operational) / < 3W (Standby)",
-      powerSupply: "220V - 240V AC, 50/60 Hz (Advanced High-Efficiency SMPS)",
-      electrodePlates: "7 to 9 Platinum-Coated Titanium Mesh Plates (Enhanced Surface Area)",
-      pHRange: "3.0 – 11.5 pH",
-      orpPerformance: "Up to -800 mV (Oxidation-Reduction Potential) / Dissolved H₂ up to 1600 ppb",
+      powerConsumption: "5W – 100W (Operational) / < 5W (Standby)",
+      powerSupply: "220V - 240V AC, 50/60 Hz (Advanced SMPS)",
+      lcdDisplay: "pH/ORP/Temperature / Process",    
+      electrodePlates: "9 Solid plates",
+      electrodeMaterial: "Platinum-Coated 0.5 micron Titanium Base",
+      platesSize: "154mm x 75mm x 0.5mm",
+      pHRange: "3.0 – 11 pH",  
+      waterPressure: "0.3 - 0.5 MPA",   
       waterModes: [
-        "Multiple programmable alkaline stages (Strong alkaline for produce wash, optimal health drinking levels)",
-        "Neutral purified water mode",
-        "Multiple acidic stages (Strong sanitizing & beauty astringent water)",
+        "4 Alkaline levels (Strong wash, Daily Drinking, Cooking, Tea/Coffee)",
+        "1 Neutral purified water level (Medication & Baby formula)",
+        "2 Acidic levels (Strong sanitization & Beauty astringent)",
       ],
       cleaningSystem: "Automated DARC (Double Automatic Reverse Cleaning) with zero chamber scaling pause",
-      images: [product1, product1, product1]
+      images: [layer9_front, layer9_frontSide, layer9_side, layer9_back, immunoBenifits],
     },
   },
+
   {
-    id: "immuno-commercial",
-    name: "IMMUNO+",
-    variant: "Commercial",
-    description: "Built for high-demand environments",
-    image: product1,
+    id: "ionizer-layer-7",
+    name: "Water Ionizer",
+    variant: "Layer 7",
+    description: "Advanced 7-plate hydrogen water ionizer",
+    image: layer7_front,
     popular: false,
-    ctaText: "Request Information",
+    ctaText: "View Details",
     ctaPrimary: false,
     features: [
-      "Commercial capacity",
-      "Continuous operation",
-      "Business-grade performance",
-      "Ideal for hotels & institutions",
+      "7-layer electrolysis technology",
+      "Efficient water ionization",
+      "Advanced performance",
+      "Ideal for homes & wellness spaces",
     ],
+    mrp: 169999,
+    price: 99999,
     details: {
-      outputCapacity: "1.5 – 2.0 Liters/min (LPM)",
-      powerConsumption: "150W – 180W (Operational) / < 2W (Standby)",
+      mrp: "₹1,69,999",
+      launchPrice: "₹99,999",
+      overview:
+        "A highly efficient 7-plate domestic electrolysis system designed for modern homes, offering a perfect balance of performance, mineral-rich alkaline output, and sleek design.",
+      workingPrinciple:
+        "Direct-flow continuous electrolysis using a 7-plate solid platinum-coated titanium chamber. Uses ion-permeable membranes to separate filtered tap water into specialized alkaline and acidic outputs.",
+      outputCapacity: "2.0 – 3.0 Liters/min (LPM)",
+      powerConsumption: "5W - 100W (Operational) / < 5W (Standby)",
       powerSupply: "220V - 240V AC, 50/60 Hz (Integrated SMPS)",
-      electrodePlates: "5 Solid Platinum-Coated Titanium Plates",
-      pHRange: "4.0 – 10.0 pH",
-      orpPerformance: "Up to -450 mV (Oxidation-Reduction Potential)",
-      images: [product1, product1, product1, product1]
-    }
+      electrodePlates: "7 Solid plates",
+      electrodeMaterial: "Platinum-Coated 0.5 micron Titanium Base",
+      platesSize: "154mm x 75mm x 0.5mm",
+      pHRange: "3.0 – 11 pH",  
+      waterPressure: "0.3 - 0.5 MPA",         
+      waterModes: [
+        "3 Alkaline levels (Daily Drinking, Cooking, Tea/Coffee)",
+        "1 Neutral purified water level (Medication & Baby formula)",
+        "2 Acidic levels (Surface sanitization & Facial astringent)",
+      ],
+      cleaningSystem: "Automatic reverse polarity self-cleaning cycle after every dispense",
+      images: [layer7_front, layer7_frontSide, layer7_side, layer7_back, immunoBenifits],
+    },
+  },
+
+  {
+    id: "ionizer-layer-5",
+    name: "Water Ionizer",
+    variant: "Layer 5",
+    description: "Compact 5-plate water ionization system",
+    image: layer5_front,
+    popular: false,
+    ctaText: "View Details",
+    ctaPrimary: false,
+    features: [
+      "5-layer electrolysis technology",
+      "Compact design",
+      "Efficient water ionization",
+      "Ideal for everyday home use",
+    ],
+    mrp: 149999,
+    price: 89999,
+    details: {
+      mrp: "₹1,49,999",
+      launchPrice: "₹89,999",
+      overview:
+        "Our entry-level compact domestic ionization system, engineered specifically for smaller kitchens or clinics looking to bring mineral-rich, antioxidant drinking water into their daily routine.",
+      workingPrinciple:
+        "Standard electrolysis via a 5-plate solid platinum-coated titanium chamber. Cleanses water of sediment and chlorine before enriching it with OH⁻ ions and dissolved molecular hydrogen.",
+      outputCapacity: "1.5 – 2.0 Liters/min (LPM)",
+      powerConsumption: "5W - 100W (Operational) / < 5W (Standby)",
+      powerSupply: "220V - 240V AC, 50/60 Hz (Integrated SMPS)",
+      electrodePlates: "5 Solid plates",
+      electrodeMaterial: "Platinum-Coated 0.5 micron Titanium Base",
+      platesSize: "154mm x 75mm x 0.5mm",
+      pHRange: "3.0 – 11 pH",  
+      waterPressure: "0.3 - 0.5 MPA", 
+      waterModes: [
+        "3 Alkaline levels (Daily Drinking, Cooking, Tea/Coffee)",
+        "1 Neutral purified water level",
+        "1 Mild Acidic level (Beauty wash)",
+      ],
+      cleaningSystem: "Automatic reverse polarity self-cleaning cycle after every dispense",
+      images: [layer5_front, layer5_frontSide, layer5_back, layer5_sideBack, layer5_back, immunoBenifits],
+    },
+  },
+
+  {
+    id: "mist-water-spray",
+    name: "",
+    variant: "Mist Water Spray Bottle",
+    description: "Portable 300 ml water mist spray bottle",
+    image: mistMaker,
+    popular: false,
+    ctaText: "View Details",
+    ctaPrimary: false,
+    features: [
+      "300 ml capacity",
+      "Fine water mist spray",
+      "Portable design",
+      "Convenient everyday use",
+    ],
+    mrp: 999,
+    price: 499,
+    details: {
+      mrp: "₹999",
+      launchPrice: "₹499",
+      overview:
+        "A travel-friendly misting bottle designed to convert ionized acidic water (or standard purified water) into an ultra-fine, hydrating micro-mist for skin care and cooling on the go.",
+      workingPrinciple: "High-pressure mechanical atomization nozzle that breaks down water droplets into a highly absorbent, uniform micro-mist without the use of aerosols.",
+      outputCapacity: "300 ml total volume",
+      powerConsumption: "Manual operation (No electricity required)",
+      powerSupply: "N/A",
+      electrodePlates: "N/A",
+      pHRange: "Maintains the pH of the poured water",
+      orpPerformance: "N/A",
+      waterModes: [
+        "Continuous ultra-fine misting mode"
+      ],
+      cleaningSystem: "Easy-rinse detachable nozzle and tank",
+      images: [mistMaker],
+    },
+  },
+
+  {
+    id: "hydrogen-water-bottle",
+    name: "",
+    variant: "Hydrogen Water Bottle",
+    description: "Portable 500 ml hydrogen water bottle",
+    image: hydrogenBottle,
+    popular: false,
+    ctaText: "View Details",
+    ctaPrimary: false,
+    features: [
+      "500 ml capacity",
+      "Hydrogen water generation",
+      "Portable design",
+      "Ideal for everyday hydration",
+    ],
+    mrp: 20000,
+    price: 12000,
+    details: {
+      mrp: "₹20,000",
+      launchPrice: "₹12,000",
+      overview:
+        "A rechargeable, portable hydration solution that infuses standard drinking water with high concentrations of dissolved molecular hydrogen (H₂) in just minutes, perfect for gym-goers, commuters, and athletes.",
+      workingPrinciple:
+        "Advanced SPE (Solid Polymer Electrolyte) and PEM (Proton Exchange Membrane) technology safely separates hydrogen and oxygen, dissolving pure H₂ into the water while expelling ozone and chlorine gases out of the base.",
+      outputCapacity: "500 ml total volume per 3-5 minute cycle",
+      powerConsumption: "10W during generation",
+      powerSupply: "Rechargeable Lithium-Ion Battery (USB Type-C)",
+      electrodePlates: "Titanium base plates with Platinum coating + SPE Membrane",
+      pHRange: "Neutral (Maintains source water pH while adding H₂)",
+      orpPerformance: "Up to -400 mV / Dissolved H₂ up to 1300 ppb",
+      waterModes: [
+        "3-Minute Quick H₂ Generation Cycle",
+        "5-Minute Deep H₂ Infusion Cycle"
+      ],
+      cleaningSystem: "Manual wash (Base is IPX4 water-resistant)",
+      images: [hydrogenBottle],
+    },
   },
 ];
+
 
 const topPillars = [
   {
@@ -235,14 +367,14 @@ export function ProductSolutions() {
                 {/* Product Titles */}
                 <div className="mb-4">
                   <h3 className="text-xl font-bold text-slate-900 tracking-tight">
-                    {item.name}{" "}
+                    {item?.name}{" "}
                     <span className="text-blue-500">{item.variant}</span>
                   </h3>
                   <p className="text-sm text-slate-500 mt-1 font-medium">
                     {item.description}
                   </p>
                 </div>
-
+                                
                 {/* Feature Bullet List */}
                 <ul className="space-y-1 mb-4">
                   {item.features.map((feature, fIdx) => (
@@ -577,35 +709,53 @@ export function Products() {
                   <div className="w-full flex items-center justify-center mb-4">
                     <img
                       src={item.image}
-                      alt={`${item.name} ${item.variant}`}
+                      alt={`${item?.name} ${item.variant}`}
                       className="w-[80%] object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105"
                     />
                   </div>
 
                   {/* Product Titles */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <h3 className="text-xl font-bold text-slate-900 tracking-tight">
-                      {item.name}{" "}
+                      {item?.name}{" "}
                       <span className="text-blue-500">{item.variant}</span>
                     </h3>
                     <p className="text-sm text-slate-500 mt-1 font-medium">
                       {item.description}
                     </p>
                   </div>
+                  
+                  {/* MRP & Price */}
+<div className="flex items-start gap-3">
+  <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">
+    ₹{item.price}
+  </h3>
+  <div className="flex flex-col justify-center">
+    <span className="text-sm text-gray-500 line-through font-medium">
+      MRP ₹{item.mrp}
+    </span>
+    <span className="text-xs font-bold text-green-600 uppercase tracking-wide">
+      Save {(item.price/item.mrp*100).toFixed()}%
+    </span>
+  </div>
+</div>
+
+
 
                   {/* Feature Bullet List */}
-                  <ul className="space-y-1 mb-4">
+                  {/*<ul className="space-y-1 mb-4">
                     {item.features.map((feature, fIdx) => (
                       <li key={fIdx} className="flex items-center gap-2.5 text-sm text-slate-600">
                         <CheckCircle2 className="w-4 h-4 text-sky-500 shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
-                  </ul>
+                  </ul>*/}
+                  
                 </div>
 
                 {/* Action Button */}
-                <div>
+                <div className="mt-6">
                   {item.ctaPrimary ? (
                     <button className="group w-full flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm py-3 px-6 rounded-full shadow-md shadow-blue-500/20 transition-all duration-200 active:scale-95" onClick={() => {
                       setSelectedProduct(item);

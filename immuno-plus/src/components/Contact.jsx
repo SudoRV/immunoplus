@@ -407,7 +407,7 @@ export default function PartnerContactSection({ formType }) {
   bgColor="#ffffff"
   marginSize={1}
   
-  className="w-50 h-50 sm:w-35 h-35"
+  className="w-50 h-50 sm:w-35 sm:h-35"
 />
                   </div>
                   <div className="space-y-1.5 text-center sm:text-left">

@@ -11,6 +11,8 @@ import {
     Lightbulb,
 } from "lucide-react";
 
+import { Building2, FileCheck } from 'lucide-react';
+
 import heroBg from "../assets/hero_bg4.png";
 import waterDrop from "../assets/water_drop.png";
 import waterDropSplash from "../assets/water_drop_splash.png";
@@ -47,21 +49,24 @@ const valueBadges = [
 
 
 export function WhoWeAre() {
+    const isAboutPage = window.location.pathname === "/about";
+
     return (
         <section className="relative w-full bg-neutral-50 py-12 lg:py-20 overflow-hidden">
             {/* Background Water Splash Accent (Right side) */}
             <div
-                className="pointer-events-none absolute right-0 top-1/2  -translate-y-1/2 w-1/3 h-full max-h-200 bg-contain bg-right bg-no-repeat opacity-40 lg:opacity-60 "
+                className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full max-h-200 bg-contain bg-right bg-no-repeat opacity-40 lg:opacity-60"
                 style={{ backgroundImage: `url(${waterSplashRL})` }}
             />
 
+            {/* Main Content Grid */}
             <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 items-start lg:items-center">
 
                 {/* Left Column: Overlapping Visual Cards */}
                 <div className="lg:col-span-5 relative flex justify-center lg:justify-start">
                     <div className="relative">
                         {/* Main Rounded Image */}
-                        <div className="w-full max-w-95 max-h-95 rounded-3xl overflow-hidden shadow-2xl">
+                        <div className="w-full max-w-68 md:max-w-95 max-h-95 rounded-3xl overflow-hidden shadow-2xl">
                             <img
                                 src={waterDrop}
                                 alt="Water droplet technology"
@@ -83,7 +88,7 @@ export function WhoWeAre() {
                                 To make premium water technology accessible through trusted
                                 partnerships and exceptional support.
                             </p>
-                        </div>
+                        </div>                                              
                     </div>
                 </div>
 
@@ -104,9 +109,7 @@ export function WhoWeAre() {
                     {/* Body Paragraphs */}
                     <div className="space-y-4 text-neutral-800 text-base lg:text-lg leading-relaxed max-w-xl">
                         <p>
-                            Immuno+ is dedicated to delivering advanced water ionization
-                            solutions for businesses, healthcare professionals, wellness
-                            establishments, and commercial environments.
+                            Monal Enterprises is the parent company and official operator of IMMUNO+ Advanced Water Technology. Headquartered in Khatima, Uttarakhand, the enterprise delivers high-performance hydration and commercial purification solutions that combine engineering, water science, and personal wellness.
                         </p>
                         <p>
                             We partner with organizations and entrepreneurs to provide premium
@@ -138,34 +141,93 @@ export function WhoWeAre() {
                             );
                         })}
                     </div>
-
+                                       
                     {/* Outlined Action Button */}
-                    {
-                        window.location.pathname !== "/about" && (
-                            <div className="pt-4">
-                                <TrackedCTA className="group flex items-center gap-4 border border-sky-500 hover:border-blue-600 hover:bg-sky-50/50 text-blue-500 font-semibold text-sm lg:text-base px-6 py-2.5 rounded-full transition-all duration-200 active:scale-95 shadow-sm"
-                                    as="Link"
-                                    to="/about"
-                                    ctaName="about_company_overview"
-                                    ctaType="navigation"
-                                    location="homepage_about">
-                                    <span>Learn more</span>
-                                    <div className="w-7 h-7 rounded-full border border-sky-400 flex items-center justify-center text-sky-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-blue-500 group-hover:text-white group-hover:border-transparent">
-                                        <ArrowRight className="w-3.5 h-3.5" />
-                                    </div>
-                                </TrackedCTA>
-                            </div>
-                        )
-                    }
-
+                    {!isAboutPage && (
+                        <div className="pt-4">
+                            <TrackedCTA className="group flex items-center gap-4 border border-sky-500 hover:border-blue-600 hover:bg-sky-50/50 text-blue-500 font-semibold text-sm lg:text-base px-6 py-2.5 rounded-full transition-all duration-200 active:scale-95 shadow-sm"
+                                as="Link"
+                                to="/about"
+                                ctaName="about_company_overview"
+                                ctaType="navigation"
+                                location="homepage_about">
+                                <span>Learn more</span>
+                                <div className="w-7 h-7 rounded-full border border-sky-400 flex items-center justify-center text-sky-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-blue-500 group-hover:text-white group-hover:border-transparent">
+                                    <ArrowRight className="w-3.5 h-3.5" />
+                                </div>
+                            </TrackedCTA>
+                        </div>
+                    )}
                 </div>
-
             </div>
+            
+            {/* Centered, Flex-Row Wrapped Corporate Details Card */}
+            {isAboutPage && (
+                <div className="relative w-full max-w-6xl mx-auto mt-12 px-6 md:px-12 z-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="relative overflow-hidden bg-white rounded-2xl border border-slate-200 shadow-sm group hover:shadow-md transition-shadow duration-300">
+                                               
+                        <div className="p-4 px-6 lg:p-10">
+                            <h4 className="text-lg md:text-xl font-extrabold text-slate-900 mb-4 text-left tracking-tight">
+                                Corporate Information
+                            </h4>
+                            
+                            <div className="flex flex-col md:flex-row items-start md:justify-between gap-4 text-left">
+                                
+                                {/* Parent Entity */}
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-sky-50 border border-sky-100 flex items-center justify-center text-blue-600 flex-shrink-0 shadow-sm">
+                                        <Building2 className="w-6 h-6 stroke-[1.75]" />
+                                    </div>
+                                    <div className="pt-1">
+                                        <p className="text-[11px] font-bold uppercase tracking-wider text-blue-500 mb-1">
+                                            Parent Entity
+                                        </p>
+                                        <p className="text-sm font-semibold text-slate-800">
+                                            Monal Enterprises
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Headquarters */}
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-sky-50 border border-sky-100 flex items-center justify-center text-blue-600 flex-shrink-0 shadow-sm">
+                                        <MapPin className="w-6 h-6 stroke-[1.75]" />
+                                    </div>
+                                    <div className="pt-1">
+                                        <p className="text-[11px] font-bold uppercase tracking-wider text-blue-500 mb-1">
+                                            Headquarters
+                                        </p>
+                                        <p className="text-sm font-medium text-slate-700 leading-snug">
+                                            Ward No. 8, Degree College Road, <br className="hidden sm:block" />
+                                            Khatima, Uttarakhand - 262308, India
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* GSTIN */}
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-sky-50 border border-sky-100 flex items-center justify-center text-blue-600 flex-shrink-0 shadow-sm">
+                                        <FileCheck className="w-6 h-6 stroke-[1.75]" />
+                                    </div>
+                                    <div className="pt-1">
+                                        <p className="text-[11px] font-bold uppercase tracking-wider text-blue-500 mb-1">
+                                            Registered GSTIN
+                                        </p>
+                                        <p className="text-sm font-mono font-semibold text-slate-800 bg-slate-100 px-2 py-0.5 rounded-md inline-block">
+                                            05COYPS3950M1ZY
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+                      
         </section>
     );
 }
-
-
 
 
 const features = [
@@ -256,70 +318,15 @@ export function About() {
             </section>
 
             <WhoWeAre />
-
-            <section className="w-full bg-white py-6 px-6 md:px-12 lg:px-16 text-slate-800">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch lg:col-span-3">
-
-                    {/* Left Column: Purpose Intro */}
-                    <div className="flex flex-col justify-center pr-0 lg:pr-8 space-y-4 lg:col-span-1">
-                        <span className="text-xs lg:text-lg font-bold tracking-widest text-blue-500 uppercase">
-                            Our Purpose
-                        </span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                            Better Water.<br />Better Future.
-                        </h2>
-                        <p className="text-slate-500 text-sm md:text-base leading-relaxed">
-                            We believe water is more than a necessity—it's the foundation of a healthier life and a better world. Immuno+ is on a mission to make advanced water technology accessible to organizations and entrepreneurs who want to create real impact.
-                        </p>
-                    </div>
-
-                    <div className="w-full flex gap-8 lg:col-span-2 flex-wrap sm:flex-nowrap">
-                        {/* Middle Column: Our Vision */}
-                        <div className="w-full flex flex-col justify-between rounded-3xl bg-gradient-to-b from-blue-50/60 to-blue-50/20 border border-blue-100/50 space-y-8">
-
-                            <div className="w-full h-full space-y-8 p-8">
-                                <div className="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-                                    <Eye className="w-7 h-7 stroke-[2]" />
-                                </div>
-                                <div className="space-y-4">
-                                    <h3 className="text-2xl font-bold text-slate-900">Our Vision</h3>
-                                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                                        To be India's most trusted partner in advanced water technology, creating a healthier nation through innovation, education and entrepreneurship.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Column: Our Mission */}
-                        <div className="w-full relative flex flex-col justify-between rounded-3xl border border-blue-100/50 overflow-hidden">
-
-                            <img src={waterDropSplash} className="absolute w-full h-full right-0 bottom-0 z-10" />
-
-                            <div className="p-8 h-full space-y-8 z-20 bg-linear-to-r from-white via-to-white/80 to-white/40 ">
-                                <div className="relative z-10 w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-                                    <Target className="w-7 h-7 stroke-[2]" />
-                                </div>
-                                <div className="relative z-10 space-y-4">
-                                    <h3 className="text-2xl font-bold text-slate-900">Our Mission</h3>
-                                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                                        To provide premium water ionization solutions with uncompromised quality, reliable support and empowering business opportunities for our partners.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section className="w-full bg-neutral-50 py-12 lg:py-16 px-6 md:px-12 lg:px-20 text-slate-800">
+           
+            <section className="w-full bg-white py-12 lg:py-16 px-6 md:px-12 lg:px-20 text-slate-800">
                 <div className="max-w-7xl mx-auto space-y-10">
 
                     {/* Top Section: Our Story */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                    <div className="grid grid-cols-1 md:grid-cols-5 gap-12 lg:gap-16 items-start">
 
                         {/* Left Column: Text & Stats */}
-                        <div className="space-y-4">
+                        <div className="space-y-4 col-span-2.5 md:col-span-3">
                             <div className="space-y-4">
                                 <span className="text-xs lg:text-lg font-bold tracking-widest text-blue-500 uppercase">
                                     Our Story
@@ -332,15 +339,26 @@ export function About() {
 
                             <div className="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed">
                                 <p>
-                                    Immuno+ was founded with a simple belief—everyone deserves access to clean, ionized, healthy water. What started as a passion for technology and wellness has grown into a mission to empower businesses, healthcare professionals, and communities with solutions that truly make a difference.
+                                  The story of IMMUNO+ began with a clear realization: traditional drinking water filtration methods—such as standard Reverse Osmosis (RO)—often strip water of essential natural minerals, leaving behind acidic, "dead" water. While clean, this water lacks the vital antioxidants and mineral balance required for optimal body function. To address this gap, Monal Enterprises introduced IMMUNO+ Alkaline Ionizers. Designed as a health-first solution, IMMUNO+ units utilize electrolysis with multi-plate technology to transform tap water into hydrogen-rich, antioxidant-dense alkaline water.
                                 </p>
                                 <p>
                                     Today, Immuno+ is a growing network of innovators, professionals, and partners working together to build a healthier, stronger future through the power of water.
                                 </p>
-                            </div>
+                            </div>                           
+                        </div>
 
-                            {/* Hardcoded 4 Stat Badges */}
-                            <div className="grid grid-cols-2 min-[500px]:grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+                        {/* Right Column: Image */}
+                        <div className="col-span-2.5 md:col-span-2 w-full aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 mt-0 md:mt-8">
+                            <img
+                                src={elementsIonizedWater}
+                                alt="Water crown splash"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>                                             
+                    </div>
+                    
+               {/* Hardcoded 4 Stat Badges */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-0 md:mt-4">
                                 {/* Stat 1 */}
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full border border-blue-400/50 flex items-center justify-center text-blue-500 flex-shrink-0">
@@ -385,18 +403,61 @@ export function About() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                   
+              {/* our purpose */}           
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch lg:col-span-3 mt-8">
 
-                        {/* Right Column: Image */}
-                        <div className="w-full h-72 sm:h-96 lg:h-105 rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 mt-8">
-                            <img
-                                src={elementsIonizedWater}
-                                alt="Water crown splash"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-
+                    {/* Left Column: Purpose Intro */}
+                    <div className="flex flex-col justify-center pr-0 lg:pr-8 space-y-2 lg:col-span-1">
+                        <span className="text-xs lg:text-lg font-bold tracking-widest text-blue-500 uppercase">
+                            Our Purpose
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                            Better Water.<br />Better Future.
+                        </h2>
+                        <p className="text-slate-500 text-sm md:text-base leading-relaxed">
+                            We believe water is more than a necessity—it's the foundation of a healthier life and a better world. Immuno+ is on a mission to make advanced water technology accessible to organizations and entrepreneurs who want to create real impact.
+                        </p>
                     </div>
+
+                    <div className="w-full flex gap-8 lg:col-span-2 flex-wrap sm:flex-nowrap">
+                        {/* Middle Column: Our Vision */}
+                        <div className="w-full flex flex-col justify-between rounded-3xl bg-gradient-to-b from-blue-50/60 to-blue-50/20 border border-blue-100/50 space-y-8">
+
+                            <div className="w-full h-full space-y-8 p-8">
+                                <div className="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                                    <Eye className="w-7 h-7 stroke-[2]" />
+                                </div>
+                                <div className="space-y-4">
+                                    <h3 className="text-2xl font-bold text-slate-900">Our Vision</h3>
+                                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                                      Bridging pure water technology with accessible family health, moving beyond simple purification into active preventive wellness.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column: Our Mission */}
+                        <div className="w-full relative flex flex-col justify-between rounded-3xl border border-blue-100/50 overflow-hidden">
+
+                            <img src={waterDropSplash} className="absolute w-full h-full right-0 bottom-0 z-10" />
+
+                            <div className="p-8 h-full space-y-8 z-20 bg-linear-to-r from-white via-to-white/90 to-white/40 ">
+                                <div className="relative z-10 w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                                    <Target className="w-7 h-7 stroke-[2]" />
+                                </div>
+                                <div className="relative z-10 space-y-4">
+                                    <h3 className="text-2xl font-bold text-slate-900">Our Mission</h3>
+                                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                                        To elevate human health and everyday wellness by providing access to medical-grade, ionized alkaline water. Water should do more than just hydrate—it should actively nourish, protect, and restore cellular health.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> 
+            
 
                     {/* Bottom Section: Our Values */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6 border-t border-slate-100">
