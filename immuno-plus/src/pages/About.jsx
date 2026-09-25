@@ -19,6 +19,7 @@ import waterDropSplash from "../assets/water_drop_splash.png";
 import waterSplashRL from "../assets/water_splash_rl2.png";
 import elementsIonizedWater from "../assets/elements_ionized_water.png";
 import TrackedCTA from "../components/ui/TrackedCTA";
+import heroImg from "../assets/hero_about.png";
 
 const pageMetadata = [
     <title key="title">About Us | Immuno+</title>,
@@ -250,7 +251,7 @@ const features = [
 
 export function About() {
     return (
-        <div className="w-full min-h-screen bg-neutral-950 text-white flex flex-col overflow-x-hidden">
+        <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden">
             {pageMetadata}
             {/* Hero Section */}
             <section
@@ -282,7 +283,7 @@ export function About() {
                         </div>
 
                         {/* Subtitle Description */}
-                        <p className="mt-4 text-sm md:text-base lg:text-lg text-neutral-300">
+                        <p className="mt-4 text-sm md:text-base lg:text-lg text-neutral-300 z-10">
                             Immuno+ is dedicated to delivering advanced water ionization solutions that promote better hydration, better living and better environments for businesses and communities.
                         </p>
 
@@ -313,6 +314,7 @@ export function About() {
                             })}
                         </div>
 
+                    <img src={heroImg} className="absolute max-[900px]:hidden z-0 w-[45%] xl:w-[40%] right-12 bottom-0" />         
                     </div>
                 </div>
             </section>

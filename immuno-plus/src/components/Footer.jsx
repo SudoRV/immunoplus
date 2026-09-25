@@ -39,7 +39,7 @@ export default function Footer({
 
                     {/* Brand & Mission */}
                     <div className="min-w-[200px] flex flex-col gap-5">
-                        <Logo type={"custom"} />
+                        <Logo type={"horizontal"} className={"sm:h-20"} />
 
                         <p className="text-sm lg:text-base text-slate-400 leading-relaxed max-w-sm">
                             Advanced water ionization solutions for healthcare, wellness, and commercial environments.

@@ -14,6 +14,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 import heroBg from "../assets/hero_bg4.png";
 import TrackedCTA from "../components/ui/TrackedCTA";
+import heroImg from "../assets/hero_team.png";
 
 // team profile pictures
 import ManagingDirector from "../assets/team/MDF_Vineeta_Saxena.jpg";
@@ -159,6 +160,7 @@ export function Team() {
                             })}
                         </div>
 
+                       <img src={heroImg} className="absolute max-[900px]:hidden z-0 w-[45%] xl:w-[40%] right-12 -bottom-2" />   
                     </div>
                 </div>
             </section>

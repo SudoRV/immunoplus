@@ -172,11 +172,26 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
               {/* Data Table for Specs */}
               <div>
                 <h3 className="text-xs lg:text-lg font-semibold text-neutral-900 uppercase tracking-wider mb-3">
-                  Technical Specifications
+                  Specifications
                 </h3>
                 <div className="border border-neutral-200 rounded-lg overflow-hidden bg-white">
                   <table className="w-full text-left border-collapse text-xs lg:text-sm">
                     <tbody className="divide-y divide-neutral-100">
+                      {
+  selectedProduct.details?.generalInformation && 
+    Object.keys(selectedProduct.details.generalInformation).map((key) => (
+      <tr key={key}>
+        <td className="py-2.5 px-4 font-medium text-neutral-500 w-1/3 bg-neutral-50/50">
+          {key}
+        </td>
+        <td className="py-2.5 px-4 text-neutral-900">
+          {selectedProduct.details.generalInformation[key]}
+        </td>
+      </tr>
+    ))
+}
+
+                      
                       {selectedProduct.details.outputCapacity && (
                         <tr>
                           <td className="py-2.5 px-4 font-medium text-neutral-500 w-1/3 bg-neutral-50/50">
@@ -184,26 +199,6 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                           </td>
                           <td className="py-2.5 px-4 text-neutral-900">
                             {selectedProduct.details.outputCapacity}
-                          </td>
-                        </tr>
-                      )}
-                      {selectedProduct.details.powerConsumption && (
-                        <tr>
-                          <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
-                            Power Consumption
-                          </td>
-                          <td className="py-2.5 px-4 text-neutral-900">
-                            {selectedProduct.details.powerConsumption}
-                          </td>
-                        </tr>
-                      )}
-                      {selectedProduct.details.powerSupply && (
-                        <tr>
-                          <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
-                            Power Supply
-                          </td>
-                          <td className="py-2.5 px-4 text-neutral-900">
-                            {selectedProduct.details.powerSupply}
                           </td>
                         </tr>
                       )}
@@ -256,8 +251,28 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                             {selectedProduct.details.waterPressure}
                           </td>
                         </tr>
-                      )}                  
-                      {selectedProduct.details.cleaningSystem && (
+                      )}               
+                      {selectedProduct.details.powerConsumption && (
+                        <tr>
+                          <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
+                            Power Consumption
+                          </td>
+                          <td className="py-2.5 px-4 text-neutral-900">
+                            {selectedProduct.details.powerConsumption}
+                          </td>
+                        </tr>
+                      )}
+                      {selectedProduct.details.powerSupply && (
+                        <tr>
+                          <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
+                            Power Supply
+                          </td>
+                          <td className="py-2.5 px-4 text-neutral-900">
+                            {selectedProduct.details.powerSupply}
+                          </td>
+                        </tr>
+                      )}                         
+                      {/*{selectedProduct.details.cleaningSystem && (
                         <tr>
                           <td className="py-2.5 px-4 font-medium text-neutral-500 bg-neutral-50/50">
                             Maintenance
@@ -266,14 +281,14 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                             {selectedProduct.details.cleaningSystem}
                           </td>
                         </tr>
-                      )}
+                      )}*/}
                     </tbody>
                   </table>
                 </div>
               </div>
 
               {/* Functional Water Modes */}
-              {selectedProduct.details.waterModes && (
+              {/*{selectedProduct.details.waterModes && (
                 <div>
                   <h3 className="text-xs lg:text-lg font-semibold text-neutral-900 uppercase tracking-wider mb-2">
                     Supported Output Modes
@@ -284,7 +299,7 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                     ))}
                   </ul>
                 </div>
-              )}
+              )}*/}
             </div>
           )}
         </div>

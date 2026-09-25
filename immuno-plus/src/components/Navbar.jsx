@@ -2,8 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useRef, useState } from 'react';
 
-import logo from "../assets/logo.png";
-import horizontalLogo from "../assets/logo_horizontal.png";
 import { logByEvent } from '../services/fcmAnalytics';
 
 import Logo from "./ui/Logo";
@@ -27,7 +25,7 @@ export function Navbar() {
     return (
         <div ref={desktopNavRef} className="relative z-100 w-full h-fit flex justify-between items-center p-2 px-3 sm:px-4 bg-transparent">
             {/* Brand Logo */}                                
-            <Logo type={"custom"} />
+            <Logo type={"custom"} className={"-ml-1"} />
 
             {/* Pill Navigation Bar */}
             <nav className="hidden sm:block border border-neutral-100/30 bg-linear-to-r from-white/10 via-white/10 to-black/50 backdrop-blur-xs rounded-full px-7 py-2 shadow-lg">
@@ -70,8 +68,8 @@ export function Navbar() {
             </nav>
 
             {/* mobile navbar */}
-            <nav style={{paddingTop: `${desktopNavRef.current?.offsetHeight-20 || 40}px`}} className={`absolute top-0 left-0 w-full bg-blue-400/20 backdrop-blur-md zoom-100 p-2 px-6 pb-4 rounded-b-2xl
-            transition-transform duration-300 ease-in-out
+            <nav style={{paddingTop: `${desktopNavRef.current?.offsetHeight - 10 || 40}px`}} className={`fixed top-0 left-0 w-full bg-blue-400/20 backdrop-blur-md zoom-100 p-2 px-6 pb-4 rounded-b-2xl
+            transition-transform duration-300 ease-in-out shadow-md 
             ${navbarExpanded ? "translate-y-0" : "-translate-y-full"}`}>
                 <ul className="flex flex-col items-start md:gap-2 lg:gap-6">
                     {navItems.map((item) => {
@@ -92,7 +90,7 @@ export function Navbar() {
                                 {/* Active Indicator: Underline + Water Droplet */}
                                 {isActive && (
                                     <div className="hidden sm:flex absolute -bottom-4.75 left-0 right-0 flex-col items-center pointer-events-none">
-                                        {/* Glowing Underline */}
+                                        {/* Glowing Underline */} 
                                         <div className="w-full h-px bg-linear-to-r from-blue-400 via-blue-300 to-blue-500 rounded-full shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
 
                                         {/* Water Droplet Pin */}
@@ -112,7 +110,7 @@ export function Navbar() {
             </nav>
 
             {/* Action Button */}
-            <div className='flex items-center gap-4 z-100'>
+            <div className={`${navbarExpanded ? "fixed right-3" : "relative"} flex items-center gap-4 z-100`}>
                 <button className="flex items-center gap-2 bg-white hover:bg-blue-500 text-blue-500 hover:text-white transition-all duration-300 font-semibold max-[460px]:px-1.5 p-1.5 px-4 sm:px-2 md:px-4 rounded-full shadow-md active:scale-95 text-sm md:text-md"
                     onClick={() => {
                         logByEvent("generate_lead", {

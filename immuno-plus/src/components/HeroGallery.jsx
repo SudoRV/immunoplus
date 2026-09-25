@@ -1,40 +1,45 @@
 import React, { useState, useRef } from 'react';
+import healthyLiving from '../assets/products/hero_gallery/healthy_living.png';
+import multiPh from '../assets/products/hero_gallery/multi_ph.png';
+import hydrogenRich from '../assets/products/hero_gallery/hydrogen_rich.png';
+import mistBottle from '../assets/products/hero_gallery/mist_bottle.png';
+import japaneseTech from '../assets/products/hero_gallery/japnese_tech.png';
 
 const cardsData = [
   {
     id: 1,
-    title: 'Pure',
-    subtitle: 'Quality',
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=400&q=80',
+    title: 'Pure Living',
+    subtitle: 'A cleaner choice for everyday wellness',
+    image: healthyLiving,
   },
   {
     id: 2,
-    title: 'Healthier',
-    subtitle: 'Lives',
-    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b909?w=400&q=80',
+    title: 'Wellness,',
+    subtitle: 'Designed for healthier everyday living',
+    image: multiPh,
   },
   {
     id: 3,
-    title: 'Premium Technology',
-    subtitle: 'for a Healthier Tomorrow',
-    image: 'https://images.unsplash.com/photo-1584362917165-526a968579e8?w=400&q=80',
+    title: 'Hydrogen-Powered',
+    subtitle: 'Advanced technology for modern wellness',
+    image: hydrogenRich,
   },
   {
     id: 4,
-    title: 'For Homes',
-    subtitle: '& Businesses',
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80',
+    title: 'Wellness,',
+    subtitle: 'For homes, workplaces & hospitality',
+    image: mistBottle,
   },
   {
     id: 5,
-    title: 'A Cleaner',
-    subtitle: 'Greener Future',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80',
+    title: 'Inspired by Nature',
+    subtitle: 'Japanese technology for a greener future',
+    image: japaneseTech,
   },
 ];
 
 const Gallery = () => {
-  const [activeIndex, setActiveIndex] = useState(2); // Centers item #3 initially
+  const [activeIndex, setActiveIndex] = useState(0); 
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollTimeout = useRef(null);
@@ -129,7 +134,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center select-none font-sans text-white">
+    <div className="w-full flex flex-col items-center select-none font-sans text-white lg:mt-4">
       <div
         className="relative w-full h-40 md:h-90 flex justify-center items-center cursor-grab active:cursor-grabbing"
         style={{ perspective: '1400px' }}
@@ -195,7 +200,7 @@ const Gallery = () => {
       </div>
 
       {/* Slide dots */}
-      <div className="flex gap-2 mt-4 z-20">
+      <div className="flex gap-2 mt-4 lg:mt-18 z-20">
         {cardsData.map((_, idx) => (
           <button
             key={idx}

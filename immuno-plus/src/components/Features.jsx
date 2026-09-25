@@ -110,11 +110,11 @@ export default function Features() {
   ];
 
   return (
-    <section className="relative w-full bg-white text-slate-800 py-12 px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full bg-white text-slate-800 py-12 px-4 sm:px-8 md:px-12">
       <div className="max-w-7xl mx-auto">
 
         {/* MAIN HEADING */}
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
             The Immuno+ Difference
           </p>
@@ -134,7 +134,7 @@ export default function Features() {
         </div>
 
         {/* CONTENT */}
-        <div className="max-w-4xl mx-auto mt-14">
+        <div className="max-w-6xl mx-auto mt-14">
           
           <div>
             <h3 className="text-2xl sm:text-3xl font-bold text-[#051937]">
@@ -218,7 +218,7 @@ export default function Features() {
 
 
         {/* WATER TYPES COMPARISON TABLE */}
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div className="mt-16 max-w-6xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-9">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
               Water Comparison
@@ -276,7 +276,7 @@ export default function Features() {
 
         {/* IMMUNO+ VS COMPETITOR COMPARISON TABLE */}
         <div className="mt-20">
-          <div className="max-w-3xl mx-auto text-center mb-9">
+          <div className="max-w-5xl mx-auto text-center mb-9">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-500">
               Product Specifications
             </p>
@@ -288,8 +288,8 @@ export default function Features() {
             </p>
           </div>
 
-          {/* Added max-w-4xl to constrain total width and stop columns from stretching */}
-          <div className="max-w-4xl mx-auto overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+          {/* Added max-w-5xl to constrain total width and stop columns from stretching */}
+          <div className="max-w-5xl mx-auto overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
             <table className="w-full min-w-[700px] table-fixed text-left border-collapse bg-white">
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200">

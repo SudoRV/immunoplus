@@ -203,7 +203,7 @@ export function Contact() {
                             })}
                         </div>
 
-                        <img src={waterHandshake} className="absolute w-[50%] max-[900px]:hidden lg:w-[60%] 2xl:w-[80%] right-0 -top-90 lg:-right-30 lg:-top-95 2xl:-right-80 2xl:-top-115 opacity-75" />
+                        <img src={waterHandshake} className="absolute w-[50%] max-[900px]:hidden lg:w-[60%] 2xl:w-[80%] right-0 -top-80 lg:-right-30 lg:-top-85 2xl:-right-80 2xl:-top-105 opacity-75" />
 
                     </div>
                 </div>

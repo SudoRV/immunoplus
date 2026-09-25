@@ -74,7 +74,7 @@ export default function FAQs() {
     };
 
     return (
-        <section className="w-full bg-neutral-50 py-8 lg:py-16 px-4 sm:px-6 lg:px-8">
+        <section className="w-full bg-neutral-50 py-8 lg:py-16 px-4 sm:px-6 md:px-12">
             <div className="max-w-5xl mx-auto">
 
                 {/* Section Header */}

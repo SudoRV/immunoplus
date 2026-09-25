@@ -6,7 +6,8 @@ import {
     Sparkles,
     ConciergeBell,
     Building,
-    Droplet, ShieldCheck, Globe
+    Droplet, ShieldCheck, Globe,
+    House
 } from "lucide-react";
 
 import heroBg from "../assets/hero_bg4.png";
@@ -18,12 +19,13 @@ import TrackedCTA from "../components/ui/TrackedCTA";
 import Gallery from "../components/HeroGallery";
 import FAQs from "../components/HomeFaqs";
 import TestimonialGallery from "../components/TestimonialGallery";
+import ionizerFrontSide from "../assets/products/ionizer_front_side.png";
 
 const pageMetadata = [
     <title key="title">Immuno+ | Advanced Water Ionization Solutions</title>,
 ];
 
-const targetAudiences = [
+const targetAudiences = [    
     {
         title: "Healthcare",
         subtitle: "Hospitals & Clinics",
@@ -70,17 +72,17 @@ export function Home() {
             {pageMetadata}
             {/* Hero Section */}
             <section
-                className="w-full flex flex-col justify-between min-h-160  lg:min-h-200 xl:min-h-screen bg-cover bg-top lg:bg-top-left bg-no-repeat"
+                className="relative w-full flex flex-col justify-between min-h-160  lg:min-h-200 [@media(min-aspect-ratio:16/9)]:min-h-screen bg-cover bg-top lg:bg-top-left bg-no-repeat"
                 style={{ backgroundImage: `url(${heroBg})`, }}
             >
                 {/* The filter layer: filters the background image behind it */}
-                <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.6)" }} />
+                <div className="w-full h-full absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.75)" }} />
 
                 {/* Navigation Bar */}
                 <Navbar />                                                     
                                   
                 {/* Hero Content */}
-                <div className="px-6 md:px-20 lg:px-20 py-6 w-full max-w-400 mx-auto z-20">                                       
+                <div className="px-6 md:px-20 lg:px-20 py-6 w-full max-w-360 mx-auto z-20">                                       
                     
                     <div className="pb-8 md:pb-12">
                         <Gallery />
@@ -171,13 +173,25 @@ export function Home() {
                     <div className="w-full max-[540px]:flex-col sm:max-w-6xl lg:max-w-360 flex flex-wrap lg:flex-nowrap items-center justify-between gap-4 md:gap-6 px-6 md:px-10 py-5 lg:py-8 bg-linear-to-b from-[#062047]/90 via-[#02142d]/95 to-[#010b1a]/95 backdrop-blur-md rounded-t-2xl border-t border-x border-blue-400/30 shadow-2xl">
 
                         {/* Header Callout */}
-                        <div className="min-w-fit pr-2 z-10">
+                        {/*<div className="min-w-fit pr-2 z-10">
                             <p className="text-[11px] md:text-xs lg:text-sm font-semibold text-sky-400 tracking-wider">
                                 BUILT FOR ORGANIZATIONS
                             </p>
                             <p className="text-xs md:text-sm lg:text-base font-bold text-neutral-100">
                                 THAT VALUE BETTER WATER
                             </p>
+                        </div>*/}
+                        
+                        <div className="flex items-center gap-2 min-w-fit pr-2 z-10">
+                          <House className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-sky-400 shrink-0" strokeWidth={1.5} />
+                          <div>
+                            <p className="text-sm lg:text-xl font-semibold text-neutral-100 leading-tight">
+                              Home
+                            </p>
+                            <p className="text-xs md:text-sm lg:text-base text-neutral-400 leading-tight mt-0.5">
+                              Personal Use 
+                            </p>
+                          </div>
                         </div>
 
                         {/* Feature Columns */}
@@ -191,7 +205,7 @@ export function Home() {
                                     >
                                         <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-sky-400 shrink-0" strokeWidth={1.5} />
                                         <div>
-                                            <p className="text-sm md:text-sm lg:text-xl font-semibold text-neutral-100 leading-tight">
+                                            <p className="text-sm lg:text-xl font-semibold text-neutral-100 leading-tight">
                                                 {item.title}
                                             </p>
                                             <p className="text-xs md:text-sm lg:text-base text-neutral-400 leading-tight mt-0.5">
@@ -203,7 +217,10 @@ export function Home() {
                             })}
                         </div>
 
-                        <img src={heroBgRock} className="absolute max-[900px]:hidden z-0 w-[40%] lg:w-[38%] right-0 -top-32 md:-top-40 lg:-top-52 xl:-top-60" />
+                        <div className="absolute flex flex-col justify-end  items-center max-[900px]:hidden z-0 w-[40%] lg:w-[36%] right-0 -top-32 md:-top-40 lg:-top-44 xl:-top-58" >
+                           <img src={ionizerFrontSide} className="absolute bottom-33 md:bottom-34 lg:bottom-38 xl:bottom-40 2xl:bottom-45 w-[75%] lg:w-[70%] ml-4 z-20" />
+                           <img src={heroBgRock} className="w-full" /> 
+                        </div>                     
                     </div>
                 </div>
             </section>
@@ -218,7 +235,7 @@ export function Home() {
             <ProductSolutions />
                 
             {/* Testimonials */}
-            <TestimonialGallery />
+            {/*<TestimonialGallery />*/}
                 
             {/* faqs */}
             <FAQs />
