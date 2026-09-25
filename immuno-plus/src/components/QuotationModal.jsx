@@ -1,7 +1,8 @@
 import { Check, Loader2, X } from 'lucide-react';
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { logByEvent } from '../services/fcmAnalytics';
 import { QRCodeSVG } from 'qrcode.react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 // Target business details
 const BUSINESS_PHONE = "919762170838"; // Country code without '+' or special characters
@@ -12,6 +13,9 @@ export default function QuotationModal({
     setQuotationModal,
     selectedProduct
 }) {
+    const [turnstileToken, setTurnstileToken] = useState(null);
+    const turnstileRef = useRef();
+  
     const isOrder = quotationModal?.type === 'order';
 
     // log user clicks for order / quotation form start
@@ -120,6 +124,11 @@ export default function QuotationModal({
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!turnstileToken) {
+          alert("Please check the 'I am human' box.");
+          return;
+        }
+        
         setFormStatus({
             status: "sending",
             message: "Sending query",
@@ -200,6 +209,11 @@ export default function QuotationModal({
                     address: '',
                     quantity: 1,
                 })
+                
+                if (turnstileRef.current) {
+                  turnstileRef.current.reset();
+                }
+                setTurnstileToken(null);
             }, 6000)
         }
     };
@@ -393,6 +407,16 @@ export default function QuotationModal({
                                     }
                                 </button>
                             </div>
+                            
+                            <div className="w-fit ml-auto scale-75 sm:scale-100">
+                              <Turnstile                            
+                                ref={turnstileRef}
+                                siteKey="0x4AAAAAAFDioIQrSISBW17C" 
+                                onSuccess={(token) => setTurnstileToken(token)}
+                                onExpire={() => setTurnstileToken(null)}                             
+                              />
+                            </div>
+                
                         </form>
                     </div>
 

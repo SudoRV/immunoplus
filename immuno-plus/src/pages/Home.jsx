@@ -120,6 +120,7 @@ export function Home() {
                             ctaName="explore_products"
                             ctaType="navigation"
                             location="homepage_hero"
+                            autoScroll={true}
                         >
                             <span>Explore Our Products</span>
                             <div className="bg-white rounded-full p-2 md:p-2.5 text-neutral-950 transition-transform group-hover:translate-x-1">

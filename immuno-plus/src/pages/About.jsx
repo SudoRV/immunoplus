@@ -151,7 +151,8 @@ export function WhoWeAre() {
                                 to="/about"
                                 ctaName="about_company_overview"
                                 ctaType="navigation"
-                                location="homepage_about">
+                                location="homepage_about"
+                                autoScroll={true}>
                                 <span>Learn more</span>
                                 <div className="w-7 h-7 rounded-full border border-sky-400 flex items-center justify-center text-sky-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-blue-500 group-hover:text-white group-hover:border-transparent">
                                     <ArrowRight className="w-3.5 h-3.5" />

@@ -18,8 +18,7 @@ const navItems = [
 export function Navbar() {
     const location = useLocation();
 
-    const desktopNavRef = useRef(null);
-    console.log(desktopNavRef.current?.offsetHeight)
+    const desktopNavRef = useRef(null);   
     const [navbarExpanded, setNavBarExpended] = useState(false);
 
     return (
@@ -28,7 +27,7 @@ export function Navbar() {
             <div onClick={() => {
                 window.location.href = "/"
             }}>
-                <Logo type={"custom"} className={"-ml-1"} />
+                <Logo type={"custom"} className={"-ml-1 -mt-1"} />
             </div>
 
             {/* Pill Navigation Bar */}

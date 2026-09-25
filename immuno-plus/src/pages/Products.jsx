@@ -380,7 +380,8 @@ export function ProductSolutions() {
               to="/products"
               ctaName="products_overview"
               ctaType="navigation"
-              location="homepage_products">
+              location="homepage_products"
+              autoScroll={true}>
               <span>View All Products</span>
               <div className="w-6 h-6 rounded-full border border-sky-400 flex items-center justify-center text-sky-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-blue-500 group-hover:text-white group-hover:border-transparent">
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -700,7 +701,7 @@ export function Products() {
               Discover our range of advanced water ionizers designed with Japanese & Korean technology to deliver superior performance, reliability, and long-term value.
             </p>
 
-            <div className="w-full max-w-6xl mx-auto grid grid-cols-3 min-[400px]:grid-cols-4 space-y-4 md:divide-x divide-blue-500/20 text-white lg:-ml-12 mt-8">
+            <div className="w-full max-w-6xl mx-auto grid grid-cols-4 min-[300px]:grid-cols-4 space-y-4 md:divide-x divide-blue-500/20 text-white lg:-ml-12 mt-8">
               {features.map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -732,7 +733,7 @@ export function Products() {
         <div className="max-w-7xl mx-auto">
           <div className="w-full max-w-xl mx-auto space-y-1">
             <h2 className="text-sm lg:text-lg font-bold tracking-widest text-blue-500 uppercase text-center">
-              three tiers. multiple possibilities.
+              More choices. More possibilities.
             </h2>
             <h1 className="text-2xl lg:text-4xl font-bold text-neutral-800 text-center">
               Choose the Right Solution for Your Needs

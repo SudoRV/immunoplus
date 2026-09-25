@@ -110,16 +110,28 @@ export default function Footer({
                         <ul className="space-y-2 text-sm lg:text-base">
                             {[
                                 {
-                                    id: "immuno-essential",
-                                    label: "Essential Series",
+                                    id: "ionizer-hybrid-touch-fhd-plate-9",
+                                    label: "Hybrid Ionizer Touch Screen",
                                 },
                                 {
-                                    id: "immuno-professional",
-                                    label: "Professional Series",
+                                    id: "ionizer-plate-9",
+                                    label: "Ionizer 9 Plates",
+                                },                               
+                                {
+                                    id: "ionizer-plate-7",
+                                    label: "Ionizer 7 Plates",
                                 },
                                 {
-                                    id: "immuno-commercial",
-                                    label: "Commercial Series",
+                                    id: "ionizer-plate-5",
+                                    label: "Ionizer 5 Plates",
+                                },
+                                {
+                                    id: "hydrogen-water-bottle",
+                                    label: "Hydrogen Bottle",
+                                },
+                                {
+                                    id: "mist-maker",
+                                    label: "Mist Maker",
                                 },
                             ].map((item) => (
                                 <li key={item.id}>

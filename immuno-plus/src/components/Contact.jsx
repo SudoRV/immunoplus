@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   Send,
@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { logByEvent } from '../services/fcmAnalytics';
 import { QRCodeSVG } from 'qrcode.react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const directContacts = [
   {
@@ -55,6 +56,8 @@ const directContacts = [
 export default function PartnerContactSection({ formType }) {
   const url = useLocation();
   const location = url.pathname;
+  const [turnstileToken, setTurnstileToken] = useState(null);
+  const turnstileRef = useRef();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -81,15 +84,22 @@ export default function PartnerContactSection({ formType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!turnstileToken) {
+      alert("Please check the 'I am human' box.");
+      return;
+    }
+    
     setFormStatus({
       status: "sending",
       message: "Sending query",
     });
 
     const query = {
-      formType,
+      type: formType,
       ...formData
     };
+    
+    console.log(query)
 
     try {
       const response = await fetch(
@@ -141,6 +151,11 @@ export default function PartnerContactSection({ formType }) {
           whatsapp: '',
           message: '',
         })
+        
+        if (turnstileRef.current) {
+          turnstileRef.current.reset();
+        }
+        setTurnstileToken(null);
       }, 6000)
     }
   };
@@ -259,7 +274,7 @@ export default function PartnerContactSection({ formType }) {
                     onChange={handleChange}
                     className="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all resize-none"
                   />
-                </div>
+                </div>                               
 
                 {/* Submit CTA */}
                 <button
@@ -271,7 +286,7 @@ export default function PartnerContactSection({ formType }) {
                   {
                     !formStatus.status ? (
                       <div className='flex items-center gap-2'>
-                        <span>{location === "/contact" ? "Submit Query" : "Submit Partnership Application"}</span>
+                        <span>{location === "/contact" ? "Submit Query" : "Submit Interest"}</span>
                         <Send className="w-4 h-4" />
                       </div>
                     ) : (
@@ -288,6 +303,14 @@ export default function PartnerContactSection({ formType }) {
                     )
                   }
                 </button>
+                
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey="0x4AAAAAAFDioIQrSISBW17C" 
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken(null)}                  
+                />
+          
               </form>
             </div>
 
