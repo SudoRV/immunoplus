@@ -105,7 +105,7 @@ export function Team() {
                 style={{ backgroundImage: `url(${heroBg})` }}
             >
                 {/* The filter layer: filters the background image behind it */}
-                <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.75)" }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.8)" }} />
 
                 {/* Navigation Bar */}
                 <Navbar />

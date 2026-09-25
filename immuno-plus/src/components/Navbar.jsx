@@ -25,7 +25,11 @@ export function Navbar() {
     return (
         <div ref={desktopNavRef} className="relative z-100 w-full h-fit flex justify-between items-center p-2 px-3 sm:px-4 bg-transparent">
             {/* Brand Logo */}                                
-            <Logo type={"custom"} className={"-ml-1"} />
+            <div onClick={() => {
+                window.location.href = "/"
+            }}>
+                <Logo type={"custom"} className={"-ml-1"} />
+            </div>
 
             {/* Pill Navigation Bar */}
             <nav className="hidden sm:block border border-neutral-100/30 bg-linear-to-r from-white/10 via-white/10 to-black/50 backdrop-blur-xs rounded-full px-7 py-2 shadow-lg">

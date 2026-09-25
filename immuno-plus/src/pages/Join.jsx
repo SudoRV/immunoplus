@@ -172,7 +172,7 @@ export function Join() {
                 style={{ backgroundImage: `url(${heroBg})` }}
             >
                 {/* The filter layer: filters the background image behind it */}
-                <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.75)" }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ backdropFilter: "brightness(0.8)" }} />
 
                 {/* Navigation Bar */}
                 <Navbar />
@@ -231,7 +231,7 @@ export function Join() {
                             })}
                         </div>
 
-                        <img src={waterHandshake} className="absolute max-[900px]:hidden w-[50%] lg:w-[60%] 2xl:w-[80%] right-0 -top-70 lg:-right-30 lg:-top-75 2xl:-right-80 2xl:-top-95 opacity-75" />
+                        <img src={waterHandshake} className="absolute max-[900px]:hidden w-[50%] lg:w-[60%] 2xl:w-[80%] right-0 -top-70 lg:-right-30 lg:-top-75 2xl:-right-80 2xl:-top-95" />
 
                     </div>
                 </div>
