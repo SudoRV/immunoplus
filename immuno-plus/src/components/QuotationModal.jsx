@@ -411,7 +411,7 @@ export default function QuotationModal({
                             <div className="w-fit ml-auto scale-75 sm:scale-100">
                               <Turnstile                            
                                 ref={turnstileRef}
-                                siteKey="0x4AAAAAAFDioIQrSISBW17C" 
+                                siteKey="0x4AAAAAAFD-Zn8O__4HcSyU" 
                                 onSuccess={(token) => setTurnstileToken(token)}
                                 onExpire={() => setTurnstileToken(null)}                             
                               />

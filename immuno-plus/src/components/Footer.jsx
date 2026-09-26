@@ -51,7 +51,7 @@ export default function Footer({
                                 { icon: FaLinkedin, href: "https://www.linkedin.com/in/immunoplus/", label: "LinkedIn" },
                                 { icon: FaFacebook, href: "https://www.facebook.com/ImmunoPlusIndia/", label: "Facebook" },
                                 { icon: FaInstagram, href: "https://www.instagram.com/plusimmuno/", label: "Instagram" },
-                                { icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
+                                { icon: FaYoutube, href: "https://youtube.com/@immunoplus_uk", label: "YouTube" },
                             ].map(({ icon: Icon, href, label }) => (
                                 <a
                                     key={label}

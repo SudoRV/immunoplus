@@ -168,6 +168,65 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
                   <p className="lg:text-base">{selectedProduct.details.workingPrinciple}</p>
                 </div>
               )}
+              
+              {/* Warranty Highlight */}
+{selectedProduct?.details?.warranty && (
+  <div className="rounded-xl border border-blue-100 bg-gradient-to-r from-blue-50 via-white to-emerald-50 p-4">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+
+      {/* Warranty Heading */}
+      <div className="flex items-center gap-3">
+        <div className="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center text-xl">
+          🛡️
+        </div>
+
+        <div>
+          <h3 className="text-sm lg:text-base font-bold text-neutral-900">
+            Comprehensive Warranty Coverage
+          </h3>
+          <p className="text-xs lg:text-sm text-neutral-500 mt-0.5">
+            Built for long-term peace of mind
+          </p>
+        </div>
+      </div>
+
+      {/* Warranty Details */}
+      <div className="flex flex-wrap items-center gap-3">
+
+        <div className="bg-white border border-neutral-200 rounded-lg px-3 py-2 shadow-sm">
+          <p className="text-[10px] uppercase tracking-wide text-neutral-500 font-semibold">
+            Electronics
+          </p>
+          <p className="text-sm font-bold text-blue-600">
+            {selectedProduct.details.warranty.default.electronics}
+          </p>
+        </div>
+
+        <div className="bg-white border border-neutral-200 rounded-lg px-3 py-2 shadow-sm">
+          <p className="text-[10px] uppercase tracking-wide text-neutral-500 font-semibold">
+            Chamber
+          </p>
+          <p className="text-sm font-bold text-emerald-600">
+            {selectedProduct.details.warranty.default.chamber}
+          </p>
+        </div>
+
+        <div className="bg-neutral-900 text-white rounded-lg px-3 py-2 shadow-sm">
+          <p className="text-[10px] uppercase tracking-wide text-neutral-300 font-semibold">
+            Extended Warranty
+          </p>
+          <p className="text-sm font-bold">
+            {selectedProduct.details.warranty.extended.duration}
+            <span className="text-emerald-400 ml-1">
+              · {selectedProduct.details.warranty.extended.price}
+            </span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+)}
 
               {/* Data Table for Specs */}
               <div>
