@@ -35,10 +35,10 @@ export default function Footer({
 
             {/* Main Footer Content */}
             <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-8 pb-8 relative z-10">
-                <div className="flex flex-wrap md:flex-nowrap gap-10 lg:gap-8">
+                <div className="flex flex-wrap md:flex-nowrap gap-8 lg:gap-8">
 
                     {/* Brand & Mission */}
-                    <div className="min-w-[200px] flex flex-col gap-5">
+                    <div className="min-w-[200px] flex flex-col gap-4">
                         <Logo type={"horizontal"} className={"sm:h-20"} />
 
                         <p className="text-sm lg:text-base text-slate-400 leading-relaxed max-w-sm">
@@ -78,7 +78,7 @@ export default function Footer({
                     </div>
 
                     {/* Quick Links */}
-                    <div className="min-w-[80px]">
+                    <div className="min-w-[80px] sm:min-w-[100px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
                             Quick Links
                         </h3>
@@ -103,7 +103,7 @@ export default function Footer({
                     </div>
 
                     {/* Our Solutions */}
-                    <div className="min-w-[100px]">
+                    <div className="min-w-[100px] max-w-[140px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
                             Our Solutions
                         </h3>
@@ -147,9 +147,9 @@ export default function Footer({
                     </div>
 
                     {/* Partner With Us */}
-                    <div className="min-w-[100px] max-w-[120px]">
+                    <div className="min-w-[80px] max-w-[100px] sm:min-w-[120px] sm:max-w-[160px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
-                            Partner With Us
+                            Grow Together 
                         </h3>
                         <ul className="space-y-2 text-sm lg:text-base">
                             {[
@@ -180,7 +180,7 @@ export default function Footer({
                     </div>
 
                     {/* Contact Details */}
-                    <div className="min-w-[140px] max-w-[200px]">
+                    <div className="min-w-[100px] max-w-[180px] sm:max-w-[200px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
                             Contact Us
                         </h3>
