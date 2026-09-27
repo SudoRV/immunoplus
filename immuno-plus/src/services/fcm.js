@@ -21,7 +21,9 @@ const initFirebase = () => {
   if (!app || !analytics) {
     try {
       app = app || initializeApp(firebaseConfig);
-      analytics = getAnalytics(app);           
+      analytics = getAnalytics(app);  
+      
+      console.log(app, analytics)       
     } catch (error) {
       console.warn("Failed to load firebase: ", error);
     }
