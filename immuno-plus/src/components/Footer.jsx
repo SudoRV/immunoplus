@@ -78,7 +78,7 @@ export default function Footer({
                     </div>
 
                     {/* Quick Links */}
-                    <div className="min-w-[100px]">
+                    <div className="min-w-[80px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
                             Quick Links
                         </h3>
@@ -103,7 +103,7 @@ export default function Footer({
                     </div>
 
                     {/* Our Solutions */}
-                    <div className="min-w-[120px]">
+                    <div className="min-w-[100px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
                             Our Solutions
                         </h3>
@@ -147,7 +147,7 @@ export default function Footer({
                     </div>
 
                     {/* Partner With Us */}
-                    <div className="min-w-[120px]">
+                    <div className="min-w-[100px] max-w-[120px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
                             Partner With Us
                         </h3>
@@ -180,7 +180,7 @@ export default function Footer({
                     </div>
 
                     {/* Contact Details */}
-                    <div className="min-w-[140px] max-w-[240px]">
+                    <div className="min-w-[140px] max-w-[200px]">
                         <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
                             Contact Us
                         </h3>
