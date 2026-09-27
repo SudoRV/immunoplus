@@ -4,7 +4,6 @@ import {
   ExternalLink,
   ShieldCheck,
   Droplets,
-  Layers,
   Sparkles,
   PhoneCall,
   CheckCircle2,
@@ -13,6 +12,8 @@ import { Helmet } from "react-helmet-async";
 
 import profilePic from "../assets/immunoplus_profile.png";
 import products from "../data/products";
+import TrackedCTA from "../components/ui/TrackedCTA";
+import { logByEvent } from "../services/fcmAnalytics";
 
 const defaultPageMetadata = [
   <title key="title">Socials & Links | Immuno+</title>,
@@ -83,6 +84,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
   const socialLinks = [
     {
       name: "WhatsApp Support",
+      id: "whatsapp",
       handle: "Instant Assistance & Chat",
       icon: SocialIcons.WhatsApp,
       href: "https://wa.me/919762170838?text=Hi%20Immuno%2B%20Team",
@@ -91,6 +93,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     },
     {
       name: "Instagram",
+      id: "instagram",
       handle: "@plusimmuno",      
       icon: SocialIcons.Instagram,
       href: "https://www.instagram.com/plusimmuno",
@@ -99,6 +102,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     },
     {
       name: "YouTube Channel",
+      id: "youtube",
       handle: "Water Science & Guides",
       icon: SocialIcons.YouTube,
       href: "https://youtube.com/@immunoplus_uk",
@@ -106,6 +110,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     },
     {
       name: "LinkedIn",
+      id: "linkedin",
       handle: "Immuno+ Healthcare Solutions",
       icon: SocialIcons.LinkedIn,
       href: "https://linkedin.com/in/immunoplus",
@@ -113,6 +118,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     },
     {
       name: "Facebook",
+      id: "facebook",
       handle: "Immuno+ Official Community",
       icon: SocialIcons.Facebook,
       href: "https://www.facebook.com/ImmunoPlusIndia",
@@ -122,6 +128,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
 
   const featuredProducts = [
     {
+      id: products[0].id,
       name: `${products[0].name} ${products[0].variant}`,
       subtitle: products[0].description,
       tag: "Premium",
@@ -129,6 +136,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
       image: products[0].image,
     },
     {
+      id: products[1].id,
       name: `${products[1].name} ${products[1].variant}`,
       subtitle: products[1].description,
       tag: "Flagship",
@@ -136,6 +144,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
       image: products[1].image,
     },
     {
+      id: products[5].id,
       name: `${products[5].name} ${products[5].variant}`,
       subtitle: products[5].description,
       tag: "Innovative",
@@ -158,7 +167,6 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
           name="keywords"
           content="Immuno+ links, Immuno+ support, Immuno+ WhatsApp, alkaline water ionizer contact, Immuno+ official, LinkTree"
         />
-        {/* Canonical set to your dedicated links subdomain */}
         <link rel="canonical" href="https://links.immunoplus.in/" />
 
         {/* Open Graph / Facebook / WhatsApp / LinkedIn */}
@@ -189,12 +197,11 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
         </script>
       </Helmet>
 
-      {/* Background Header Wave (Shared with Warranty Page) */}
-      <div className="absolute top-0 left-0 right-0 h-[420px] bg-gradient-to-b from-neutral-950 via-[#071324] to-[#0a1e38] overflow-hidden pointer-events-none z-0">
+      {/* FIXED Background Header Wave - Stays static while UI scrolls */}
+      <div className="fixed top-0 left-0 right-0 h-[420px] bg-gradient-to-b from-neutral-950 via-[#071324] to-[#0a1e38] overflow-hidden pointer-events-none z-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-160 h-48 bg-blue-500/20 rounded-full blur-3xl" />
         <div className="absolute top-20 -left-12 w-64 h-64 bg-blue-400/10 rounded-full blur-2xl" />
 
-        {/* Back SVG Wave */}
         <svg
           className="absolute bottom-0 left-0 w-full h-28 md:h-36 text-neutral-900/80 fill-current preserve-3d"
           viewBox="0 0 1440 220"
@@ -203,7 +210,6 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
           <path d="M0,64L48,85.3C96,107,192,149,288,149.3C384,149,480,107,576,96C672,85,768,107,864,128C960,149,1056,171,1152,160C1248,149,1344,107,1392,85.3L1440,64L1440,220L1392,220C1344,220,1248,220,1152,220C1056,220,960,220,864,220C768,220,672,220,576,220C480,220,384,220,288,220C192,220,96,220,48,220L0,220Z" />
         </svg>
 
-        {/* Front SVG Wave */}
         <svg
           className="absolute bottom-[-2px] left-0 w-full h-20 md:h-28 text-neutral-50 fill-current preserve-3d"
           viewBox="0 0 1440 180"
@@ -213,9 +219,8 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
         </svg>
       </div>
 
-      {/* Main Container */}
+      {/* Main UI Container - Scrolls smoothly over the fixed background */}
       <main className="relative z-10 w-full max-w-lg px-4 pt-10 sm:pt-14 flex flex-col items-center">
-        {/* Profile / Brand Header */}
         <div className="flex flex-col items-center text-center mb-8">
           <div className="relative mb-3">
             <div className="w-28 h-28 bg-transparent rounded-full">
@@ -242,25 +247,31 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
           </div>
         </div>
 
-        {/* Essential Shortcuts Bar */}
         <div className="w-full grid grid-cols-2 gap-3 mb-6">
-          <Link
+          <TrackedCTA
+            as="link"
             to="/warranty"
+            ctaName="warranty_shortcut"
+            ctaType="navigation"
+            location="linktree"
             className="flex items-center justify-center gap-2 p-3 bg-white/90 backdrop-blur-md rounded-2xl border border-neutral-200 shadow-md shadow-neutral-200/40 hover:bg-white hover:border-blue-300 transition-all text-neutral-800 group"
           >
             <ShieldCheck className="w-4 h-4 text-blue-500 group-hover:scale-110 transition-transform" />
             <span className="text-xs font-semibold">Warranty Check</span>
-          </Link>
-          <Link
+          </TrackedCTA>
+          <TrackedCTA
+            as="link"
             to="/contact"
+            ctaName="contact_shortcut"
+            ctaType="navigation"
+            location="linktree"
             className="flex items-center justify-center gap-2 p-3 bg-white/90 backdrop-blur-md rounded-2xl border border-neutral-200 shadow-md shadow-neutral-200/40 hover:bg-white hover:border-blue-300 transition-all text-neutral-800 group"
           >
             <PhoneCall className="w-4 h-4 text-blue-500 group-hover:scale-110 transition-transform" />
             <span className="text-xs font-semibold">Contact Support</span>
-          </Link>
+          </TrackedCTA>
         </div>
 
-        {/* Social Media Links Section */}
         <div className="w-full mb-8">
           <div className="flex items-center justify-between mb-3 px-1">
             <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
@@ -278,6 +289,20 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    logByEvent("click_social_link", {
+                      platform: item.id,
+                      location: "linktree",
+                    });
+                    
+                    if (item.id === "whatsapp") {
+                      logByEvent("generate_lead", {
+                        method: "whatsapp",
+                        lead_type: "contact",
+                        placement: "linktree_direct"
+                      });
+                    }
+                  }}
                   className={`w-full flex items-center justify-between p-3.5 rounded-2xl shadow-lg transition-all duration-200 transform active:scale-[0.98] ${item.colorClass}`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
@@ -303,19 +328,22 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
           </div>
         </div>
 
-        {/* Featured Products Showcase Section */}
         <div className="w-full mb-8">
           <div className="flex items-center justify-between mb-3 px-1">
             <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 flex items-center gap-1.5">
               <Droplets className="w-3.5 h-3.5 text-blue-500" />
               Immuno+ Products
             </span>
-            <a
-              href="/products"
+            <TrackedCTA
+              as="link"
+              to="/products"
+              ctaName="view_full_catalog"
+              ctaType="navigation"
+              location="linktree"
               className="text-xs font-semibold text-blue-500 hover:text-blue-600 transition-colors"
             >
               View Full Catalog →
-            </a>
+            </TrackedCTA>
           </div>
 
           <div className="flex flex-col gap-3">
@@ -323,6 +351,17 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
               <Link
                 key={idx}
                 to={prod.link}
+                onClick={() => {
+                  logByEvent("select_item", {
+                    item_list_name: "linktree_featured_products",
+                    items: [
+                      {
+                        item_id: prod.id,
+                        item_name: prod.name,
+                      }
+                    ]
+                  });
+                }}
                 className="group relative bg-white border border-neutral-100 rounded-2xl p-4 shadow-md shadow-neutral-200/50 hover:shadow-xl hover:border-blue-200 transition-all flex items-center justify-between"
               >
                 <div className="flex items-start gap-3.5 min-w-0 pr-3">
@@ -350,7 +389,6 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
           </div>
         </div>
 
-        {/* Footer info */}
         <footer className="text-center text-xs text-neutral-400 mt-4 space-y-1">
           <p>© {new Date().getFullYear()} Immuno+ Water Solutions. All rights reserved.</p>
           <p className="text-[11px] text-neutral-400">

@@ -23,6 +23,7 @@ import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 
 import WarrantyCard from "./WarrantyCard";
+import { logByEvent } from "../services/fcmAnalytics";
 
 const EXTENDED_WARRANTY_OPTIONS = [
   {
@@ -178,6 +179,16 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
 
       if (!payload || !payload.purchaseDate) {
         throw new Error(rawData.message || "No warranty records found for this serial and phone number combination.");
+      }
+
+      // Log successful warranty search
+      try {
+        logByEvent("search", {
+          search_term: "warranty_check",
+          location: "warranty_page_calculator"
+        });
+      } catch (analyticsErr) {
+        console.warn("Analytics error:", analyticsErr);
       }
 
       // Split Product Name and Variant on '-'
@@ -350,6 +361,18 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
         throw new Error(`Failed to submit extension. Status: ${response.status}`);
       }
 
+      // Log successful extension submission
+      try {
+        logByEvent("generate_lead", {
+          method: "warranty_extension",
+          lead_type: "warranty_renewal",
+          placement: "warranty_page_calculator",
+          value: chosenPlan.price
+        });
+      } catch (analyticsErr) {
+        console.warn("Analytics error:", analyticsErr);
+      }
+
       const now = new Date();
       const extElectronicsDate =
         chosenPlan.electronicsYears > 0
@@ -393,23 +416,21 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
     }
   };
 
-    const handleDownloadCardPdf = async () => {
+  const handleDownloadCardPdf = async () => {
     if (!cardRef.current) return;
 
     try {
       const element = cardRef.current;
       
-      // Use html-to-image to bypass the oklch parsing limitation
       const imgData = await toPng(element, {
         pixelRatio: 2, 
         backgroundColor: "#ffffff",
         style: {
-          transform: 'scale(1)', // Ensures no scaling artifacts
+          transform: 'scale(1)', 
           transformOrigin: 'top left'
         }
       });
 
-      // Get exact dimensions for the PDF mapping
       const width = element.offsetWidth;
       const height = element.offsetHeight;
 
@@ -430,11 +451,9 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
     }
   };
 
-
   const activeSelectedPlan =
     EXTENDED_WARRANTY_OPTIONS.find((p) => p.id === extendForm.selectedPlanId) || EXTENDED_WARRANTY_OPTIONS[0];
 
-  // Strictly gate the card: NEVER render until result exists AND (not expired OR extension was submitted)
   const shouldRenderCard = Boolean(result) && (!result.bothExpired || extendSubmitted);
 
   return (
@@ -676,50 +695,48 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
         </div>
       )}
 
-     {/* 3. Certificate Card: Conditionally displays Pre-Final or Final Card */}
-{shouldRenderCard && (
-  <div className="mt-8 animate-in fade-in duration-300 space-y-4">
-    {extendSubmitted && (
-      <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm flex items-start gap-3 shadow-xs">
-        <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-        <div>
-          <p className="font-bold">Extension Application Submitted (Pre-Final Stage)</p>
-          <p className="text-amber-800 mt-0.5">
-            Your pre-final warranty card has been generated. Our team will contact you for further steps and payment.
-          </p>
+      {/* 3. Certificate Card: Conditionally displays Pre-Final or Final Card */}
+      {shouldRenderCard && (
+        <div className="mt-8 animate-in fade-in duration-300 space-y-4">
+          {extendSubmitted && (
+            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm flex items-start gap-3 shadow-xs">
+              <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <div>
+                <p className="font-bold">Extension Application Submitted (Pre-Final Stage)</p>
+                <p className="text-amber-800 mt-0.5">
+                  Your pre-final warranty card has been generated. Our team will contact you for further steps and payment.
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div>
+            <WarrantyCard
+              cardRef={cardRef}
+              ticketId={extendSubmitted ? issuedCardData?.ticketId : result.ticketId}
+              productModel={extendSubmitted ? issuedCardData?.productModel : result.productName}
+              variant={extendSubmitted ? issuedCardData?.variant : result.variant}
+              productPrice={extendSubmitted ? issuedCardData?.productPrice : result.productPrice}
+              serialNumber={extendSubmitted ? issuedCardData?.serialNumber : result.serialNumber}
+              purchaseDate={extendSubmitted ? issuedCardData?.purchaseDate : result.purchaseDateFormatted}
+              defaultElectronicsYears={result.defaultElectronicsWarranty}
+              defaultChamberYears={result.defaultChamberYears}
+              originalElectronicsExpiry={result.electronics.originalExpiryDate}
+              originalChamberExpiry={result.chamber.originalExpiryDate}
+              previousRenewalDate={result.warrantyRenewedDateFormatted}
+              planTitle={extendSubmitted ? issuedCardData?.planTitle : (result.planTitle || "+5 Years Chamber Protection")}
+              extendedPrice={extendSubmitted ? issuedCardData?.extendedPrice : result.extendedPrice}
+              extendedPurchaseDate={extendSubmitted ? issuedCardData?.extendedPurchaseDate : (result.warrantyRenewedDateFormatted || result.purchaseDateFormatted)}
+              extendedElectronicsWarranty={extendSubmitted ? issuedCardData?.extendedElectronicsWarranty : result.electronics.extendedYears}
+              extendedChamberYears={extendSubmitted ? issuedCardData?.extendedChamberYears : result.chamber.extendedYears}
+              extendedElectronicsExpiry={extendSubmitted ? issuedCardData?.extendedElectronicsExpiry : result.electronics.expiryDate}
+              chamberExpiry={extendSubmitted ? issuedCardData?.chamberExpiry : result.chamber.expiryDate}
+              status={extendSubmitted ? "PRE_FINAL" : (result?.paymentStatus || "ACTIVE")}
+              onDownloadPdf={handleDownloadCardPdf}
+            />
+          </div>
         </div>
-      </div>
-    )}
-
-    <div>
-      <WarrantyCard
-        cardRef={cardRef}
-        
-        ticketId={extendSubmitted ? issuedCardData?.ticketId : result.ticketId}
-        productModel={extendSubmitted ? issuedCardData?.productModel : result.productName}
-        variant={extendSubmitted ? issuedCardData?.variant : result.variant}
-        productPrice={extendSubmitted ? issuedCardData?.productPrice : result.productPrice}
-        serialNumber={extendSubmitted ? issuedCardData?.serialNumber : result.serialNumber}
-        purchaseDate={extendSubmitted ? issuedCardData?.purchaseDate : result.purchaseDateFormatted}
-        defaultElectronicsYears={result.defaultElectronicsWarranty}
-        defaultChamberYears={result.defaultChamberYears}
-        originalElectronicsExpiry={result.electronics.originalExpiryDate}
-        originalChamberExpiry={result.chamber.originalExpiryDate}
-        previousRenewalDate={result.warrantyRenewedDateFormatted}
-        planTitle={extendSubmitted ? issuedCardData?.planTitle : (result.planTitle || "+5 Years Chamber Protection")}
-        extendedPrice={extendSubmitted ? issuedCardData?.extendedPrice : result.extendedPrice}
-        extendedPurchaseDate={extendSubmitted ? issuedCardData?.extendedPurchaseDate : (result.warrantyRenewedDateFormatted || result.purchaseDateFormatted)}
-        extendedElectronicsWarranty={extendSubmitted ? issuedCardData?.extendedElectronicsWarranty : result.electronics.extendedYears}
-        extendedChamberYears={extendSubmitted ? issuedCardData?.extendedChamberYears : result.chamber.extendedYears}
-        extendedElectronicsExpiry={extendSubmitted ? issuedCardData?.extendedElectronicsExpiry : result.electronics.expiryDate}
-        chamberExpiry={extendSubmitted ? issuedCardData?.chamberExpiry : result.chamber.expiryDate}
-        status={extendSubmitted ? "PRE_FINAL" : (result?.paymentStatus || "ACTIVE")}
-        onDownloadPdf={handleDownloadCardPdf}
-      />
-    </div>
-  </div>
-)}
-
+      )}
 
       {/* 4. Extend Chamber Form: Rendered ONLY if chamber warranty <= 25% or expired */}
       {result && result.eligibleForRenewal && !extendSubmitted && (
