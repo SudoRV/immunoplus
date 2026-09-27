@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import './App.css'
+import './App.css';
 
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
@@ -15,15 +15,24 @@ import Footer from "./components/Footer";
 import FcmAnalytics from './services/fcmAnalytics';
 import QrScan from './pages/QrScan';
 
-// Extract everything inside BrowserRouter into a separate component
+// Check if visited via the links subdomain
+const isLinksSubdomain = window.location.hostname.startsWith('links.');
+
 function AppContent() {
   const location = useLocation();
+
+  // Hide footer on /links path or when accessing via links subdomain
+  const hideFooter = location.pathname === "/links" || isLinksSubdomain;
 
   return (
     <>
       <FcmAnalytics />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* If user visits links.immunoplus.in, render LinkTree directly at root '/' */}
+        <Route 
+          path="/" 
+          element={isLinksSubdomain ? <LinkTree /> : <Home />} 
+        />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/team" element={<Team />} />
@@ -34,8 +43,8 @@ function AppContent() {
         <Route path="/qrscan/:appname" element={<QrScan />} />
       </Routes>
       
-      {/* Footer now reacts dynamically to route changes */}
-      {location.pathname !== "/links" && <Footer />}
+      {/* Footer hidden on links page & subdomain */}
+      {!hideFooter && <Footer />}
     </>
   );
 }
