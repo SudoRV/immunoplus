@@ -562,11 +562,26 @@ export function Products() {
   </div>
 
   {/* Call to Action Button */}
-  <button className="w-full sm:w-auto whitespace-nowrap px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-all shadow-md hover:shadow-lg active:scale-104 transition-scale duration-200" onClick={() => {
-      window.open("/warranty", "_blank");
-  }}>
-    Check Warranty
-  </button>
+  <button 
+  className="w-full sm:w-auto whitespace-nowrap px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-all shadow-md hover:shadow-lg active:scale-104 transition-scale duration-200" 
+  onClick={() => {
+    // Log the event before navigating
+    try {
+      logByEvent("navigation", {
+        cta_name: "check_warranty",
+        location: "products_page",
+        destination: "/warranty"
+      });
+    } catch (err) {
+      console.warn("Analytics error:", err);
+    }
+    
+    window.open("/warranty", "_blank");
+  }}
+>
+  Check Warranty
+</button>
+
   
 </div>
 

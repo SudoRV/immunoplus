@@ -17,16 +17,32 @@ const firebaseConfig = {
 let app = null;
 let analytics = null;
 
-window.addEventListener("online", () => {
-  console.log("Internet connection restored.");
+const initFirebase = () => {
   if (!app || !analytics) {
     try {
-      app = initializeApp(firebaseConfig);
-      analytics = getAnalytics(app);
+      app = app || initializeApp(firebaseConfig);
+      analytics = getAnalytics(app);           
     } catch (error) {
       console.warn("Failed to load firebase: ", error);
     }
   }
-})
+};
+
+// 1. Trigger immediately if the user loads the app while already online
+if (navigator.onLine) {
+  initFirebase();
+}
+
+// 2. Trigger if the user starts offline and later regains connection
+window.addEventListener("online", () => {
+  console.log("Internet connection restored.");
+  initFirebase();
+});
+
+// 3. Nullify analytics immediately when connection drops to prevent errors
+window.addEventListener("offline", () => {
+  console.log("Internet connection lost. Disabling analytics.");
+  analytics = null;
+});
 
 export default analytics;

@@ -6,10 +6,11 @@ import analytics from "./fcm";
 export default function FcmAnalytics() {
     const location = useLocation();
     const page = location.pathname + location.search;
-
+    
     // page view
-    useEffect(() => {
-        if(!analytics) return;
+    useEffect(() => {        
+        if(!analytics) return;  
+            
         try {
             logEvent(analytics, "page_view", {
                 // debug_mode: true,
