@@ -23,7 +23,7 @@ const initFirebase = () => {
       app = app || initializeApp(firebaseConfig);
       analytics = getAnalytics(app);  
       
-      console.log(app, analytics)       
+      console.log("Instantiating Analytics", analytics?.app?._options?.measurementId.slice(0,8), "..." || "ImmunoPlus");     
     } catch (error) {
       console.warn("Failed to load firebase: ", error);
     }
