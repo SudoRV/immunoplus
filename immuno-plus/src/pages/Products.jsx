@@ -417,7 +417,7 @@ export function Products() {
     <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden">
       <Helmet>
         {/* Core Primary Meta */}
-        <title>Alkaline Water Ionizers & Hydrogen Systems | Immuno+ Catalog</title>
+        <title>Products | Immuno+</title>
         <meta
           name="title"
           content="Alkaline Water Ionizers & Hydrogen Systems | Immuno+ Catalog"

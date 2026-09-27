@@ -159,7 +159,7 @@ export function Contact() {
         <div className="w-full min-h-screen bg-neutral-950 text-white flex flex-col overflow-x-hidden">
             <Helmet>
         {/* Core Meta */}
-        <title>Contact Us & Customer Support | Immuno+</title>
+        <title>Contact Us | Immuno+</title>
         <meta
           name="title"
           content="Contact Us & Customer Support | Immuno+"
