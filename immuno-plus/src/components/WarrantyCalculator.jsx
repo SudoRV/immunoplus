@@ -15,20 +15,30 @@ import {
   MapPin,
   Loader2,
   Hash,
-  Download,
+  ChevronDown,
+  RefreshCw,
 } from "lucide-react";
-import html2canvas from "html2canvas";
+
+import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 
 import WarrantyCard from "./WarrantyCard";
 
-// Only 5-year extended warranty plan at ₹3,499
 const EXTENDED_WARRANTY_OPTIONS = [
-  { id: "ext-5yr", label: "5 Years Extended Comprehensive Plan", years: 5, price: "₹3,499" },
+  {
+    id: "ext-chamber-5yr",
+    label: "+5 Years Chamber Protection",
+    scope: "chamber_only",
+    electronicsYears: 0,
+    chamberYears: 5,
+    price: "₹3,499",
+    description: "Exclusive 5-year coverage extended exclusively for the Electrolysis Chamber assembly.",
+  },
 ];
 
-const parseYears = (str = "") => {
-  const match = String(str).match(/\d+/);
+const parseYears = (val) => {
+  if (val === undefined || val === null) return 0;
+  const match = String(val).match(/\d+/);
   return match ? parseInt(match[0], 10) : 0;
 };
 
@@ -112,13 +122,13 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
 
   const [isCheckingWarranty, setIsCheckingWarranty] = useState(false);
   const [isSubmittingExtension, setIsSubmittingExtension] = useState(false);
-  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
 
   const [extendForm, setExtendForm] = useState({
     customerName: "",
     customerEmail: "",
     customerMobile: "",
     customerAddress: "",
+    selectedPlanId: EXTENDED_WARRANTY_OPTIONS[0].id,
   });
 
   const [extendSubmitted, setExtendSubmitted] = useState(false);
@@ -170,59 +180,123 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
         throw new Error(rawData.message || "No warranty records found for this serial and phone number combination.");
       }
 
-      const inputDate = new Date(payload.purchaseDate);
+      // Split Product Name and Variant on '-'
+      const fullProductName = String(payload.productName || "Immuno+ Water Ionizer - Standard");
+      let extractedName = fullProductName;
+      let extractedVariant = payload.variant || "Standard";
+
+      if (fullProductName.includes("-")) {
+        const parts = fullProductName.split("-");
+        extractedName = parts[0].trim();
+        extractedVariant = parts.slice(1).join("-").trim() || extractedVariant;
+      }
+
+      const productPurchaseDate = new Date(payload.purchaseDate);
+      const rawRenewedDate = payload.warrantyRenewedDate || payload.extendedWarranty?.warrantyRenewedDate;
+      const renewedDate = rawRenewedDate ? new Date(rawRenewedDate) : null;
+
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      const electronicsYears = parseYears(payload.electronicsWarrantyYears || payload.electronicsWarranty || "2");
-      const chamberYears = parseYears(payload.chamberWarrantyYears || payload.chamberWarranty || "5");
+      const baseElecYears = parseYears(
+        payload.electronicsWarrantyYears ||
+        payload.defaultWarranty?.electronicsWarranty ||
+        payload.defaultElectronicsWarranty ||
+        "2"
+      );
+      const baseChamberYears = parseYears(
+        payload.chamberWarrantyYears ||
+        payload.defaultWarranty?.chamberYears ||
+        payload.defaultChamberYears ||
+        "5"
+      );
 
-      const electronicsExpiry = payload.electronicsExpiryDate
-        ? new Date(payload.electronicsExpiryDate)
-        : addYears(inputDate, electronicsYears);
+      const extElecYears = parseYears(
+        payload.extendedElectronicsWarranty ||
+        payload.extendedWarranty?.electronicsWarrantyAdded ||
+        0
+      );
+      const extChamberYears = parseYears(
+        payload.extendedChamberYears ||
+        payload.extendedWarranty?.chamberYearsAdded ||
+        0
+      );
 
-      const chamberExpiry = payload.chamberExpiryDate
-        ? new Date(payload.chamberExpiryDate)
-        : addYears(inputDate, chamberYears);
+      const baseElecExpiry = addYears(productPurchaseDate, baseElecYears);
+      const baseChamberExpiry = addYears(productPurchaseDate, baseChamberYears);
 
-      const electronicsStatus = calculateRemainingTime(electronicsExpiry, today, inputDate);
-      const chamberStatus = calculateRemainingTime(chamberExpiry, today, inputDate);
+      let effectiveElecExpiry = baseElecExpiry;
+      if (extElecYears > 0) {
+        effectiveElecExpiry = renewedDate ? addYears(renewedDate, extElecYears) : addYears(baseElecExpiry, extElecYears);
+      }
 
-      const minPercent = Math.min(electronicsStatus.percentRemaining, chamberStatus.percentRemaining);
-      const eligibleForRenewal = minPercent <= 25 || electronicsStatus.isExpired || chamberStatus.isExpired;
+      let effectiveChamberExpiry = baseChamberExpiry;
+      if (extChamberYears > 0) {
+        effectiveChamberExpiry = renewedDate ? addYears(renewedDate, extChamberYears) : addYears(baseChamberExpiry, extChamberYears);
+      }
+
+      const elecEffectiveStart = extElecYears > 0 && renewedDate ? renewedDate : productPurchaseDate;
+      const chamberEffectiveStart = extChamberYears > 0 && renewedDate ? renewedDate : productPurchaseDate;
+
+      const electronicsStatus = calculateRemainingTime(effectiveElecExpiry, today, elecEffectiveStart);
+      const chamberStatus = calculateRemainingTime(effectiveChamberExpiry, today, chamberEffectiveStart);
+
+      const bothExpired = electronicsStatus.isExpired && chamberStatus.isExpired;
+      const eligibleForRenewal = chamberStatus.percentRemaining <= 25 || chamberStatus.isExpired;
 
       const calculatedData = {
+        ticketId: payload.ticketId || "",
         serialNumber: trimmedSerial,
         registeredPhone: trimmedPhone,
-        productName: payload.productName || "Immuno+ Water Ionizer",
-        variant: payload.variant || "Standard",
-        purchaseDateFormatted: formatDate(inputDate),
+        productName: extractedName,
+        variant: extractedVariant,
+        purchaseDateFormatted: formatDate(productPurchaseDate),
         rawPurchaseDate: payload.purchaseDate,
-        minPercentRemaining: minPercent,
+        rawRenewedDate: rawRenewedDate,
+        warrantyRenewedDateFormatted: renewedDate ? formatDate(renewedDate) : null,
+        chamberPercentRemaining: chamberStatus.percentRemaining,
+        bothExpired,
         eligibleForRenewal,
-        customerName: payload.customerName || "",
-        customerEmail: payload.customerEmail || "",
-        customerAddress: payload.customerAddress || "",
+        customerName: payload.customerName || payload.name || "",
+        customerEmail: payload.customerEmail || payload.email || "",
+        customerAddress: payload.customerAddress || payload.address || "",
+        productMrp: payload.productMrp || "",
+        productPrice: payload.productPrice || "",
+        defaultElectronicsWarranty: baseElecYears,
+        defaultChamberYears: baseChamberYears,
+        planTitle: payload.planTitle || payload.extendedWarranty?.planTitle || "",
+        extendedPrice: payload.extendedPrice || payload.extendedWarranty?.price || "",
+        paymentStatus: payload.paymentStatus || "ACTIVE",
+        rawExistingRowData: payload,
         electronics: {
-          totalYears: electronicsYears,
-          expiryDate: formatDate(electronicsExpiry),
-          rawExpiryDate: electronicsExpiry,
+          baseYears: baseElecYears,
+          extendedYears: extElecYears,
+          totalYears: baseElecYears + extElecYears,
+          isAffectedByExtension: extElecYears > 0,
+          originalExpiryDate: formatDate(baseElecExpiry),
+          expiryDate: formatDate(effectiveElecExpiry),
+          rawExpiryDate: effectiveElecExpiry,
           status: electronicsStatus,
         },
         chamber: {
-          totalYears: chamberYears,
-          expiryDate: formatDate(chamberExpiry),
-          rawExpiryDate: chamberExpiry,
+          baseYears: baseChamberYears,
+          extendedYears: extChamberYears,
+          totalYears: baseChamberYears + extChamberYears,
+          isAffectedByExtension: extChamberYears > 0,
+          originalExpiryDate: formatDate(baseChamberExpiry),
+          expiryDate: formatDate(effectiveChamberExpiry),
+          rawExpiryDate: effectiveChamberExpiry,
           status: chamberStatus,
         },
       };
 
       setResult(calculatedData);
       setExtendForm({
-        customerName: payload.customerName || "",
-        customerEmail: payload.customerEmail || "",
+        customerName: payload.customerName || payload.name || "",
+        customerEmail: payload.customerEmail || payload.email || "",
         customerMobile: trimmedPhone,
-        customerAddress: payload.customerAddress || "",
+        customerAddress: payload.customerAddress || payload.address || "",
+        selectedPlanId: EXTENDED_WARRANTY_OPTIONS[0].id,
       });
 
       if (onResultCalculated) onResultCalculated(calculatedData);
@@ -238,21 +312,31 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
     e.preventDefault();
     setIsSubmittingExtension(true);
 
-    const chosenPlan = EXTENDED_WARRANTY_OPTIONS[0];
-    const ticketId = `WRN-${Math.floor(1000 + Math.random() * 9000)}-EXT`;
+    const chosenPlan =
+      EXTENDED_WARRANTY_OPTIONS.find((p) => p.id === extendForm.selectedPlanId) || EXTENDED_WARRANTY_OPTIONS[0];
+    const ticketId = result.rawExistingRowData?.ticketId || `WRN-${Math.floor(1000 + Math.random() * 9000)}-EXT`;
 
     const payload = {
       action: "extend_warranty",
       ticketId,
-      customerName: extendForm.customerName.trim(),
-      customerEmail: extendForm.customerEmail.trim(),
-      customerMobile: extendForm.customerMobile.trim(),
-      serviceAddress: extendForm.customerAddress.trim(),
-      productName: `${result.productName} (${result.variant})`,
+      customerName: extendForm.customerName.trim() || result.customerName,
+      customerEmail: extendForm.customerEmail.trim() || result.customerEmail,
+      customerMobile: extendForm.customerMobile.trim() || result.registeredPhone,
+      serviceAddress: extendForm.customerAddress.trim() || result.customerAddress,
+      productName: `${result.productName} - ${result.variant}`,
       serialNumber: result.serialNumber,
+      purchaseDate: result.rawPurchaseDate,
+      productMrp: result.productMrp || result.rawExistingRowData?.productMrp || "",
+      productPrice: result.productPrice || result.rawExistingRowData?.productPrice || "",
+      defaultElectronicsWarranty: result.defaultElectronicsWarranty,
+      defaultChamberYears: result.defaultChamberYears,
       planTitle: chosenPlan.label,
       price: chosenPlan.price,
-      extendedYears: chosenPlan.years,
+      extendedPrice: chosenPlan.price,
+      extendedElectronicsWarranty: chosenPlan.electronicsYears,
+      extendedChamberYears: chosenPlan.chamberYears,
+      extendedYears: Math.max(chosenPlan.electronicsYears, chosenPlan.chamberYears),
+      paymentStatus: "PENDING",
     };
 
     try {
@@ -266,17 +350,38 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
         throw new Error(`Failed to submit extension. Status: ${response.status}`);
       }
 
-      const extElectronicsDate = addYears(result.electronics.rawExpiryDate, chosenPlan.years);
-      const extChamberDate = addYears(result.chamber.rawExpiryDate, chosenPlan.years);
+      const now = new Date();
+      const extElectronicsDate =
+        chosenPlan.electronicsYears > 0
+          ? addYears(now, chosenPlan.electronicsYears)
+          : result.electronics.rawExpiryDate;
+
+      const extChamberDate =
+        chosenPlan.chamberYears > 0
+          ? addYears(now, chosenPlan.chamberYears)
+          : result.chamber.rawExpiryDate;
 
       setIssuedCardData({
         ticketId,
-        productModel: `${result.productName} — ${result.variant}`,
+        productModel: result.productName,
+        variant: result.variant,
         serialNumber: result.serialNumber,
-        purchaseDate: result.rawPurchaseDate,
-        originalElectronicsExpiry: result.electronics.expiryDate,
-        extendedElectronicsExpiry: formatDate(extElectronicsDate),
+        purchaseDate: result.purchaseDateFormatted,
+        productPrice: result.productPrice,
+        defaultElectronicsYears: result.defaultElectronicsWarranty,
+        defaultChamberYears: result.defaultChamberYears,
+        originalElectronicsExpiry: result.electronics.originalExpiryDate,
+        originalChamberExpiry: result.chamber.originalExpiryDate,
+        previousRenewalDate: result.warrantyRenewedDateFormatted,
+        planTitle: chosenPlan.label,
+        extendedPrice: chosenPlan.price,
+        extendedPurchaseDate: formatDate(now),
+        extendedElectronicsWarranty: chosenPlan.electronicsYears,
+        extendedChamberYears: chosenPlan.chamberYears,
+        extendedElectronicsExpiry:
+          chosenPlan.electronicsYears > 0 ? formatDate(extElectronicsDate) : `${result.electronics.expiryDate} (No Change)`,
         chamberExpiry: formatDate(extChamberDate),
+        status: "PENDING",
       });
 
       setExtendSubmitted(true);
@@ -288,39 +393,53 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
     }
   };
 
-  const handleDownloadCardPdf = async () => {
+    const handleDownloadCardPdf = async () => {
     if (!cardRef.current) return;
-    setIsDownloadingPdf(true);
 
     try {
       const element = cardRef.current;
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
+      
+      // Use html-to-image to bypass the oklch parsing limitation
+      const imgData = await toPng(element, {
+        pixelRatio: 2, 
         backgroundColor: "#ffffff",
+        style: {
+          transform: 'scale(1)', // Ensures no scaling artifacts
+          transformOrigin: 'top left'
+        }
       });
 
-      const imgData = canvas.toDataURL("image/png");
+      // Get exact dimensions for the PDF mapping
+      const width = element.offsetWidth;
+      const height = element.offsetHeight;
+
       const pdf = new jsPDF({
-        orientation: "landscape",
+        orientation: width > height ? "landscape" : "portrait",
         unit: "px",
-        format: [canvas.width, canvas.height],
+        format: [width, height],
       });
 
-      pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-      pdf.save(`Warranty_Card_${issuedCardData?.serialNumber || "Doc"}.pdf`);
+      pdf.addImage(imgData, "PNG", 0, 0, width, height);
+      
+      const downloadSerial = issuedCardData?.serialNumber || result?.serialNumber || "Document";
+      pdf.save(`Immuno+ Warranty Card ${downloadSerial}.pdf`);
+      
     } catch (err) {
       console.error("PDF generation failed:", err);
       alert("Could not generate PDF. Please try again.");
-    } finally {
-      setIsDownloadingPdf(false);
     }
   };
 
+
+  const activeSelectedPlan =
+    EXTENDED_WARRANTY_OPTIONS.find((p) => p.id === extendForm.selectedPlanId) || EXTENDED_WARRANTY_OPTIONS[0];
+
+  // Strictly gate the card: NEVER render until result exists AND (not expired OR extension was submitted)
+  const shouldRenderCard = Boolean(result) && (!result.bothExpired || extendSubmitted);
+
   return (
-    <div className={`w-full max-w-2xl mx-auto ${className}`}>
-      {/* Search Input Form */}
+    <div className={`w-full max-w-3xl mx-auto ${className}`}>
+      {/* 1. Search Form */}
       <div className="relative bg-white/95 backdrop-blur-xl border border-blue-100 rounded-3xl p-6 sm:p-10 shadow-xl shadow-blue-500/5 ring-1 ring-blue-500/10">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-500 text-xs font-semibold mb-3">
@@ -398,7 +517,7 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
         </form>
       </div>
 
-      {/* Warranty Status Details View */}
+      {/* 2. Fetched Status Overview */}
       {result && (
         <div className="mt-8 bg-white rounded-3xl p-6 sm:p-9 border border-neutral-100 shadow-xl shadow-neutral-900/5 animate-in fade-in duration-300">
           <div className="flex items-center justify-between flex-wrap gap-2 pb-5 border-b border-neutral-100">
@@ -407,9 +526,14 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-neutral-900 tracking-tight">Warranty Status Report</h3>
+                <h3 className="text-lg font-bold text-neutral-900 tracking-tight">Warranty Status Overview</h3>
                 <p className="text-xs text-neutral-500">
                   Purchased on <span className="font-semibold text-neutral-800">{result.purchaseDateFormatted}</span>
+                  {result.warrantyRenewedDateFormatted && (
+                    <span className="ml-2 pl-2 border-l border-neutral-300 text-emerald-600 font-medium">
+                      Renewed: {result.warrantyRenewedDateFormatted}
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
@@ -418,13 +542,31 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
             </div>
           </div>
 
-          {/* Assemblies breakdown */}
+          {result.bothExpired && !extendSubmitted && (
+            <div className="mt-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl flex items-center gap-2 font-medium">
+              <ShieldAlert className="w-4 h-4 text-rose-600 shrink-0" />
+              All base and prior warranty terms have expired. Extend coverage below to initiate a renewal request.
+            </div>
+          )}
+
+          {/* Assemblies Breakdown */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+            {/* Electronics Unit */}
             <div
-              className={`p-6 rounded-2xl transition-all ${
-                result.electronics.status.isExpired ? "bg-rose-50/50 border border-rose-100" : "bg-neutral-50 shadow-xs"
+              className={`p-6 rounded-2xl transition-all relative ${
+                result.electronics.isAffectedByExtension
+                  ? "bg-emerald-50/40 border border-emerald-200"
+                  : result.electronics.status.isExpired
+                  ? "bg-rose-50/50 border border-rose-100"
+                  : "bg-neutral-50 shadow-xs"
               }`}
             >
+              {result.electronics.isAffectedByExtension && (
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-wider mb-2">
+                  <RefreshCw className="w-2.5 h-2.5" /> Plan Extended
+                </div>
+              )}
+
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2 text-neutral-900 font-bold text-sm">
                   <div className="p-1.5 rounded-lg bg-blue-50 text-blue-500">
@@ -433,7 +575,7 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
                   Electronics Unit
                 </div>
                 <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-white shadow-xs text-neutral-700">
-                  {result.electronics.totalYears} Years
+                  {result.electronics.baseYears} {result.electronics.extendedYears > 0 ? `+ ${result.electronics.extendedYears}` : ""} Years
                 </span>
               </div>
 
@@ -460,16 +602,32 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
                   <p className="mt-3 text-xs text-neutral-500">
                     Valid until: <span className="text-neutral-900 font-semibold">{result.electronics.expiryDate}</span>
                   </p>
+                  {result.electronics.isAffectedByExtension && (
+                    <p className="text-[11px] text-neutral-400 line-through mt-0.5">
+                      Base Expiry: {result.electronics.originalExpiryDate}
+                    </p>
+                  )}
                   <p className="text-xs text-blue-600 font-semibold mt-1">{result.electronics.status.text}</p>
                 </div>
               )}
             </div>
 
+            {/* Chamber */}
             <div
-              className={`p-6 rounded-2xl transition-all ${
-                result.chamber.status.isExpired ? "bg-rose-50/50 border border-rose-100" : "bg-neutral-50 shadow-xs"
+              className={`p-6 rounded-2xl transition-all relative ${
+                result.chamber.isAffectedByExtension
+                  ? "bg-emerald-50/40 border border-emerald-200"
+                  : result.chamber.status.isExpired
+                  ? "bg-rose-50/50 border border-rose-100"
+                  : "bg-neutral-50 shadow-xs"
               }`}
             >
+              {result.chamber.isAffectedByExtension && (
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-wider mb-2">
+                  <RefreshCw className="w-2.5 h-2.5" /> Plan Extended
+                </div>
+              )}
+
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2 text-neutral-900 font-bold text-sm">
                   <div className="p-1.5 rounded-lg bg-blue-50 text-blue-500">
@@ -478,7 +636,7 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
                   Chamber
                 </div>
                 <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-white shadow-xs text-neutral-700">
-                  {result.chamber.totalYears} Years
+                  {result.chamber.baseYears} {result.chamber.extendedYears > 0 ? `+ ${result.chamber.extendedYears}` : ""} Years
                 </span>
               </div>
 
@@ -505,6 +663,11 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
                   <p className="mt-3 text-xs text-neutral-500">
                     Valid until: <span className="text-neutral-900 font-semibold">{result.chamber.expiryDate}</span>
                   </p>
+                  {result.chamber.isAffectedByExtension && (
+                    <p className="text-[11px] text-neutral-400 line-through mt-0.5">
+                      Base Expiry: {result.chamber.originalExpiryDate}
+                    </p>
+                  )}
                   <p className="text-xs text-blue-600 font-semibold mt-1">{result.chamber.status.text}</p>
                 </div>
               )}
@@ -513,182 +676,222 @@ export default function WarrantyCalculator({ className = "", onResultCalculated 
         </div>
       )}
 
-      {/* Extend View: Only shown when expiring or warranty life <= 25% */}
-      {result && result.eligibleForRenewal && (
-        <div className="mt-8 bg-white rounded-3xl p-6 sm:p-9 shadow-xl shadow-neutral-900/5 animate-in fade-in slide-in-from-bottom-3 duration-300">
-          {!extendSubmitted ? (
-            <>
-              <div className="flex items-start gap-3.5 mb-6">
-                <div className="p-2.5 rounded-2xl bg-emerald-50 text-emerald-600 shrink-0 shadow-sm shadow-emerald-500/10">
-                  <ShieldCheck className="w-5 h-5 text-emerald-500" />
+     {/* 3. Certificate Card: Conditionally displays Pre-Final or Final Card */}
+{shouldRenderCard && (
+  <div className="mt-8 animate-in fade-in duration-300 space-y-4">
+    {extendSubmitted && (
+      <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm flex items-start gap-3 shadow-xs">
+        <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+        <div>
+          <p className="font-bold">Extension Application Submitted (Pre-Final Stage)</p>
+          <p className="text-amber-800 mt-0.5">
+            Your pre-final warranty card has been generated. Our team will contact you for further steps and payment.
+          </p>
+        </div>
+      </div>
+    )}
+
+    <div>
+      <WarrantyCard
+        cardRef={cardRef}
+        
+        ticketId={extendSubmitted ? issuedCardData?.ticketId : result.ticketId}
+        productModel={extendSubmitted ? issuedCardData?.productModel : result.productName}
+        variant={extendSubmitted ? issuedCardData?.variant : result.variant}
+        productPrice={extendSubmitted ? issuedCardData?.productPrice : result.productPrice}
+        serialNumber={extendSubmitted ? issuedCardData?.serialNumber : result.serialNumber}
+        purchaseDate={extendSubmitted ? issuedCardData?.purchaseDate : result.purchaseDateFormatted}
+        defaultElectronicsYears={result.defaultElectronicsWarranty}
+        defaultChamberYears={result.defaultChamberYears}
+        originalElectronicsExpiry={result.electronics.originalExpiryDate}
+        originalChamberExpiry={result.chamber.originalExpiryDate}
+        previousRenewalDate={result.warrantyRenewedDateFormatted}
+        planTitle={extendSubmitted ? issuedCardData?.planTitle : (result.planTitle || "+5 Years Chamber Protection")}
+        extendedPrice={extendSubmitted ? issuedCardData?.extendedPrice : result.extendedPrice}
+        extendedPurchaseDate={extendSubmitted ? issuedCardData?.extendedPurchaseDate : (result.warrantyRenewedDateFormatted || result.purchaseDateFormatted)}
+        extendedElectronicsWarranty={extendSubmitted ? issuedCardData?.extendedElectronicsWarranty : result.electronics.extendedYears}
+        extendedChamberYears={extendSubmitted ? issuedCardData?.extendedChamberYears : result.chamber.extendedYears}
+        extendedElectronicsExpiry={extendSubmitted ? issuedCardData?.extendedElectronicsExpiry : result.electronics.expiryDate}
+        chamberExpiry={extendSubmitted ? issuedCardData?.chamberExpiry : result.chamber.expiryDate}
+        status={extendSubmitted ? "PRE_FINAL" : (result?.paymentStatus || "ACTIVE")}
+        onDownloadPdf={handleDownloadCardPdf}
+      />
+    </div>
+  </div>
+)}
+
+
+      {/* 4. Extend Chamber Form: Rendered ONLY if chamber warranty <= 25% or expired */}
+      {result && result.eligibleForRenewal && !extendSubmitted && (
+        <div className="mt-8 bg-white rounded-3xl p-6 sm:p-9 shadow-xl shadow-neutral-900/5 border border-neutral-100 animate-in fade-in slide-in-from-bottom-3 duration-300">
+          <div className="flex items-start gap-3.5 mb-6">
+            <div className="p-2.5 rounded-2xl bg-emerald-50 text-emerald-600 shrink-0 shadow-sm shadow-emerald-500/10">
+              <ShieldCheck className="w-5 h-5 text-emerald-500" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-neutral-900 tracking-tight">Extend Chamber Warranty</h3>
+              <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+                Your chamber warranty coverage is at or below 25% (or has expired). Apply below to renew and protect your machine.
+              </p>
+            </div>
+          </div>
+
+          <div className="mb-6 space-y-2">
+            <label htmlFor="selectedPlanId" className="block text-xs font-semibold text-neutral-700 uppercase tracking-wider">
+              Select Protection Package
+            </label>
+            <div className="relative">
+              <select
+                id="selectedPlanId"
+                value={extendForm.selectedPlanId}
+                onChange={(e) => setExtendForm({ ...extendForm, selectedPlanId: e.target.value })}
+                disabled={isSubmittingExtension}
+                className="w-full appearance-none border border-neutral-200 focus:border-emerald-500 bg-white rounded-2xl px-4 py-3.5 pr-10 text-sm text-neutral-900 font-medium focus:outline-none transition disabled:opacity-60"
+              >
+                {EXTENDED_WARRANTY_OPTIONS.map((plan) => (
+                  <option key={plan.id} value={plan.id}>
+                    {plan.label} - {plan.price}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 pointer-events-none" />
+            </div>
+
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-neutral-900 via-neutral-900 to-emerald-950 text-white flex items-center justify-between shadow-md">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400">
+                  <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">Extend & Protect Coverage</h3>
-                  <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-                    Your warranty coverage is at or below 25% (or has expired). Renew now to maintain uninterrupted coverage.
-                  </p>
+                  <p className="text-sm font-bold">{activeSelectedPlan.label}</p>
+                  <p className="text-xs text-neutral-300">{activeSelectedPlan.description}</p>
                 </div>
               </div>
-
-              {/* 5 Year Plan Card Only */}
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-neutral-900 via-neutral-900 to-emerald-950 text-white flex items-center justify-between mb-6 shadow-md">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400">
-                    <Sparkles className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold">{EXTENDED_WARRANTY_OPTIONS[0].label}</p>
-                    <p className="text-xs text-neutral-300">Comprehensive coverage on electronics & chamber</p>
-                  </div>
-                </div>
-                <div className="text-base font-extrabold text-emerald-400 bg-white/10 px-3.5 py-1.5 rounded-xl">
-                  {EXTENDED_WARRANTY_OPTIONS[0].price}
-                </div>
-              </div>
-
-              <form onSubmit={handleExtendWarrantySubmit} className="space-y-4">
-                <div className="bg-neutral-50 p-5 rounded-2xl space-y-4 border border-neutral-100">
-                  <p className="text-xs font-bold uppercase tracking-wider text-neutral-500">Customer Details</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="customerName" className="block text-xs font-semibold text-neutral-700 mb-1.5">
-                        Full Name
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          id="customerName"
-                          required
-                          disabled={isSubmittingExtension}
-                          placeholder="John Doe"
-                          value={extendForm.customerName}
-                          onChange={(e) => setExtendForm({ ...extendForm, customerName: e.target.value })}
-                          className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition disabled:opacity-60"
-                        />
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="customerMobile" className="block text-xs font-semibold text-neutral-700 mb-1.5">
-                        Mobile Number
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="tel"
-                          id="customerMobile"
-                          required
-                          disabled={isSubmittingExtension}
-                          value={extendForm.customerMobile}
-                          onChange={(e) => setExtendForm({ ...extendForm, customerMobile: e.target.value })}
-                          className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition disabled:opacity-60"
-                        />
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="customerEmail" className="block text-xs font-semibold text-neutral-700 mb-1.5">
-                      Email Address
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="email"
-                        id="customerEmail"
-                        required
-                        disabled={isSubmittingExtension}
-                        placeholder="user@example.com"
-                        value={extendForm.customerEmail}
-                        onChange={(e) => setExtendForm({ ...extendForm, customerEmail: e.target.value })}
-                        className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition disabled:opacity-60"
-                      />
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="customerAddress" className="block text-xs font-semibold text-neutral-700 mb-1.5">
-                      Service & Installation Address
-                    </label>
-                    <div className="relative">
-                      <textarea
-                        id="customerAddress"
-                        required
-                        rows={2}
-                        disabled={isSubmittingExtension}
-                        placeholder="Street, City, Pin Code"
-                        value={extendForm.customerAddress}
-                        onChange={(e) => setExtendForm({ ...extendForm, customerAddress: e.target.value })}
-                        className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition resize-none disabled:opacity-60"
-                      />
-                      <MapPin className="absolute left-3 top-3 w-4 h-4 text-neutral-400 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmittingExtension}
-                  className="w-full mt-3 py-3.5 px-6 rounded-2xl font-semibold text-sm text-white bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 disabled:from-neutral-400 disabled:to-neutral-400 shadow-lg shadow-emerald-600/25 active:scale-[0.99] transition flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
-                >
-                  {isSubmittingExtension ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin text-white" />
-                      <span>Submitting Extension Request...</span>
-                    </>
-                  ) : (
-                    <>
-                      <ShieldCheck className="w-4 h-4 text-white" />
-                      <span>Confirm 5-Year Protection (₹3,499)</span>
-                      <ArrowRight className="w-4 h-4 text-emerald-200" />
-                    </>
-                  )}
-                </button>
-              </form>
-            </>
-          ) : (
-            /* Post-Submission View: Warranty Card & PDF Download */
-            <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 border-b border-neutral-100">
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900">Warranty Extended Successfully!</h3>
-                  <p className="text-xs text-neutral-500">Your digital certificate is generated and ready for download.</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleDownloadCardPdf}
-                  disabled={isDownloadingPdf}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold shadow-md active:scale-95 transition disabled:opacity-60 cursor-pointer"
-                >
-                  {isDownloadingPdf ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Generating PDF...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Download className="w-4 h-4" />
-                      <span>Download Warranty Card (PDF)</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              {/* Only this node gets converted into the PDF */}
-              <div ref={cardRef} className="p-2 bg-white rounded-2xl">
-                <WarrantyCard
-                  ticketId={issuedCardData?.ticketId}
-                  productModel={issuedCardData?.productModel}
-                  serialNumber={issuedCardData?.serialNumber}
-                  purchaseDate={issuedCardData?.purchaseDate}
-                  originalElectronicsExpiry={issuedCardData?.originalElectronicsExpiry}
-                  extendedElectronicsExpiry={issuedCardData?.extendedElectronicsExpiry}
-                  chamberExpiry={issuedCardData?.chamberExpiry}
-                />
+              <div className="text-base font-extrabold text-emerald-400 bg-white/10 px-3.5 py-1.5 rounded-xl whitespace-nowrap ml-3">
+                {activeSelectedPlan.price}
               </div>
             </div>
-          )}
+          </div>
+
+          <form onSubmit={handleExtendWarrantySubmit} className="space-y-4">
+            <div className="bg-neutral-50 p-5 rounded-2xl space-y-4 border border-neutral-100">
+              <p className="text-xs font-bold uppercase tracking-wider text-neutral-500">Customer & Machine Details</p>
+
+              <h2 className="text-xl font-bold">{result.productName} {result.variant}</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-3 bg-white border border-neutral-200/70 rounded-xl text-xs">                            
+                <div>
+                  <span className="text-neutral-400 block">Purchase Price</span>
+                  <span className="font-semibold text-neutral-800">{result.productPrice || "Verified"}</span>
+                </div>
+                
+                <div>
+                  <span className="text-neutral-400 block">Base Electronics Warranty</span>
+                  <span className="font-semibold text-neutral-800">{result.defaultElectronicsWarranty} Years</span>
+                </div>     
+                
+                <div>
+                  <span className="text-neutral-400 block">Base Chamber Warranty</span>
+                  <span className="font-semibold text-neutral-800">{result.defaultChamberYears} Years</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="customerName" className="block text-xs font-semibold text-neutral-700 mb-1.5">
+                    Full Name
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="customerName"
+                      required
+                      disabled={isSubmittingExtension}
+                      placeholder="John Doe"
+                      value={extendForm.customerName}
+                      onChange={(e) => setExtendForm({ ...extendForm, customerName: e.target.value })}
+                      className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition disabled:opacity-60"
+                    />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="customerMobile" className="block text-xs font-semibold text-neutral-700 mb-1.5">
+                    Mobile Number
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="tel"
+                      id="customerMobile"
+                      required
+                      disabled={isSubmittingExtension}
+                      value={extendForm.customerMobile}
+                      onChange={(e) => setExtendForm({ ...extendForm, customerMobile: e.target.value })}
+                      className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition disabled:opacity-60"
+                    />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="customerEmail" className="block text-xs font-semibold text-neutral-700 mb-1.5">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    id="customerEmail"
+                    required
+                    disabled={isSubmittingExtension}
+                    placeholder="user@example.com"
+                    value={extendForm.customerEmail}
+                    onChange={(e) => setExtendForm({ ...extendForm, customerEmail: e.target.value })}
+                    className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition disabled:opacity-60"
+                  />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="customerAddress" className="block text-xs font-semibold text-neutral-700 mb-1.5">
+                  Service & Installation Address
+                </label>
+                <div className="relative">
+                  <textarea
+                    id="customerAddress"
+                    required
+                    rows={2}
+                    disabled={isSubmittingExtension}
+                    placeholder="Street, City, Pin Code"
+                    value={extendForm.customerAddress}
+                    onChange={(e) => setExtendForm({ ...extendForm, customerAddress: e.target.value })}
+                    className="w-full bg-white shadow-xs rounded-xl px-3.5 py-2.5 pl-9 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition resize-none disabled:opacity-60"
+                  />
+                  <MapPin className="absolute left-3 top-3 w-4 h-4 text-neutral-400 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmittingExtension}
+              className="w-full mt-3 py-3.5 px-6 rounded-2xl font-semibold text-sm text-white bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 disabled:from-neutral-400 disabled:to-neutral-400 shadow-lg shadow-emerald-600/25 active:scale-[0.99] transition flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+            >
+              {isSubmittingExtension ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin text-white" />
+                  <span>Submitting Extension Request...</span>
+                </>
+              ) : (
+                <>
+                  <ShieldCheck className="w-4 h-4 text-white" />
+                  <span>Confirm {activeSelectedPlan.label} ({activeSelectedPlan.price})</span>
+                  <ArrowRight className="w-4 h-4 text-emerald-200" />
+                </>
+              )}
+            </button>
+          </form>
         </div>
       )}
     </div>

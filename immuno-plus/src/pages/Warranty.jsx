@@ -1,7 +1,7 @@
 // src/pages/WarrantyPage.jsx
 import React from "react";
 import { Navbar } from "../components/Navbar";
-import WarrantyCalculator from "../components/WarrantyCalculator4";
+import WarrantyCalculator from "../components/WarrantyCalculator";
 import {
   Headphones,
   CheckCircle2,

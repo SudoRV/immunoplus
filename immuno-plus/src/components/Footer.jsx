@@ -83,7 +83,7 @@ export default function Footer({
                             Quick Links
                         </h3>
                         <ul className="space-y-2 text-sm lg:text-base">
-                            {[{ label: 'Home', href: '/' }, { label: 'About Us', href: '/about' }, { label: 'Products', href: '/products' }, { label: 'Our Team', href: '/team' }, { label: 'Join Us', href: '/join' }, { label: 'Contact Us', href: '/contact' }].map((item) => (
+                            {[{ label: 'Home', href: '/' }, { label: 'About Us', href: '/about' }, { label: 'Products', href: '/products' }, { label: 'Our Team', href: '/team' }, { label: 'Join Us', href: '/join' }, { label: 'Contact Us', href: '/contact' }, {label: 'Socials', href: '/links'}, {label: 'Warranty', href: '/warranty'}].map((item) => (
                                 <li key={item.label}>
                                     <Link
                                         to={item.href}

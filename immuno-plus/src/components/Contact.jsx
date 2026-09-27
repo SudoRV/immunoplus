@@ -189,15 +189,15 @@ export default function PartnerContactSection({ formType }) {
         <div className="flex gap-12 flex-wrap md:flex-nowrap justify-center items-start">
 
           {/* Left Column: Form Card */}
-          <div className="max-w-xl space-y-6">
-            <div className='bg-white rounded-3xl p-8 md:p-8 mt-2 border border-slate-100 shadow-[0_10px_35px_rgba(0,0,0,0.04)]'>
+          <div className="max-w-xl sm:space-y-6">
+            <div className='bg-white rounded-t-4xl sm:rounded-3xl p-8 md:p-8 mt-2 border border-slate-100 shadow-[0_10px_35px_rgba(0,0,0,0.04)]'>
               <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                 <span>Send Us an Inquiry</span>
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="flex flex-col">
                 {/* Full Name */}
-                <div className="space-y-1.5">
+                <div className="space-y-1.5 mt-2">
                   <label className="text-base font-semibold text-slate-700 tracking-wide">
                     Full Name <span className="text-blue-500">*</span>
                   </label>
@@ -213,7 +213,7 @@ export default function PartnerContactSection({ formType }) {
                 </div>
 
                 {/* Email Address */}
-                <div className="space-y-1.5">
+                <div className="space-y-1.5 mt-4">
                   <label className="text-base font-semibold text-slate-700 tracking-wide">
                     Email Address <span className="text-blue-500">*</span>
                   </label>
@@ -229,7 +229,7 @@ export default function PartnerContactSection({ formType }) {
                 </div>
 
                 {/* Phone + WhatsApp Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                   <div className="space-y-1.5">
                     <label className="text-base font-semibold text-slate-700 tracking-wide">
                       Phone Number <span className="text-blue-500">*</span>
@@ -261,7 +261,7 @@ export default function PartnerContactSection({ formType }) {
                 </div>
 
                 {/* Message */}
-                <div className="space-y-1.5">
+                <div className="space-y-1.5 mt-4">
                   <label className="text-base font-semibold text-slate-700 tracking-wide">
                     Your Message or Requirement <span className="text-blue-500">*</span>
                   </label>
@@ -274,7 +274,16 @@ export default function PartnerContactSection({ formType }) {
                     onChange={handleChange}
                     className="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all resize-none"
                   />
-                </div>                               
+                </div>  
+                
+                <div className="scale-75 sm:scale-60 self-end origin-right mt-2">
+                  <Turnstile                   
+                    ref={turnstileRef}
+                    siteKey="0x4AAAAAAFD-Zn8O__4HcSyU" 
+                    onSuccess={(token) => setTurnstileToken(token)}
+                    onExpire={() => setTurnstileToken(null)}                  
+                  />
+                </div>                             
 
                 {/* Submit CTA */}
                 <button
@@ -303,19 +312,12 @@ export default function PartnerContactSection({ formType }) {
                     )
                   }
                 </button>
-                
-                <Turnstile
-                  ref={turnstileRef}
-                  siteKey="0x4AAAAAAFD-Zn8O__4HcSyU" 
-                  onSuccess={(token) => setTurnstileToken(token)}
-                  onExpire={() => setTurnstileToken(null)}                  
-                />
-          
+                                          
               </form>
             </div>
 
             {/* Trust Assurances */}
-            <div className="p-5 rounded-2xl bg-blue-50/50 border border-blue-100/60 space-y-3">
+            <div className="p-5 sm:rounded-2xl bg-blue-50/50 border border-blue-100/60 space-y-3">
               <div className="flex items-center gap-2 text-sm font-bold text-blue-700">
                 <CheckCircle2 className="w-4 h-4 text-blue-500" />
                 <span>What Happens Next?</span>

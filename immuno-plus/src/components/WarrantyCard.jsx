@@ -107,7 +107,7 @@ export const WarrantyCard = ({
                     : "bg-amber-500/20 text-amber-300 border-amber-500/40"
                 }`}
               >
-                {isFinal ? "FINAL / ACTIVE" : "PRE-FINAL / UNPAID"}
+                {isFinal ? "ACTIVE" : "UNPAID"}
               </span>
             </div>
             <p className="text-xs text-neutral-300 mt-0.5">

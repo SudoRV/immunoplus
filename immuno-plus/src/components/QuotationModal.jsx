@@ -261,7 +261,7 @@ export default function QuotationModal({
                             </p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                        <form onSubmit={handleSubmit} className="relative space-y-4 flex flex-col">
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
                                     <label htmlFor="name" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-neutral-600">
@@ -380,9 +380,18 @@ export default function QuotationModal({
                                     </div>
                                 </div>
                             </div>
-
+                            
+                            <div className="w-fit scale-75 origin-right self-end -mb-1">
+                              <Turnstile                            
+                                ref={turnstileRef}
+                                siteKey="0x4AAAAAAFD-Zn8O__4HcSyU" 
+                                onSuccess={(token) => setTurnstileToken(token)}
+                                onExpire={() => setTurnstileToken(null)}                             
+                              />
+                            </div>
+                                                        
                             {/* Form Actions */}
-                            <div className="flex items-center justify-end gap-3 pt-2">
+                            <div className="flex items-center justify-end gap-3">                                                            
                                 <button
                                     type="button"
                                     onClick={handleClose}
@@ -393,6 +402,7 @@ export default function QuotationModal({
                                 <button
                                     type="submit"
                                     className={`
+                                        whitespace-nowrap
                                         cursor-pointer rounded-xl bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-neutral-800 active:scale-95
                                         flex justify-center items-center gap-2
                                         ${formStatus.status === "sending" ? "bg-amber-400!" : formStatus.status === "sent" && "bg-emerald-500!"}`}
@@ -407,16 +417,7 @@ export default function QuotationModal({
                                     }
                                 </button>
                             </div>
-                            
-                            <div className="w-fit ml-auto scale-75 sm:scale-100">
-                              <Turnstile                            
-                                ref={turnstileRef}
-                                siteKey="0x4AAAAAAFD-Zn8O__4HcSyU" 
-                                onSuccess={(token) => setTurnstileToken(token)}
-                                onExpire={() => setTurnstileToken(null)}                             
-                              />
-                            </div>
-                
+                                                                                                                        
                         </form>
                     </div>
 

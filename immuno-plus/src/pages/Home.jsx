@@ -68,7 +68,7 @@ const features = [
 
 export function Home() {
     return (
-        <div className="w-full min-h-screen bg-neutral-950 text-white flex flex-col overflow-x-hidden">
+        <div className="w-full min-h-screen bg-neutral-900 text-white flex flex-col overflow-x-hidden">
             {pageMetadata}
             {/* Hero Section */}
             <section

@@ -71,7 +71,7 @@ export function Navbar() {
             </nav>
 
             {/* mobile navbar */}
-            <nav style={{paddingTop: `${desktopNavRef.current?.offsetHeight - 10 || 40}px`}} className={`fixed top-0 left-0 w-full bg-blue-400/20 backdrop-blur-md zoom-100 p-2 px-6 pb-4 rounded-b-2xl
+            <nav style={{paddingTop: `${desktopNavRef.current?.offsetHeight - 10 || 40}px`}} className={`fixed top-0 left-0 w-full bg-blue-300/40 backdrop-blur-lg zoom-100 p-2 px-6 pb-4 rounded-b-2xl
             transition-transform duration-300 ease-in-out shadow-md 
             ${navbarExpanded ? "translate-y-0" : "-translate-y-full"}`}>
                 <ul className="flex flex-col items-start md:gap-2 lg:gap-6">
@@ -113,22 +113,22 @@ export function Navbar() {
             </nav>
 
             {/* Action Button */}
-            <div className={`${navbarExpanded ? "fixed right-3" : "relative"} flex items-center gap-4 z-100`}>
-                <button className="flex items-center gap-2 bg-white hover:bg-blue-500 text-blue-500 hover:text-white transition-all duration-300 font-semibold max-[460px]:px-1.5 p-1.5 px-4 sm:px-2 md:px-4 rounded-full shadow-md active:scale-95 text-sm md:text-md"
+            <div className={`fixed top-[7px] right-3 sm:relative sm:top-auto sm:right-auto flex items-center gap-4 z-100`}>
+                <button className="flex items-center gap-2 bg-white hover:bg-blue-500 text-blue-500 hover:text-white transition-all duration-300 font-semibold max-[460px]:px-1.5 p-1.5 px-4 sm:px-2 md:px-4 rounded-full shadow-lg active:scale-95 text-sm md:text-md"
                     onClick={() => {
                         logByEvent("generate_lead", {
                             method: "whatsapp",
                             lead_type: "contact",
                             placement: "navigation_bar"
                         })
-                        window.open("https://wa.me/+919762170838", "_blank", "noopener,noreferrer")
+                        window.open("https://wa.me/919762170838", "_blank", "noopener,noreferrer")
                     }}
                 >
                     <FaWhatsapp className="w-7 h-7" />
                     <span className="max-[460px]:hidden sm:hidden md:block">Let's Talk</span>
                 </button>
 
-                <button className={`sm:hidden bg-white w-9 h-9 rounded-lg text-neutral-700 flex flex-col justify-center items-center ${navbarExpanded ? "space-y-0.5" : "space-y-1"}`} onClick={() => setNavBarExpended(prev => !prev)}>
+                <button className={`sm:hidden bg-white w-9 h-9 rounded-lg text-neutral-700 flex flex-col justify-center items-center ${navbarExpanded ? "space-y-0.5" : "space-y-1"} shadow-lg`} onClick={() => setNavBarExpended(prev => !prev)}>
                     <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "translate-y-0.5 rotate-z-36" : ""}`}></span>
                     <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "translate-y-0.5 -rotate-z-36 opacity-0" : "opacity-100"}`}></span>
                     <span className={`w-[60%] h-0.5 bg-neutral-700 rounded-full transition-all duration-200 ease-in-out ${navbarExpanded ? "-translate-y-0.5 -rotate-z-36" : ""}`}></span>

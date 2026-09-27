@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 
 import { Home } from "./pages/Home";
@@ -15,11 +15,13 @@ import Footer from "./components/Footer";
 import FcmAnalytics from './services/fcmAnalytics';
 import QrScan from './pages/QrScan';
 
-function App() {
+// Extract everything inside BrowserRouter into a separate component
+function AppContent() {
+  const location = useLocation();
 
   return (
-    <BrowserRouter>
-    <FcmAnalytics />
+    <>
+      <FcmAnalytics />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -28,15 +30,20 @@ function App() {
         <Route path="/join" element={<Join />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/warranty" element={<WarrantyPage />} />
-         
-         <Route path="/links" element={<LinkTree />} />
-             
+        <Route path="/links" element={<LinkTree />} />
         <Route path="/qrscan/:appname" element={<QrScan />} />
       </Routes>
       
-      { window.location.pathname !== "/links" &&(
-          <Footer />
-      )}
+      {/* Footer now reacts dynamically to route changes */}
+      {location.pathname !== "/links" && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

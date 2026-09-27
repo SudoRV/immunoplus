@@ -185,7 +185,7 @@ export function ProductSolutions() {
 
 export function WhyChooseImmuno() {
   return (
-    <section className="relative w-full bg-[#020b18] text-white pt-12 lg:pt-20 overflow-hidden font-sans" >
+    <section className="relative w-full bg-[#02132F] text-white pt-12 lg:pt-20 overflow-hidden font-sans" >
       {/* Background Subtle Gradient & Glow */}
       <div className="absolute inset-0 bg-radial from-[#08244c]/40 via-transparent to-transparent pointer-events-none brightness-60"
         style={{
@@ -456,6 +456,37 @@ export function Products() {
             <p className="text-neutral-600 text-base text-center">From wellness to high-demand commerical environments professionals,<br />immuno+ offers the perfect balance of technology, performance and value.</p>
 
           </div>
+          
+          <div className="mt-8 mb-6 p-5 max-w-xl ml-auto rounded-2xl bg-gradient-to-br from-blue-50 to-white border border-blue-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+  
+  <div className="flex items-center gap-4 text-left w-full sm:w-auto">
+    {/* Warranty Shield Icon */}
+    <div className="p-2.5 bg-blue-100/70 rounded-full text-blue-600 shrink-0">
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    </div>
+    
+    <div>
+      <p className="text-sm font-bold text-slate-800">
+        Already a customer?
+      </p>
+      <p className="text-xs text-slate-500 mt-0.5">
+        Check your device warranty status securely.
+      </p>
+    </div>
+  </div>
+
+  {/* Call to Action Button */}
+  <button className="w-full sm:w-auto whitespace-nowrap px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-all shadow-md hover:shadow-lg active:scale-104 transition-scale duration-200" onClick={() => {
+      window.open("/warranty", "_blank");
+  }}>
+    Check Warranty
+  </button>
+  
+</div>
+
+
 
           {/* Product Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 min-[460px]:px-10 md:px-0">
