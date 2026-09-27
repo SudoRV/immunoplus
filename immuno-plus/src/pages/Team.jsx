@@ -403,12 +403,12 @@ export function Team() {
                   <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
                     Interested in working alongside our engineers or exploring regional distribution partnerships?
                   </p>
-                  <Link
+                  <a
                     to="/join"
                     className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-blue-500 hover:bg-blue-400 shadow-lg shadow-blue-500/25 active:scale-[0.99] transition-all"
                   >
                     Join Our Mission <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
