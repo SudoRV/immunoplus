@@ -1,5 +1,6 @@
 // src/pages/WarrantyPage.jsx
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "../components/Navbar";
 import WarrantyCalculator from "../components/WarrantyCalculator";
 import {
@@ -11,7 +12,6 @@ import {
 import { Link } from "react-router-dom";
 
 export default function WarrantyPage({
-  pageMetadata = null,
   productList,
   children,
 }) {
@@ -57,9 +57,82 @@ export default function WarrantyPage({
     },
   ];
 
+  const warrantySchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Immuno+ Official Warranty Check & Registration",
+    "url": "https://immunoplus.in/warranty",
+    "description": "Check real-time warranty validity, claim procedures, and coverage terms for Immuno+ alkaline water ionizers and platinum-titanium electrolysis chambers.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Immuno+",
+      "url": "https://immunoplus.in",
+      "logo": "https://immunoplus.in/logo.png"
+    },
+    "mainEntity": {
+      "@type": "WarrantyPromise",
+      "durationOfWarranty": {
+        "@type": "QuantitativeValue",
+        "value": 5,
+        "unitCode": "ANN"
+      },
+      "warrantyScope": "5 years coverage on platinum-titanium electrolysis plates, 3 years coverage on power SMPS boards, micro-controllers, and electronic sensors.",
+      "claimProcedure": claimSteps.map((step) => `${step.step}. ${step.title}: ${step.desc}`).join(" ")
+    }
+  };
+
   return (
     <div className="relative w-full min-h-screen bg-neutral-50 text-neutral-800 flex flex-col overflow-x-hidden selection:bg-blue-500 selection:text-white font-sans">
-      {pageMetadata}
+      <Helmet>
+        {/* Core Primary Meta */}
+        <title>Check Product Warranty & Policy | Immuno+</title>
+        <meta
+          name="title"
+          content="Check Product Warranty & Policy | Immuno+"
+        />
+        <meta
+          name="description"
+          content="Verify real-time warranty coverage for your Immuno+ water ionizer. Review 5-year solid-state chamber protection and 3-year electronics assurance details."
+        />
+        <meta
+          name="keywords"
+          content="Immuno+ warranty check, water ionizer warranty, titanium chamber warranty, check ionizer status, warranty claim Immuno+"
+        />
+        <link rel="canonical" href="https://immunoplus.in/warranty" />
+
+        {/* Open Graph / Facebook / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://immunoplus.in/warranty" />
+        <meta
+          property="og:title"
+          content="Immuno+ Product Warranty Verification & Policy"
+        />
+        <meta
+          property="og:description"
+          content="Check real-time coverage for your electrolysis chamber and electronics. Easy 4-step claim process with doorstep engineer visits."
+        />
+        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:site_name" content="Immuno+" />
+        <meta property="og:locale" content="en_IN" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://immunoplus.in/warranty" />
+        <meta
+          name="twitter:title"
+          content="Immuno+ Product Warranty Verification & Policy"
+        />
+        <meta
+          name="twitter:description"
+          content="Verify remaining validity for platinum-titanium electrolysis chambers and electronic components."
+        />
+        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+
+        {/* Structured Data (Schema.org WarrantyPromise) */}
+        <script type="application/ld+json">
+          {JSON.stringify(warrantySchema)}
+        </script>
+      </Helmet>
 
       {/* Deep Dark Wave Background with Neutral/Blue Accents */}
       <div className="absolute top-0 left-0 right-0 h-[480px] sm:h-[540px] bg-gradient-to-b from-neutral-950 via-[#071324] to-[#0a1e38] overflow-hidden pointer-events-none z-0">

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "../components/Navbar";
 import {
     ArrowRight, Headphones, Award,
@@ -20,10 +21,6 @@ import waterSplashRL from "../assets/water_splash_rl2.png";
 import elementsIonizedWater from "../assets/elements_ionized_water.png";
 import TrackedCTA from "../components/ui/TrackedCTA";
 import heroImg from "../assets/hero_about.png";
-
-const pageMetadata = [
-    <title key="title">About Us | Immuno+</title>,
-];
 
 const valueBadges = [
     {
@@ -251,9 +248,84 @@ const features = [
 ];
 
 export function About() {
+    const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Immuno+",
+      "url": "https://immunoplus.in",
+      "logo": "https://immunoplus.in/logo.png",
+      "foundingDate": "2026",
+      "description": "Immuno+ Healthcare Solutions engineers advanced hydrogen and alkaline water electrolysis systems with medical-grade platinum-titanium chamber technology.",
+      "sameAs": [
+        "https://www.instagram.com/plusimmuno",
+        "https://youtube.com/@immunoplus_uk",
+        "https://www.facebook.com/ImmunoPlusIndia",
+        "https://linkedin.com/in/immunoplus"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9762170838",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "hi"]
+      }
+    }
+  };
+  
     return (
         <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden">
-            {pageMetadata}
+            <Helmet>
+        {/* Core Meta */}
+        <title>About Us | Immuno+ Water Ionizer Technology</title>
+        <meta
+          name="title"
+          content="About Us | Immuno+ Water Ionizer Technology"
+        />
+        <meta
+          name="description"
+          content="Learn about Immuno+'s mission to provide certified platinum-titanium alkaline water ionizers and hydrogen generators for health, wellness, and longevity."
+        />
+        <meta
+          name="keywords"
+          content="about Immuno+, water ionizer manufacturer, platinum titanium electrolysis plates, alkaline water technology, health and wellness"
+        />
+        <link rel="canonical" href="https://immunoplus.in/about" />
+
+        {/* Open Graph / Facebook / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://immunoplus.in/about" />
+        <meta
+          property="og:title"
+          content="About Us | Immuno+ Healthcare Solutions"
+        />
+        <meta
+          property="og:description"
+          content="Pioneering advanced water electrolysis, certified chamber protection, and molecular hydrogen wellness."
+        />
+        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:site_name" content="Immuno+" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://immunoplus.in/about" />
+        <meta
+          name="twitter:title"
+          content="About Us | Immuno+ Healthcare Solutions"
+        />
+        <meta
+          name="twitter:description"
+          content="Discover our mission, solid-state electrolysis chamber technology, and commitment to pure alkaline hydration."
+        />
+        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+
+        {/* Structured Data (Schema.org AboutPage) */}
+        <script type="application/ld+json">
+          {JSON.stringify(aboutSchema)}
+        </script>
+      </Helmet>
+            
             {/* Hero Section */}
             <section
                 className="w-full relative flex flex-col justify-between bg-cover bg-bottom bg-no-repeat"

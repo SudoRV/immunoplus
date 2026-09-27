@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
+
 import {
     Handshake,
     Building2,
@@ -18,10 +20,6 @@ import waterHandshake from "../assets/water_handshake.png";
 import PartnerContactSection from "../components/Contact";
 import VisitUsMap from "../components/VisitUsMap";
 import { logByEvent } from "../services/fcmAnalytics";
-
-const pageMetadata = [
-    <title key="title">Contact Us | Immuno+</title>,
-];
 
 const joinFeatures = [
     {
@@ -88,6 +86,50 @@ const defaultFaqs = [
 ];
 
 export function Contact() {
+    const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Immuno+ Healthcare Support & Sales",
+    "url": "https://immunoplus.in/contact",
+    "description": "Get in touch with Immuno+ customer care for water ionizer sales, technical service, warranty inquiries, and dealership partnerships.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Immuno+",
+      "url": "https://immunoplus.in",
+      "logo": "https://immunoplus.in/logo.png",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+91-9762170838",
+          "contactType": "customer service",
+          "contactOption": "TollFree",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "09:00",
+            "closes": "19:00"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+91-9762170838",
+          "contactType": "sales",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi"]
+        }
+      ]
+    }
+  };
+
     const [openIndex, setOpenIndex] = useState(null);
 
     const toggleFaq = (index) => {
@@ -115,7 +157,56 @@ export function Contact() {
 
     return (
         <div className="w-full min-h-screen bg-neutral-950 text-white flex flex-col overflow-x-hidden">
-            {pageMetadata}
+            <Helmet>
+        {/* Core Meta */}
+        <title>Contact Us & Customer Support | Immuno+</title>
+        <meta
+          name="title"
+          content="Contact Us & Customer Support | Immuno+"
+        />
+        <meta
+          name="description"
+          content="Reach out to Immuno+ for water ionizer assistance, warranty support, home installation requests, and authorized dealership inquiries."
+        />
+        <meta
+          name="keywords"
+          content="contact Immuno+, water ionizer customer support, service technician visit, water ionizer dealership, sales inquiry"
+        />
+        <link rel="canonical" href="https://immunoplus.in/contact" />
+
+        {/* Open Graph / Facebook / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://immunoplus.in/contact" />
+        <meta
+          property="og:title"
+          content="Contact Immuno+ Customer Care & Support"
+        />
+        <meta
+          property="og:description"
+          content="Speak with our certified water specialists for support, installation, and product inquiries across India."
+        />
+        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:site_name" content="Immuno+" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://immunoplus.in/contact" />
+        <meta
+          name="twitter:title"
+          content="Contact Immuno+ Customer Care & Support"
+        />
+        <meta
+          name="twitter:description"
+          content="Direct customer support, technical assistance, and inquiries for Immuno+ alkaline water systems."
+        />
+        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+
+        {/* Structured Data (Schema.org ContactPage) */}
+        <script type="application/ld+json">
+          {JSON.stringify(contactSchema)}
+        </script>
+      </Helmet>
+            
             {/* Hero Section */}
             <section
                 className="w-full relative flex flex-col justify-between bg-cover bg-bottom bg-no-repeat"

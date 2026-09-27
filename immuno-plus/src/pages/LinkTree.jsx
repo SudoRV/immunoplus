@@ -9,9 +9,19 @@ import {
   PhoneCall,
   CheckCircle2,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 import profilePic from "../assets/immunoplus_profile.png";
 import products from "../data/products";
+
+const defaultPageMetadata = [
+  <title key="title">Socials & Links | Immuno+</title>,
+  <meta
+    key="description"
+    name="description"
+    content="Connect with Immuno+ Healthcare Solutions across our official social channels, warranty check, customer support, and water ionization products."
+  />,
+];
 
 // Official brand SVG icons
 const SocialIcons = {
@@ -42,7 +52,34 @@ const SocialIcons = {
   ),
 };
 
-export default function LinkTree() {
+export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
+  const linkTreeSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Immuno+ Official Hub & Links",
+    "url": "https://links.immunoplus.in",
+    "description": "Official Immuno+ portal for customer support, social media channels, warranty verification, and flagship water ionizer products.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Immuno+",
+      "url": "https://immunoplus.in",
+      "logo": "https://immunoplus.in/logo.png",
+      "sameAs": [
+        "https://www.instagram.com/plusimmuno",
+        "https://youtube.com/@immunoplus_uk",
+        "https://www.facebook.com/ImmunoPlusIndia",
+        "https://linkedin.com/in/immunoplus"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9762170838",
+        "contactType": "customer service",
+        "contactOption": "WhatsApp Support",
+        "areaServed": "IN"
+      }
+    }
+  };
+  
   const socialLinks = [
     {
       name: "WhatsApp Support",
@@ -85,30 +122,73 @@ export default function LinkTree() {
 
   const featuredProducts = [
     {
-      name: `${products[0].name} ${products [0].variant}`,
+      name: `${products[0].name} ${products[0].variant}`,
       subtitle: products[0].description,
       tag: "Premium",
       link: `/products?id=${products[0].id}`,
-      image: products[0].image
+      image: products[0].image,
     },
     {
-      name: `${products[1].name} ${products [1].variant}`,
+      name: `${products[1].name} ${products[1].variant}`,
       subtitle: products[1].description,
       tag: "Flagship",
       link: `/products?id=${products[1].id}`,
-      image: products[1].image
+      image: products[1].image,
     },
     {
-      name: `${products[5].name} ${products [5].variant}`,
+      name: `${products[5].name} ${products[5].variant}`,
       subtitle: products[5].description,
       tag: "Innovative",
       link: `/products?id=${products[5].id}`,
-      image: products[5].image
+      image: products[5].image,
     },
   ];
 
   return (
     <div className="relative w-full min-h-screen bg-neutral-50 text-neutral-800 flex flex-col items-center justify-start overflow-x-hidden selection:bg-blue-500 selection:text-white font-sans pb-10 sm:pb-14">
+      <Helmet>
+        {/* Core Primary Meta */}
+        <title>Official Links & Resources | Immuno+</title>
+        <meta name="title" content="Official Links & Resources | Immuno+" />
+        <meta
+          name="description"
+          content="Connect with Immuno+ Healthcare Solutions. Access our official social channels, WhatsApp support, warranty verification, and flagship alkaline water products."
+        />
+        <meta
+          name="keywords"
+          content="Immuno+ links, Immuno+ support, Immuno+ WhatsApp, alkaline water ionizer contact, Immuno+ official, LinkTree"
+        />
+        {/* Canonical set to your dedicated links subdomain */}
+        <link rel="canonical" href="https://links.immunoplus.in/" />
+
+        {/* Open Graph / Facebook / WhatsApp / LinkedIn */}
+        <meta property="og:type" content="profile" />
+        <meta property="og:url" content="https://links.immunoplus.in/" />
+        <meta property="og:title" content="Immuno+ Official Links & Resources" />
+        <meta
+          property="og:description"
+          content="Access official support, social media communities, warranty registration, and product catalogs in one place."
+        />
+        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:site_name" content="Immuno+" />
+        <meta property="og:locale" content="en_IN" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://links.immunoplus.in/" />
+        <meta name="twitter:title" content="Immuno+ Official Links & Resources" />
+        <meta
+          name="twitter:description"
+          content="Access official support, social media communities, and flagship products in one place."
+        />
+        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+
+        {/* Structured Data (Schema.org ProfilePage) */}
+        <script type="application/ld+json">
+          {JSON.stringify(linkTreeSchema)}
+        </script>
+      </Helmet>
+
       {/* Background Header Wave (Shared with Warranty Page) */}
       <div className="absolute top-0 left-0 right-0 h-[420px] bg-gradient-to-b from-neutral-950 via-[#071324] to-[#0a1e38] overflow-hidden pointer-events-none z-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-160 h-48 bg-blue-500/20 rounded-full blur-3xl" />
@@ -139,7 +219,7 @@ export default function LinkTree() {
         <div className="flex flex-col items-center text-center mb-8">
           <div className="relative mb-3">
             <div className="w-28 h-28 bg-transparent rounded-full">
-              <img src={profilePic} className="" />
+              <img src={profilePic} alt="Immuno+ Profile" className="" />
             </div>
             <div
               className="absolute bottom-2.5 right-2.5 bg-blue-500 p-1 rounded-full text-white ring-2 ring-neutral-900"
@@ -247,7 +327,7 @@ export default function LinkTree() {
               >
                 <div className="flex items-start gap-3.5 min-w-0 pr-3">
                   <div className="w-10 h-10 p-2 flex justify-center items-center rounded-xl bg-blue-50 text-blue-600 shrink-0 group-hover:scale-105 group-hover:bg-blue-500 group-hover:text-white transition-all">
-                    <img src={prod?.image} className="h-full" />
+                    <img src={prod?.image} alt={prod.name} className="h-full" />
                   </div>
                   <div className="truncate">
                     <div className="flex items-center gap-2 mb-0.5">

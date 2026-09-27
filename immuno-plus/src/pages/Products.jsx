@@ -14,6 +14,7 @@ import {
   Award,
   Download,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { FaWhatsapp } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -361,6 +362,39 @@ const featuresMakesDifference = [
 ];
 
 export function Products() {
+  const productsSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Immuno+ Water Ionizers & Hydrogen Generators Catalog",
+    "url": "https://immunoplus.in/products",
+    "description": "Explore Immuno+ certified alkaline water ionizers and hydrogen generators equipped with solid-state platinum-titanium electrolysis plates.",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": products?.length || 0,
+      "itemListElement": (products || []).map((product, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Product",
+          "name": `${product.name} ${product.variant || ""}`.trim(),
+          "description": product.description,
+          "image": product.image ? `https://immunoplus.in${product.image}` : "https://immunoplus.in/logo.png",
+          "url": `https://immunoplus.in/products?id=${product.id}`,
+          "brand": {
+            "@type": "Brand",
+            "name": "Immuno+"
+          },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": `https://immunoplus.in/products?id=${product.id}`
+          }
+        }
+      }))
+    }
+  };
+
   const location = useLocation();
   const [selectedProduct, setSelectedProduct] = useState({});
 
@@ -381,7 +415,57 @@ export function Products() {
 
   return (
     <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden">
-      {pageMetadata}
+      <Helmet>
+        {/* Core Primary Meta */}
+        <title>Alkaline Water Ionizers & Hydrogen Systems | Immuno+ Catalog</title>
+        <meta
+          name="title"
+          content="Alkaline Water Ionizers & Hydrogen Systems | Immuno+ Catalog"
+        />
+        <meta
+          name="description"
+          content="Explore the complete Immuno+ catalog of alkaline water ionizers, solid-state electrolysis plates, and hydrogen-rich water systems for residential and commercial health."
+        />
+        <meta
+          name="keywords"
+          content="alkaline water ionizers, hydrogen water machines, platinum titanium plates, Immuno+ models, water ionizer price, ionizer catalog"
+        />
+        <link rel="canonical" href="https://immunoplus.in/products" />
+
+        {/* Open Graph / Facebook / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://immunoplus.in/products" />
+        <meta
+          property="og:title"
+          content="Immuno+ Product Catalog | Alkaline & Hydrogen Water Ionizers"
+        />
+        <meta
+          property="og:description"
+          content="Discover certified medical-grade water ionizers engineered for high ORP, micro-clustered hydration, and solid-state chamber longevity."
+        />
+        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:site_name" content="Immuno+" />
+        <meta property="og:locale" content="en_IN" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://immunoplus.in/products" />
+        <meta
+          name="twitter:title"
+          content="Immuno+ Product Catalog | Alkaline & Hydrogen Water Ionizers"
+        />
+        <meta
+          name="twitter:description"
+          content="Browse medical-grade water ionizers and hydrogen generators with certified platinum-titanium electrolysis plates."
+        />
+        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+
+        {/* Structured Data (Schema.org CollectionPage + ItemList of Products) */}
+        <script type="application/ld+json">
+          {JSON.stringify(productsSchema)}
+        </script>
+      </Helmet>
+      
       {/* Hero Section */}
       <section
         className="w-full relative flex flex-col justify-between bg-cover bg-bottom bg-no-repeat"

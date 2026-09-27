@@ -9,6 +9,7 @@ import {
     Droplet, ShieldCheck, Globe,
     House
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 import heroBg from "../assets/hero_bg4.png";
 import heroBgRock from "../assets/hero_bg_rock.png";
@@ -20,10 +21,6 @@ import Gallery from "../components/HeroGallery";
 import FAQs from "../components/HomeFaqs";
 import TestimonialGallery from "../components/TestimonialGallery";
 import ionizerFrontSide from "../assets/products/ionizer_front_side.png";
-
-const pageMetadata = [
-    <title key="title">Immuno+ | Advanced Water Ionization Solutions</title>,
-];
 
 const targetAudiences = [    
     {
@@ -67,9 +64,103 @@ const features = [
 ];
 
 export function Home() {
+    const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://immunoplus.in/#website",
+        "url": "https://immunoplus.in/",
+        "name": "Immuno+",
+        "description": "Medical-Grade Alkaline & Hydrogen Water Ionizers",
+        "publisher": {
+          "@id": "https://immunoplus.in/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://immunoplus.in/products?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://immunoplus.in/#organization",
+        "name": "Immuno+",
+        "url": "https://immunoplus.in/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://immunoplus.in/logo.png"
+        },
+        "sameAs": [
+          "https://www.instagram.com/plusimmuno",
+          "https://youtube.com/@immunoplus_uk",
+          "https://www.facebook.com/ImmunoPlusIndia",
+          "https://linkedin.com/in/immunoplus"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-9762170838",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi"]
+        }
+      }
+    ]
+  };
+
     return (
         <div className="w-full min-h-screen bg-neutral-900 text-white flex flex-col overflow-x-hidden">
-            {pageMetadata}
+            <Helmet>
+        {/* Core Primary Meta */}
+        <title>Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers</title>
+        <meta
+          name="title"
+          content="Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers"
+        />
+        <meta
+          name="description"
+          content="Transform tap water with Immuno+ medical-grade alkaline water ionizers. Engineered with platinum-titanium electrolysis chambers for antioxidant-rich hydration."
+        />
+        <meta
+          name="keywords"
+          content="alkaline water ionizer, hydrogen water generator, water ionizer machine india, platinum titanium plates, antioxidant water, Immuno+"
+        />
+        <link rel="canonical" href="https://immunoplus.in/" />
+
+        {/* Open Graph / Facebook / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://immunoplus.in/" />
+        <meta
+          property="og:title"
+          content="Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers"
+        />
+        <meta
+          property="og:description"
+          content="Medical-grade platinum-titanium electrolysis water ionizers delivering molecular hydrogen hydration and immune support."
+        />
+        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:site_name" content="Immuno+" />
+        <meta property="og:locale" content="en_IN" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://immunoplus.in/" />
+        <meta
+          name="twitter:title"
+          content="Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers"
+        />
+        <meta
+          name="twitter:description"
+          content="Experience active hydrogen and mineral-rich alkaline hydration with Immuno+ ionizer technology."
+        />
+        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+
+        {/* Structured Data (WebSite + Organization Schema Graph) */}
+        <script type="application/ld+json">
+          {JSON.stringify(homeSchema)}
+        </script>
+      </Helmet>
+            
             {/* Hero Section */}
             <section
                 className="relative w-full flex flex-col justify-between min-h-160  lg:min-h-200 [@media(min-aspect-ratio:16/9)]:min-h-screen bg-cover bg-top lg:bg-top-left bg-no-repeat"
