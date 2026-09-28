@@ -46,8 +46,8 @@ const products = [
       "Powered by Japanese Technology",
       "Premium home & wellness use",
     ],
-    mrp: 199999,
-    price: 129999,
+    mrp: 174999,
+    price: 124999,
     details: {
       mrp: "₹1,74,999",
       launchPrice: "₹1,24,999",
