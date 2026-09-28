@@ -386,6 +386,7 @@ export function Products() {
           "offers": {
             "@type": "Offer",
             "priceCurrency": "INR",
+            "price": product.price,
             "availability": "https://schema.org/InStock",
             "url": `https://immunoplus.in/products?id=${product.id}`
           }
