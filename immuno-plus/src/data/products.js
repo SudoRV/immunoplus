@@ -49,8 +49,8 @@ const products = [
     mrp: 199999,
     price: 129999,
     details: {
-      mrp: "₹1,99,999",
-      launchPrice: "₹1,29,999",
+      mrp: "₹1,74,999",
+      launchPrice: "₹1,24,999",
 
       warranty: {
         default: {
