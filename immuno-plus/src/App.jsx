@@ -11,6 +11,7 @@ import { Contact } from "./pages/Contact";
 import WarrantyPage from "./pages/Warranty";
 import LinkTree from "./pages/LinkTree";
 import Footer from "./components/Footer";
+import NotFound from "./pages/NotFound";
 
 import FcmAnalytics from './services/fcmAnalytics';
 import QrScan from './pages/QrScan';
@@ -41,6 +42,9 @@ function AppContent() {
         <Route path="/warranty" element={<WarrantyPage />} />
         <Route path="/links" element={<LinkTree />} />
         <Route path="/qrscan/:appname" element={<QrScan />} />
+
+        {/* 404 Catch-All Route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       
       {/* Footer hidden on links page & subdomain */}

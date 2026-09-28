@@ -1,9 +1,12 @@
 import React from 'react';
-import { href, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
     Phone,
     Mail,
     MapPin,
+    Check,
+    Sparkles,
+    ShieldCheck,
 } from 'lucide-react';
 import {
     FaLinkedin,
@@ -11,7 +14,7 @@ import {
     FaInstagram,
     FaYoutube,
     FaWhatsapp,
-} from "react-icons/fa"
+} from "react-icons/fa";
 
 import { logByEvent } from "../services/fcmAnalytics";
 import Logo from "./ui/Logo";
@@ -24,29 +27,33 @@ export default function Footer({
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full bg-gradient-to-br from-[#030d1c] via-[#04152d] to-[#061d3f] text-neutral-300 relative overflow-hidden border-t border-blue-950/40">
-            {/* Subtle abstract background glow */}
+        <footer className="w-full bg-[#01172F] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#081225] via-[#020712] to-slate-950 text-neutral-300 relative overflow-hidden border-t border-cyan-500/20 shadow-[0_-10px_40px_-15px_rgba(6,182,212,0.1)]">
+            
+            {/* Ambient Water/Light Effects */}
             <div
-                className="absolute inset-0 pointer-events-none opacity-25"
-                style={{
-                    background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(14, 165, 233, 0.35), rgba(59, 130, 246, 0.15), transparent 70%)'
-                }}
+                className="absolute top-0 left-1/4 w-[36rem] h-[36rem] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -translate-y-1/2"
+                aria-hidden="true"
+            />
+            <div
+                className="absolute bottom-0 right-10 w-[28rem] h-[28rem] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"
+                aria-hidden="true"
             />
 
-            {/* Main Footer Content */}
-            <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-8 pb-8 relative z-10">
-                <div className="flex flex-wrap md:flex-nowrap gap-8 lg:gap-8">
+            <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-12 pb-10 relative z-10">
 
-                    {/* Brand & Mission */}
-                    <div className="min-w-[200px] flex flex-col gap-4">
-                        <Logo type={"horizontal"} className={"sm:h-20"} />
-
+                {/* ── TOP SECTION: Brand Left + Trust Stats Right ── */}
+                <div className="w-full flex flex-col sm:flex-row lg:items-start justify-between gap-10 pb-12 border-b border-slate-800/80">
+                    
+                    {/* Left: Brand Identity & Text */}
+                    <div className="flex flex-col gap-5 sm:max-w-[300px] shrink-0">                    
+                        <Logo type={"horizontal"} className={"h-10 sm:h-12 w-auto shrink-0"} />                                                                         
+                        
                         <p className="text-sm lg:text-base text-slate-400 leading-relaxed max-w-sm">
                             Advanced water ionization solutions for healthcare, wellness, and commercial environments.
                         </p>
-
+                        
                         {/* Social Icons */}
-                        <div className="flex items-center gap-3 pt-2">
+                        <div className="flex items-center gap-3">
                             {[
                                 { icon: FaLinkedin, href: "https://www.linkedin.com/in/immunoplus/", label: "LinkedIn" },
                                 { icon: FaFacebook, href: "https://www.facebook.com/ImmunoPlusIndia/", label: "Facebook" },
@@ -59,7 +66,7 @@ export default function Footer({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={label}
-                                    className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 hover:bg-blue-600/10 transition-all duration-200"
+                                    className="w-10 h-10 rounded-full bg-slate-900/80 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500 hover:bg-cyan-500/10 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all duration-300"
                                     onClick={() => {
                                         logByEvent("click", {
                                             link_url: href,
@@ -71,18 +78,69 @@ export default function Footer({
                                         });
                                     }}
                                 >
-                                    <Icon className="w-5 h-5" />
+                                    <Icon className="w-4 h-4" />
                                 </a>
                             ))}
                         </div>
                     </div>
 
+                    {/* Right: Trust Badges / Stats (Now occupying the right side space) */}
+                    <div className="w-full lg:max-w-md flex flex-col gap-5 lg:items-end text-left lg:text-right mt-2 lg:mt-0">
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                            Committed to delivering unparalleled quality and service. Join thousands of satisfied families and businesses experiencing the benefits of pure, ionized water nationwide.
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center lg:justify-end gap-6 sm:gap-8 text-slate-400 pt-2">
+                            
+                            <div className="flex items-center gap-3 group">
+                                <div className="w-10 h-10 rounded-full bg-sky-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/50 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                                    <ShieldCheck className="w-5 h-5 text-blue-400" />
+                                </div>
+                                <div className="flex flex-col text-left">
+                                    <span className="text-sm font-bold text-slate-200">ISO 9001</span>
+                                    <span className="text-[11px] uppercase tracking-wider text-slate-500">Certified</span>
+                                </div>
+                            </div>
+                            
+                            <div className="hidden sm:block w-px h-10 bg-slate-800/80"></div>
+                            
+                            <div className="flex items-center gap-3 group">
+                              <div className="w-10 h-10 rounded-full bg-sky-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/50 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                                <Sparkles className="w-5 h-5 text-blue-400" />
+                              </div>
+                              <div className="flex flex-col text-left">
+                                <span className="text-sm font-bold text-slate-200">Next-Gen</span>
+                                <span className="text-[11px] uppercase tracking-wider text-slate-500">Technology</span>
+                              </div>
+                            </div>
+
+
+                            <div className="hidden sm:block w-px h-10 bg-slate-800/80"></div>
+                            
+                            <div className="flex items-center gap-3 group">
+                                <div className="w-10 h-10 rounded-full bg-sky-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/50 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                                    <Check className="w-5 h-5 text-blue-400" />
+                                </div>
+                                <div className="flex flex-col text-left">
+                                    <span className="text-sm font-bold text-slate-200">Lifetime</span>
+                                    <span className="text-[11px] uppercase tracking-wider text-slate-500">Support</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+                {/* ── LOWER SECTION: 4 Proportional Columns ── */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 pt-12">
+
                     {/* Quick Links */}
-                    <div className="min-w-[80px] sm:min-w-[100px]">
-                        <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
+                    <div>
+                        <h3 className="text-xs lg:text-sm font-bold text-slate-100 tracking-wider uppercase mb-6 border-l-4 border-cyan-400 pl-3 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">
                             Quick Links
                         </h3>
-                        <ul className="space-y-2 text-sm lg:text-base">
+                        <ul className="space-y-3 text-sm lg:text-base">
                             {[{ label: 'Home', href: '/' }, { label: 'About Us', href: '/about' }, { label: 'Products', href: '/products' }, { label: 'Our Team', href: '/team' }, { label: 'Join Us', href: '/join' }, { label: 'Contact Us', href: '/contact' }, {label: 'Socials', href: '/links'}, {label: 'Warranty', href: '/warranty'}].map((item) => (
                                 <li key={item.label}>
                                     <Link
@@ -93,8 +151,9 @@ export default function Footer({
                                                 behavior: "smooth"
                                             })
                                         }}
-                                        className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
+                                        className="text-slate-400 hover:text-sky-400 transition-colors duration-200 flex items-center gap-2 group"
                                     >
+                                        <span className="w-1 h-1 rounded-full bg-cyan-500/0 group-hover:bg-cyan-500 transition-colors"></span>
                                         {item.label}
                                     </Link>
                                 </li>
@@ -103,42 +162,25 @@ export default function Footer({
                     </div>
 
                     {/* Our Solutions */}
-                    <div className="min-w-[100px] max-w-[140px]">
-                        <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
+                    <div>
+                        <h3 className="text-xs lg:text-sm font-bold text-slate-100 tracking-wider uppercase mb-6 border-l-4 border-blue-500 pl-3 drop-shadow-[0_0_8px_rgba(59,130,246,0.4)]">
                             Our Solutions
                         </h3>
-                        <ul className="space-y-2 text-sm lg:text-base">
+                        <ul className="space-y-3 text-sm lg:text-base">
                             {[
-                                {
-                                    id: "ionizer-hybrid-touch-fhd-plate-9",
-                                    label: "Hybrid Ionizer Touch Screen",
-                                },
-                                {
-                                    id: "ionizer-plate-9",
-                                    label: "Ionizer 9 Plates",
-                                },                               
-                                {
-                                    id: "ionizer-plate-7",
-                                    label: "Ionizer 7 Plates",
-                                },
-                                {
-                                    id: "ionizer-plate-5",
-                                    label: "Ionizer 5 Plates",
-                                },
-                                {
-                                    id: "hydrogen-water-bottle",
-                                    label: "Hydrogen Bottle",
-                                },
-                                {
-                                    id: "mist-maker",
-                                    label: "Mist Maker",
-                                },
+                                { id: "ionizer-hybrid-touch-fhd-plate-9", label: "Hybrid Ionizer Touch" },
+                                { id: "ionizer-plate-9", label: "Ionizer 9 Plates" },                               
+                                { id: "ionizer-plate-7", label: "Ionizer 7 Plates" },
+                                { id: "ionizer-plate-5", label: "Ionizer 5 Plates" },
+                                { id: "hydrogen-water-bottle", label: "Hydrogen Bottle" },
+                                { id: "mist-maker", label: "Mist Maker" },
                             ].map((item) => (
                                 <li key={item.id}>
                                     <Link
                                         to={`/products?id=${item.id}`}
-                                        className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
+                                        className="text-slate-400 hover:text-blue-400 transition-colors duration-200 flex items-center gap-2 group"
                                     >
+                                        <span className="w-1 h-1 rounded-full bg-blue-500/0 group-hover:bg-blue-500 transition-colors"></span>
                                         {item.label}
                                     </Link>
                                 </li>
@@ -147,48 +189,50 @@ export default function Footer({
                     </div>
 
                     {/* Partner With Us */}
-                    <div className="min-w-[80px] max-w-[100px] sm:min-w-[120px] sm:max-w-[160px]">
-                        <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
+                    <div>
+                        <h3 className="text-xs lg:text-sm font-bold text-slate-100 tracking-wider uppercase mb-6 border-l-4 border-emerald-400 pl-3 drop-shadow-[0_0_8px_rgba(52,211,153,0.4)]">
                             Grow Together 
                         </h3>
-                        <ul className="space-y-2 text-sm lg:text-base">
+                        <ul className="space-y-3 text-sm lg:text-base">
                             {[
-                                { label: 'Become a Partner', href: '/join' }, { label: 'Partner Benefits', href: '/join#benifits' },
+                                { label: 'Become a Partner', href: '/join' }, 
+                                { label: 'Partner Benefits', href: '/join#benifits' },
                                 { label: 'Partner Support', href: '/join#support' },
-                                { label: 'Inquiry Form', href: '/join#contact' }].map((item) => (
-                                    <li key={item.label.replaceAll(" ", "_")}>
-                                        {
-                                            item.href === "/join" ? (
-                                                <a
-                                                    href={item.href}
-                                                    className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
-                                                >
-                                                    {item.label}
-                                                </a>
-                                            ) : (
-                                                <Link
-                                                    to={item.href}
-                                                    className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
-                                                >
-                                                    {item.label}
-                                                </Link>
-                                            )
-                                        }
-                                    </li>
-                                ))}
+                                { label: 'Inquiry Form', href: '/join#contact' }
+                            ].map((item) => (
+                                <li key={item.label.replaceAll(" ", "_")}>
+                                    {item.href === "/join" ? (
+                                        <a
+                                            href={item.href}
+                                            className="text-slate-400 hover:text-emerald-400 transition-colors duration-200 flex items-center gap-2 group"
+                                        >
+                                            <span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-colors"></span>
+                                            {item.label}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            to={item.href}
+                                            className="text-slate-400 hover:text-emerald-400 transition-colors duration-200 flex items-center gap-2 group"
+                                        >
+                                            <span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-colors"></span>
+                                            {item.label}
+                                        </Link>
+                                    )}
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     {/* Contact Details */}
-                    <div className="min-w-[100px] max-w-[180px] sm:max-w-[200px]">
-                        <h3 className="text-xs lg:text-sm font-bold text-white tracking-wider uppercase mb-5">
+                    <div className="col-span-2 md:col-span-1">
+                        <h3 className="text-xs lg:text-sm font-bold text-slate-100 tracking-wider uppercase mb-6 border-l-4 border-fuchsia-500 pl-3 drop-shadow-[0_0_8px_rgba(217,70,239,0.4)]">
                             Contact Us
                         </h3>
-                        <ul className="space-y-2 text-sm lg:text-base">
+                        <ul className="space-y-4 text-sm lg:text-base">
                             <li>
                                 <a
                                     href="tel:+919762170838"
-                                    className="group flex items-start gap-3 text-slate-400 hover:text-blue-400 transition-colors"
+                                    className="group flex items-start gap-3 text-slate-400 hover:text-sky-400 transition-colors"
                                     onClick={() => {
                                         logByEvent("generate_lead", {
                                             method: "phone",
@@ -197,14 +241,14 @@ export default function Footer({
                                         })
                                     }}
                                 >
-                                    <Phone className="w-4 h-4 text-blue-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                                    <Phone className="w-4 h-4 text-sky-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                                     <span>+91 97621 70838</span>
                                 </a>
                             </li>
                             <li>
                                 <a
                                     href="https://wa.me/+919762170838"
-                                    className="group flex items-start gap-3 text-slate-400 hover:text-blue-400 transition-colors"
+                                    className="group flex items-start gap-3 text-slate-400 hover:text-sky-400 transition-colors"
                                     onClick={() => {
                                         logByEvent("generate_lead", {
                                             method: "whatsapp",
@@ -213,16 +257,16 @@ export default function Footer({
                                         })
                                     }}
                                 >
-                                    <FaWhatsapp className="w-4 h-4 text-blue-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                                    <FaWhatsapp className="w-4 h-4 text-sky-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                                     <span>+91 97621 70838</span>
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="mailto:info@immunoplus.in"
+                                    href="mailto:plusimmuno@gmail.com"
                                     target='_blank'
-                                    rel='noopener norefferer'
-                                    className="group flex items-start gap-3 text-slate-400 hover:text-blue-400 transition-colors"
+                                    rel='noopener noreferrer'
+                                    className="group flex items-start gap-3 text-slate-400 hover:text-sky-400 transition-colors"
                                     onClick={() => {
                                         logByEvent("generate_lead", {
                                             method: "email",
@@ -231,12 +275,12 @@ export default function Footer({
                                         })
                                     }}
                                 >
-                                    <Mail className="w-4 h-4 text-blue-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                                    <Mail className="w-4 h-4 text-sky-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                                     <span className="break-all">plusimmuno@gmail.com</span>
                                 </a>
                             </li>
-                            <li className="flex items-start gap-3 text-slate-400">
-                                <MapPin className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                            <li className="flex items-start gap-3 text-slate-400 pt-2 border-t border-slate-800/60">
+                                <MapPin className="w-4 h-4 text-sky-500 shrink-0 mt-1" />
                                 <span className="leading-snug">
                                     M/S Monal Enterprises, Degree College Road,
                                     Khatima Uttarakhand 262308
@@ -249,10 +293,9 @@ export default function Footer({
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-slate-900 bg-[#091527] text-xs lg:text-sm text-slate-500 py-6">
+            <div className="border-t border-slate-900/90 bg-[#030814] text-xs lg:text-sm text-slate-500 py-6">
                 <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
 
-                    {/* Copyright & Optional Subtle Developer Credit */}
                     <div className="flex flex-wrap items-center gap-x-2 text-center sm:text-left">
                         <span>© {currentYear} Immuno+ All Rights Reserved</span>
 
@@ -265,7 +308,7 @@ export default function Footer({
                                         href={developerLinkedIn}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-slate-300 hover:text-blue-400 transition-colors underline underline-offset-4 decoration-slate-700 hover:decoration-blue-400"
+                                        className="text-slate-300 hover:text-sky-400 transition-colors font-medium"
                                     >
                                         {developerName}
                                     </a>
@@ -274,13 +317,12 @@ export default function Footer({
                         )}
                     </div>
 
-                    {/* Legal Links */}
-                    <div className="flex items-center gap-4">
-                        <a href="#privacy" className="hover:text-slate-300 transition-colors">
+                    <div className="flex items-center gap-5 text-xs font-medium">
+                        <a href="#privacy" className="hover:text-sky-400 transition-colors">
                             Privacy Policy
                         </a>
-                        <span className="text-slate-800">|</span>
-                        <a href="#terms" className="hover:text-slate-300 transition-colors">
+                        <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                        <a href="#terms" className="hover:text-sky-400 transition-colors">
                             Terms & Conditions
                         </a>
                     </div>
