@@ -21,13 +21,13 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
     // log product view
     if(!selectedProduct?.id) return;
     logByEvent("view_item", {
-      product_name: selectedProduct.name + " " + selectedProduct.variant,
+      product_name: selectedProduct.name,
       currency: "INR",
       value: selectedProduct.price,
       items: [
         {
           item_id: selectedProduct.id,
-          item_name: selectedProduct.name + " " + selectedProduct.variant,
+          item_name: selectedProduct.name,
           item_brand: 'ImmunoPlus',
           price: selectedProduct.price,
         }
@@ -124,7 +124,7 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
               <div>
                 <h1 className="text-2xl font-bold text-neutral-700">
-                  {selectedProduct?.name} {selectedProduct?.variant}
+                  {selectedProduct?.name}
                 </h1>
                 <p className="mt-1 text-sm lg:text-base text-neutral-600">
                   {selectedProduct?.description}

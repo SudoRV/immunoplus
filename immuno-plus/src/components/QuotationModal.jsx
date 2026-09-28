@@ -23,14 +23,14 @@ export default function QuotationModal({
         if (!quotationModal?.status || !selectedProduct?.id) return;
         logByEvent("form_start", {
             form_name: quotationModal.type,
-            product_name: selectedProduct.name + " " + selectedProduct.variant,
+            product_name: selectedProduct.name,
             currency: "INR",
             value: selectedProduct.price,
             placement: "product_modal",
             items: [
                 {
                     item_id: selectedProduct.id,
-                    item_name: selectedProduct.name + " " + selectedProduct.variant,
+                    item_name: selectedProduct.name,
                     item_brand: 'ImmunoPlus',
                     price: selectedProduct.price,
                 }
@@ -69,7 +69,7 @@ export default function QuotationModal({
 
         let msg = `${header}\n\n`;
         msg += `*Product Details:*\n`;
-        msg += `- Item: ${selectedProduct?.name || 'N/A'} ${selectedProduct?.variant || ''}\n`;
+        msg += `- Item: ${selectedProduct?.name || 'N/A'}\n`;
         if (selectedProduct?.price) msg += `- Unit Price: Rs ${selectedProduct.price}\n`;
         if (isOrder) {
             msg += `- Quantity: ${formData.quantity || 1}\n`;
@@ -90,7 +90,7 @@ export default function QuotationModal({
 
         let msg = `${header}\r\n\r\n`;
         msg += `PRODUCT DETAILS:\r\n`;
-        msg += `• Item: ${selectedProduct?.name || 'N/A'} ${selectedProduct?.variant || ''}\r\n`;
+        msg += `• Item: ${selectedProduct?.name || 'N/A'}\r\n`;
         if (selectedProduct?.price) msg += `• Unit Price: Rs ${selectedProduct.price}\r\n`;
         if (isOrder) {
             msg += `• Quantity: ${formData.quantity || 1}\r\n`;
@@ -138,7 +138,6 @@ export default function QuotationModal({
             type: quotationModal.type === "quotation" ? "quotation_query" : "order_query",
             product: {
                 name: selectedProduct.name,
-                variant: selectedProduct.variant,
                 price: selectedProduct.price
             },
             ...formData
@@ -169,13 +168,13 @@ export default function QuotationModal({
                     lead_type: quotationModal.type,
                     product_id: selectedProduct.id,
                     placement: "product_modal",
-                    product_name: selectedProduct.name + " " + selectedProduct.variant,
+                    product_name: selectedProduct.name,
                     currency: "INR",
                     value: selectedProduct.price,
                     items: [
                         {
                             item_id: selectedProduct.id,
-                            item_name: selectedProduct.name + " " + selectedProduct.variant,
+                            item_name: selectedProduct.name,
                             item_brand: 'ImmunoPlus',
                             price: selectedProduct.price,
                             quantity: selectedProduct.quantity
@@ -360,7 +359,7 @@ export default function QuotationModal({
                                 <div className="mt-1 flex items-start justify-between text-sm">
                                     <div>
                                         <p className="font-semibold text-neutral-800">
-                                            {selectedProduct?.name} {selectedProduct?.variant}
+                                            {selectedProduct?.name}
                                         </p>
                                         <p className="text-xs text-neutral-500 line-clamp-1">
                                             {selectedProduct?.description}
@@ -489,13 +488,13 @@ export default function QuotationModal({
                                         product_id: selectedProduct.id,
                                         placement: "product_modal",
 
-                                        product_name: selectedProduct.name + " " + selectedProduct.variant,
+                                        product_name: selectedProduct.name,
                                         currency: "INR",
                                         value: selectedProduct.price,
                                         items: [
                                             {
                                                 item_id: selectedProduct.id,
-                                                item_name: selectedProduct.name + " " + selectedProduct.variant,
+                                                item_name: selectedProduct.name,
                                                 item_brand: 'ImmunoPlus',
                                                 price: selectedProduct.price,
                                                 quantity: selectedProduct.quantity
@@ -522,13 +521,13 @@ export default function QuotationModal({
                                         product_id: selectedProduct.id,
                                         placement: "product_modal",
 
-                                        product_name: selectedProduct.name + " " + selectedProduct.variant,
+                                        product_name: selectedProduct.name,
                                         currency: "INR",
                                         value: selectedProduct.price,
                                         items: [
                                             {
                                                 item_id: selectedProduct.id,
-                                                item_name: selectedProduct.name + " " + selectedProduct.variant,
+                                                item_name: selectedProduct.name,
                                                 item_brand: 'ImmunoPlus',
                                                 price: selectedProduct.price,
                                                 quantity: selectedProduct.quantity

@@ -12,7 +12,8 @@ import {
 import { Helmet } from "react-helmet-async";
 
 import heroBg from "../assets/hero_bg4.png";
-import heroBgRock from "../assets/hero_bg_rock.png";
+import heroHome from "../assets/hero_home.png";
+
 import Features from "../components/Features";
 import { WhoWeAre } from "./About";
 import { ProductSolutions, WhyChooseImmuno } from "./Products";
@@ -20,7 +21,6 @@ import TrackedCTA from "../components/ui/TrackedCTA";
 import Gallery from "../components/HeroGallery";
 import FAQs from "../components/HomeFaqs";
 import TestimonialGallery from "../components/TestimonialGallery";
-import ionizerFrontSide from "../assets/products/ionizer_front_side.png";
 
 const targetAudiences = [    
     {
@@ -309,10 +309,7 @@ export function Home() {
                             })}
                         </div>
 
-                        <div className="absolute flex flex-col justify-end  items-center max-[900px]:hidden z-0 w-[40%] lg:w-[36%] right-0 -top-32 md:-top-40 lg:-top-44 xl:-top-58" >
-                           <img src={ionizerFrontSide} className="absolute bottom-33 md:bottom-34 lg:bottom-38 xl:bottom-40 2xl:bottom-45 w-[75%] lg:w-[70%] ml-4 z-20" />
-                           <img src={heroBgRock} className="w-full" /> 
-                        </div>                     
+                        <img src={heroHome} className="absolute max-[900px]:hidden z-0 w-[46%] bottom-full right-0" />                
                     </div>
                 </div>
             </section>

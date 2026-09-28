@@ -24,11 +24,11 @@ import waterSplashBT from "../assets/water_splash_bt.png";
 
 import { Navbar } from "../components/Navbar";
 import heroBg from "../assets/hero_bg4.png";
-import heroBgRockSplash from "../assets/hero_bg_rock_splash.png"
+import heroProducts from "../assets/hero_products.png";
+
 import ProductModal from "../components/ProductModal";
 import TrackedCTA from "../components/ui/TrackedCTA";
 import { logByEvent } from "../services/fcmAnalytics";
-import groupedIonizers from "../assets/products/ionizers_grouped.png";
 
 import products from "../data/products";
 
@@ -130,7 +130,7 @@ export function ProductSolutions() {
                 <div className="w-full flex items-center justify-center mb-4">
                   <img
                     src={item.image}
-                    alt={`${item.name} ${item.variant}`}
+                    alt={`${item.name}`}
                     className="w-[80%] object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105"
                   />
                 </div>
@@ -138,8 +138,7 @@ export function ProductSolutions() {
                 {/* Product Titles */}
                 <div className="mb-4">
                   <h3 className="text-xl font-bold text-slate-900 tracking-tight">
-                    {item?.name}{" "}
-                    <span className="text-blue-500">{item.variant}</span>
+                    {item?.name}
                   </h3>
                   <p className="text-sm text-slate-500 mt-1 font-medium">
                     {item.description}
@@ -376,7 +375,7 @@ export function Products() {
         "position": index + 1,
         "item": {
           "@type": "Product",
-          "name": `${product.name} ${product.variant || ""}`.trim(),
+          "name": `${product.name}`.trim(),
           "description": product.description,
           "image": product.image ? `https://immunoplus.in${product.image}` : "https://immunoplus.in/logo.png",
           "url": `https://immunoplus.in/products?id=${product.id}`,
@@ -519,10 +518,7 @@ export function Products() {
               })}
             </div>
 
-            <div className="absolute flex flex-col justify-center items-center max-[900px]:hidden z-0 w-[44%] xl:w-[50%] right-8 bottom-4 md:bottom-10" >
-                <img src={groupedIonizers} className="absolute bottom-16 xl:bottom-22 3xl:bottom-26 w-[80%] ml-4 z-40" />
-                <img src={heroBgRockSplash} className="scale-110 z-30" />
-            </div>           
+            <img src={heroProducts} className="absolute -bottom-2 right-5 max-[900px]:hidden z-0 w-[44%] right-8 bottom-4 md:bottom-10" />       
           </div>
         </div>
       </section>

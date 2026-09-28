@@ -30,8 +30,8 @@ import immunoBenifits from "../assets/products/benefits.png"
 const products = [
   {
     id: "ionizer-plate-9",
-    name: "Water Ionizer",
-    variant: "9 Plate",
+    name: "IMMUNO+ SIGNATURE 9",
+    variant: "",
     description: "Premium 9-plate hydrogen water ionizer",
     image: layer9_front,
     popular: true,
@@ -56,7 +56,7 @@ const products = [
         },
         extended: {
           duration: "5 Years",
-          price: "₹4,999",
+          price: "₹3,499",
         },
       },
 
@@ -92,8 +92,8 @@ const products = [
 
   {
     id: "ionizer-hybrid-touch-fhd-plate-9",
-    name: "Hybrid Water Ionizer",
-    variant: "7-Inch FHD Touch 9 Plate",
+    name: "IMMUNO+ PRESTIGE 9",
+    variant: "",
     description:
       "Premium 9-plate hydrogen water ionizer with advanced 7-inch FHD touch panel",
     image: layer9_touch_front,
@@ -119,7 +119,7 @@ const products = [
         },
         extended: {
           duration: "5 Years",
-          price: "₹4,999",
+          price: "₹3,499",
         },
       },
 
@@ -156,8 +156,8 @@ const products = [
 
   {
     id: "ionizer-plate-7",
-    name: "Water Ionizer",
-    variant: "7 Plate",
+    name: "IMMUNO+ TITAN 7",
+    variant: "",
     description: "Advanced 7-plate hydrogen water ionizer",
     image: layer7_front,
     popular: false,
@@ -182,7 +182,7 @@ const products = [
         },
         extended: {
           duration: "5 Years",
-          price: "₹4,999",
+          price: "₹3,499",
         },
       },
 
@@ -217,8 +217,8 @@ const products = [
 
   {
     id: "ionizer-plate-5",
-    name: "Water Ionizer",
-    variant: "5 Plate",
+    name: "IMMUNO+ NEXUS 5",
+    variant: "",
     description: "Compact 5-plate water ionization system",
     image: layer5_front,
     popular: false,
@@ -243,7 +243,7 @@ const products = [
         },
         extended: {
           duration: "5 Years",
-          price: "₹4,999",
+          price: "₹3,499",
         },
       },
 

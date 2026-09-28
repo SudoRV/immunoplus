@@ -129,7 +129,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
   const featuredProducts = [
     {
       id: products[0].id,
-      name: `${products[0].name} ${products[0].variant}`,
+      name: `${products[0].name}`,
       subtitle: products[0].description,
       tag: "Premium",
       link: `/products?id=${products[0].id}`,
@@ -137,7 +137,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     },
     {
       id: products[1].id,
-      name: `${products[1].name} ${products[1].variant}`,
+      name: `${products[1].name}`,
       subtitle: products[1].description,
       tag: "Flagship",
       link: `/products?id=${products[1].id}`,
@@ -145,7 +145,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     },
     {
       id: products[5].id,
-      name: `${products[5].name} ${products[5].variant}`,
+      name: `${products[5].name}`,
       subtitle: products[5].description,
       tag: "Innovative",
       link: `/products?id=${products[5].id}`,
