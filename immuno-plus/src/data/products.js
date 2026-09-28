@@ -348,7 +348,7 @@ const products = [
       cleaningSystem: "Manual wash (Base is IPX4 water-resistant)",
       images: [hydrogenBottle],
       generalInformation: {
-        "Electrolysis Based Hydrogen Water Generation": "This hydrogen water bottle uses built-in electrolysis technology to generate hydrogen-enriched water when operated as instructed. Designed for users who prefer a modern, electronic approach to daily hydration without additives or chemicals.",
+        "Electrolysis-Based Hydrogen Water Generation": "This hydrogen water bottle uses built-in electrolysis technology to generate hydrogen-enriched water when operated as instructed. Designed for users who prefer a modern, electronic approach to daily hydration without additives or chemicals.",
         "Simple One-Button Operation with Indicator Light": "Designed for ease of use with a single power button. Fill the bottle with clean drinking water, close the lid securely, and press the button to start the operation cycle. Visual indicators help confirm the device is working during use.",
         "USB Rechargeable and Portable Design": "Equipped with a USB rechargeable power system for convenient charging at home, in the office, or while traveling. Compact and lightweight design makes it easy to carry in backpacks, handbags, or gym bags.",
         "Durable Glass Body with Metal Base and Lid": "Features a transparent glass bottle combined with a sturdy metal base and lid. The clear body allows users to see the water during operation, while the solid construction supports regular daily use.",
