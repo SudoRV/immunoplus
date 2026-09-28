@@ -634,7 +634,7 @@ export function Products() {
       MRP ₹{item.mrp}
     </span>
     <span className="text-xs font-bold text-green-600 uppercase tracking-wide">
-      Save {(item.price/item.mrp*100).toFixed()}%
+      Save {(((item.mrp - item.price) / item.mrp) * 100).toFixed()}%
     </span>
   </div>
 </div>

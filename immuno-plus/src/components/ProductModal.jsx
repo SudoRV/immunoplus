@@ -140,7 +140,7 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
       MRP ₹{selectedProduct.mrp}
     </span>
     <span className="text-xs font-bold text-green-600 uppercase tracking-wide">
-      Save {(selectedProduct.price/selectedProduct.mrp*100).toFixed()}%
+      Save {(((selectedProduct.mrp - selectedProduct.price) / selectedProduct.mrp) * 100).toFixed()}%
     </span>
   </div>
 </div>
