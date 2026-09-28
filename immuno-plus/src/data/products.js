@@ -9,7 +9,9 @@ import layer9_back from "../assets/products/9 layer/back.png";
 
 // layer 9 touch
 import layer9_touch_front from "../assets/products/9 layer Touch/front.png";
-import layer9_touch_frontSide from "../assets/products/9 layer Touch/front_side.png";
+import layer9_touch_sideFront from "../assets/products/9 layer Touch/side_front.png";
+import layer9_touch_side from "../assets/products/9 layer Touch/side.png";
+import layer9_touch_back from "../assets/products/9 layer Touch/back.png";
 
 // layer 7
 import layer7_front from "../assets/products/7 layer/front.png";
@@ -28,6 +30,70 @@ import layer5_sideBack from "../assets/products/5 layer/side_back.png";
 import immunoBenifits from "../assets/products/benefits.png"
 
 const products = [
+  {
+    id: "ionizer-hybrid-touch-fhd-plate-9",
+    name: "IMMUNO+ PRESTIGE 9",
+    variant: "",
+    description:
+      "Premium 9-plate hydrogen water ionizer with advanced 7-inch FHD touch panel",
+    image: layer9_touch_front,
+    popular: false,
+    ctaText: "View Details",
+    ctaPrimary: false,
+    features: [
+      "9-plate electrolysis technology",
+      "Advanced 7-inch FHD touch panel",
+      "Powered by Japanese Technology",
+      "Premium home & wellness use",
+    ],
+    mrp: 199999,
+    price: 129999,
+    details: {
+      mrp: "₹1,99,999",
+      launchPrice: "₹1,29,999",
+
+      warranty: {
+        default: {
+          electronics: "3 Years",
+          chamber: "5 Years",
+        },
+        extended: {
+          duration: "5 Years",
+          price: "₹3,499",
+        },
+      },
+
+      overview:
+        "Our flagship 9-plate hybrid alkaline ionization system featuring an advanced 7-inch FHD touch panel. Built for heavy daily usage in premium residences and wellness spaces, delivering maximum dissolved hydrogen concentration and wide pH customizability.",
+      workingPrinciple:
+        "High-amperage Switched-Mode Power Supply (SMPS) driven electrolysis through 9 large-surface-area solid platinum-titanium electrodes. Integrates multi-stage carbon and ultra-filtration to purify inlet water before separating it into potent antioxidant streams.",
+      outputCapacity: "50 - 80 Liters/min (LPM)",
+      powerConsumption: "5W – 100W (Operational) / < 5W (Standby)",
+      powerSupply: "220V - 240V AC, 50/60 Hz (Advanced SMPS)",
+      lcdDisplay:
+        "7-inch FHD Touch Panel (On-screen Alkaline, Acidic, Purified, and Settings controls)",
+      electrodePlates: "9 Solid plates",
+      electrodeMaterial: "Platinum-Coated 0.5 micron Titanium Base",
+      platesSize: "154mm x 75mm x 0.5mm",
+      pHRange: "5.0 – 11 pH",
+      waterPressure: "0.2 MPA",
+      waterModes: [
+        "4 Alkaline levels (Strong wash, Daily Drinking, Cooking, Tea/Coffee)",
+        "1 Neutral purified water level (Medication & Baby formula)",
+        "2 Acidic levels (Strong sanitization & Beauty astringent)",
+      ],
+      cleaningSystem:
+        "Automated DARC (Double Automatic Reverse Cleaning) with zero chamber scaling pause",
+      images: [
+        layer9_touch_front,
+        layer9_touch_sideFront,
+        layer9_touch_side,
+        layer9_touch_back,
+        immunoBenifits,
+      ],
+    },
+  },
+  
   {
     id: "ionizer-plate-9",
     name: "IMMUNO+ SIGNATURE 9",
@@ -89,70 +155,7 @@ const products = [
       ],
     },
   },
-
-  {
-    id: "ionizer-hybrid-touch-fhd-plate-9",
-    name: "IMMUNO+ PRESTIGE 9",
-    variant: "",
-    description:
-      "Premium 9-plate hydrogen water ionizer with advanced 7-inch FHD touch panel",
-    image: layer9_touch_front,
-    popular: false,
-    ctaText: "View Details",
-    ctaPrimary: false,
-    features: [
-      "9-plate electrolysis technology",
-      "Advanced 7-inch FHD touch panel",
-      "Powered by Japanese Technology",
-      "Premium home & wellness use",
-    ],
-    mrp: 199999,
-    price: 129999,
-    details: {
-      mrp: "₹1,99,999",
-      launchPrice: "₹1,29,999",
-
-      warranty: {
-        default: {
-          electronics: "3 Years",
-          chamber: "5 Years",
-        },
-        extended: {
-          duration: "5 Years",
-          price: "₹3,499",
-        },
-      },
-
-      overview:
-        "Our flagship 9-plate hybrid alkaline ionization system featuring an advanced 7-inch FHD touch panel. Built for heavy daily usage in premium residences and wellness spaces, delivering maximum dissolved hydrogen concentration and wide pH customizability.",
-      workingPrinciple:
-        "High-amperage Switched-Mode Power Supply (SMPS) driven electrolysis through 9 large-surface-area solid platinum-titanium electrodes. Integrates multi-stage carbon and ultra-filtration to purify inlet water before separating it into potent antioxidant streams.",
-      outputCapacity: "50 - 80 Liters/min (LPM)",
-      powerConsumption: "5W – 100W (Operational) / < 5W (Standby)",
-      powerSupply: "220V - 240V AC, 50/60 Hz (Advanced SMPS)",
-      lcdDisplay:
-        "7-inch FHD Touch Panel (On-screen Alkaline, Acidic, Purified, and Settings controls)",
-      electrodePlates: "9 Solid plates",
-      electrodeMaterial: "Platinum-Coated 0.5 micron Titanium Base",
-      platesSize: "154mm x 75mm x 0.5mm",
-      pHRange: "5.0 – 11 pH",
-      waterPressure: "0.2 MPA",
-      waterModes: [
-        "4 Alkaline levels (Strong wash, Daily Drinking, Cooking, Tea/Coffee)",
-        "1 Neutral purified water level (Medication & Baby formula)",
-        "2 Acidic levels (Strong sanitization & Beauty astringent)",
-      ],
-      cleaningSystem:
-        "Automated DARC (Double Automatic Reverse Cleaning) with zero chamber scaling pause",
-      images: [
-        layer9_touch_front,
-        layer9_touch_frontSide,
-        layer9_side,
-        layer9_back,
-        immunoBenifits,
-      ],
-    },
-  },
+  
 
   {
     id: "ionizer-plate-7",

@@ -609,7 +609,7 @@ export function Products() {
                     <img
                       src={item.image}
                       alt={`${item?.name} ${item.variant}`}
-                      className="w-[80%] object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105"
+                      className="w-[75%] object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105"
                     />
                   </div>
 
