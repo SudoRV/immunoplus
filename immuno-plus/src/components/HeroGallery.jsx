@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
-import healthyLiving from '../assets/products/hero_gallery/healthy_living.png';
-import multiPh from '../assets/products/hero_gallery/multi_ph.png';
-import hydrogenRich from '../assets/products/hero_gallery/hydrogen_rich.png';
-import mistBottle from '../assets/products/hero_gallery/mist_bottle.png';
-import japaneseTech from '../assets/products/hero_gallery/japnese_tech.png';
+import healthyLiving from '../assets/products/hero_gallery/compressed/healthy_living.webp';
+import multiPh from '../assets/products/hero_gallery/compressed/multi_ph.webp';
+import hydrogenRich from '../assets/products/hero_gallery/compressed/hydrogen_rich.webp';
+import mistBottle from '../assets/products/hero_gallery/compressed/mist_bottle.webp';
+import japaneseTech from '../assets/products/hero_gallery/compressed/japnese_tech.webp';
 
 const cardsData = [
   {

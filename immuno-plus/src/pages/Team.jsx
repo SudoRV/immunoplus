@@ -14,8 +14,8 @@ import {
 import { Link } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa";
 
-import heroBg from "../assets/hero-bg.png";
-import heroTeam from "../assets/hero-team.png";
+import heroBg from "../assets/compressed/hero-bg.webp";
+import heroTeam from "../assets/compressed/hero-team.webp";
 import TrackedCTA from "../components/ui/TrackedCTA";
 
 // Team profile pictures

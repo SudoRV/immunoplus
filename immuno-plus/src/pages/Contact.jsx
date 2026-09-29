@@ -15,8 +15,8 @@ import {
 import { FaHeadset } from 'react-icons/fa6';
 
 import { Navbar } from "../components/Navbar";
-import heroBg from "../assets/hero-bg.png";
-import waterHandshake from "../assets/water-handshake.png";
+import heroBg from "../assets/compressed/hero-bg.webp";
+import waterHandshake from "../assets/compressed/water-handshake.webp";
 import PartnerContactSection from "../components/Contact";
 import VisitUsMap from "../components/VisitUsMap";
 import { logByEvent } from "../services/fcmAnalytics";

@@ -14,12 +14,12 @@ import {
 
 import { Building2, FileCheck } from 'lucide-react';
 
-import heroBg from "../assets/hero-bg.png";
-import waterDrop from "../assets/water-drop.png";
-import waterSplashRL from "../assets/water-splash-rl.png";
-import ionizedWaterElements from "../assets/ionized-water-elements.png";
+import heroBg from "../assets/compressed/hero-bg.webp";
+import waterDrop from "../assets/compressed/water-drop.webp";
+import waterSplashRL from "../assets/compressed/water-splash-rl.webp";
+import ionizedWaterElements from "../assets/compressed/ionized-water-elements.webp";
 import TrackedCTA from "../components/ui/TrackedCTA";
-import heroAbout from "../assets/hero-about.png";
+import heroAbout from "../assets/compressed/hero-about.webp";
 
 const valueBadges = [
     {
