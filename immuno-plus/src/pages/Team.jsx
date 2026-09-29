@@ -95,16 +95,16 @@ const extendedTeam = [
 export function Team() {
   const teamSchema = {
     "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "Leadership & Engineering Team | Immuno+",
+    "@type": "TeamPage",
+    "name": "Immuno+ Leadership & Engineering Team",
     "url": "https://immunoplus.in/team",
     "description":
-      "Meet the leadership, electrolysis engineering specialists, and water science advisors behind Immuno+ Healthcare Solutions.",
+      "Meet the leadership and engineering team behind Immuno+, working together to develop and deliver innovative water ionization solutions.",
     "mainEntity": {
       "@type": "Organization",
       "name": "Immuno+",
       "url": "https://immunoplus.in",
-      "logo": "https://immunoplus.in/logo.png",
+      "logo": "https://immunoplus.in/images/immuno-logo-full.png",
       "sameAs": [
         "https://www.instagram.com/plusimmuno",
         "https://youtube.com/@immunoplus_uk",
@@ -114,7 +114,7 @@ export function Team() {
       "department": [
         {
           "@type": "Organization",
-          "name": "Electrolysis R&D & Engineering"
+          "name": "Management"
         },
         {
           "@type": "Organization",
@@ -122,7 +122,7 @@ export function Team() {
         },
         {
           "@type": "Organization",
-          "name": "Brand Strategy & Market Operations"
+          "name": "Brand Strategy & Market Operations          "
         }
       ],
       "employee": leaders.map((member) => ({
@@ -147,14 +147,14 @@ export function Team() {
     <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden font-sans">
       <Helmet>
         {/* Core Primary Meta */}
-        <title>Our Leadership & Engineering Team | Immuno+</title>
+        <title>Immuno+ Leadership & Engineering Team</title>
         <meta
           name="title"
-          content="Our Leadership & Engineering Team | Immuno+"
+          content="Immuno+ Our Leadership & Engineering Team"
         />
         <meta
           name="description"
-          content="Meet Dr. Vineeta Saxena, Er. Nivid Saxena, and the engineering and leadership team behind Immuno+'s certified water ionization systems."
+          content="Meet Dr. Vineeta Saxena, Er. Nivid Saxena, Mr. Abhay Kumar Saxena, and the engineering and leadership team behind Immuno+'s certified water ionization systems."
         />
         <meta
           name="keywords"
@@ -167,13 +167,13 @@ export function Team() {
         <meta property="og:url" content="https://immunoplus.in/team" />
         <meta
           property="og:title"
-          content="Meet the Immuno+ Leadership & Engineering Team"
+          content="Immuno+ Leadership & Engineering Team"
         />
         <meta
           property="og:description"
-          content="Executive leadership and technical pioneers driving certified platinum-titanium water ionizer technology across India."
+          content="Meet Dr. Vineeta Saxena, Er. Nivid Saxena, Mr. Abhay Kumar Saxena, and the engineering and leadership team behind Immuno+'s certified water ionization systems."
         />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:image" content="https://immunoplus.in/seo/og-join.jpg" />
         <meta property="og:site_name" content="Immuno+" />
         <meta property="og:locale" content="en_IN" />
 
@@ -182,13 +182,13 @@ export function Team() {
         <meta name="twitter:url" content="https://immunoplus.in/team" />
         <meta
           name="twitter:title"
-          content="Meet the Immuno+ Leadership & Engineering Team"
+          content="Immuno+ Leadership & Engineering Team"
         />
         <meta
           name="twitter:description"
-          content="Discover the executive leadership and technical team behind Immuno+ Healthcare Solutions."
+          content="Meet Dr. Vineeta Saxena, Er. Nivid Saxena, Mr. Abhay Kumar Saxena, and the engineering and leadership team behind Immuno+'s certified water ionization systems."
         />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta name="twitter:image" content="https://immunoplus.in/images/og-join.jpg" />
 
         {/* Structured Data (Schema.org Organization & Team Members) */}
         <script type="application/ld+json">

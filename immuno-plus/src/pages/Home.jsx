@@ -75,12 +75,7 @@ export function Home() {
         "description": "Medical-Grade Alkaline & Hydrogen Water Ionizers",
         "publisher": {
           "@id": "https://immunoplus.in/#organization"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://immunoplus.in/products?search={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        },       
       },
       {
         "@type": "Organization",
@@ -89,7 +84,7 @@ export function Home() {
         "url": "https://immunoplus.in/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://immunoplus.in/logo.png"
+          "url": "https://immunoplus.in/images/immuno-logo-full.png"
         },
         "sameAs": [
           "https://www.instagram.com/plusimmuno",
@@ -112,19 +107,21 @@ export function Home() {
         <div className="w-full min-h-screen bg-neutral-900 text-white flex flex-col overflow-x-hidden">
             <Helmet>
         {/* Core Primary Meta */}
-        <title>Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers</title>
+        <title>Immuno+ | Best Medical-Grade Alkaline Water Ionizers in India</title>
         <meta
           name="title"
-          content="Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers"
+          content="Immuno+ | Best Medical-Grade Alkaline Water Ionizers in India"
         />
         <meta
           name="description"
-          content="Transform tap water with Immuno+ medical-grade alkaline water ionizers. Engineered with platinum-titanium electrolysis chambers for antioxidant-rich hydration."
+          content="Discover Immuno+ medical-grade alkaline water ionizers in India, engineered with advanced platinum-titanium electrolysis technology to transform tap water into ionized alkaline water for everyday hydration and wellness."
         />
+        
         <meta
           name="keywords"
           content="alkaline water ionizer, hydrogen water generator, water ionizer machine india, platinum titanium plates, antioxidant water, Immuno+"
         />
+        <meta name="author" content="Immuno+"  />
         <link rel="canonical" href="https://immunoplus.in/" />
 
         {/* Open Graph / Facebook / WhatsApp */}
@@ -132,13 +129,14 @@ export function Home() {
         <meta property="og:url" content="https://immunoplus.in/" />
         <meta
           property="og:title"
-          content="Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers"
+          content="Immuno+ | Best Medical-Grade Alkaline Water Ionizers in India"
         />
         <meta
           property="og:description"
-          content="Medical-grade platinum-titanium electrolysis water ionizers delivering molecular hydrogen hydration and immune support."
+          content="Discover Immuno+ medical-grade alkaline water ionizers in India, engineered with advanced platinum-titanium electrolysis technology to transform tap water into ionized alkaline water for everyday hydration and wellness."
         />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        
+        <meta property="og:image" content="https://immunoplus.in/seo/og-default.jpg" />
         <meta property="og:site_name" content="Immuno+" />
         <meta property="og:locale" content="en_IN" />
 
@@ -147,13 +145,13 @@ export function Home() {
         <meta name="twitter:url" content="https://immunoplus.in/" />
         <meta
           name="twitter:title"
-          content="Immuno+ | Advanced Alkaline & Hydrogen Water Ionizers"
+          content="Immuno+ | Best Medical-Grade Alkaline Water Ionizers in India"
         />
         <meta
           name="twitter:description"
-          content="Experience active hydrogen and mineral-rich alkaline hydration with Immuno+ ionizer technology."
+          content="Discover Immuno+ medical-grade alkaline water ionizers in India, engineered with advanced platinum-titanium electrolysis technology to transform tap water into ionized alkaline water for everyday hydration and wellness."
         />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta name="twitter:image" content="https://immunoplus.in/seo/og-default.jpg" />
 
         {/* Structured Data (WebSite + Organization Schema Graph) */}
         <script type="application/ld+json">

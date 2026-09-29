@@ -89,20 +89,29 @@ export function Contact() {
     const contactSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Contact Immuno+ Healthcare Support & Sales",
+    "name": "Contact Immuno+ Support & Sales",
     "url": "https://immunoplus.in/contact",
     "description": "Get in touch with Immuno+ customer care for water ionizer sales, technical service, warranty inquiries, and dealership partnerships.",
     "mainEntity": {
       "@type": "Organization",
       "name": "Immuno+",
-      "url": "https://immunoplus.in",
-      "logo": "https://immunoplus.in/logo.png",
+      "url": "https://immunoplus.in/",
+      "@id": "https://immunoplus.in/#organization",
+      "logo": "https://immunoplus.in/images/immuno-logo-full.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Degree College Road",
+        "addressLocality": "Khatima", 
+        "addressRegion": "Uttarakhand",
+        "postalCode": "262308",
+        "addressCountry": "IN" 
+      },
       "contactPoint": [
         {
           "@type": "ContactPoint",
           "telephone": "+91-9762170838",
-          "contactType": "customer service",
-          "contactOption": "TollFree",
+          "contactType": "customer service",  
+          "sameAs": "https://wa.me/919762170838",      
           "areaServed": "IN",
           "availableLanguage": ["en", "hi"],
           "hoursAvailable": {
@@ -124,8 +133,9 @@ export function Contact() {
           "telephone": "+91-9762170838",
           "contactType": "sales",
           "areaServed": "IN",
+          "sameAs": "https://wa.me/919762170838",
           "availableLanguage": ["en", "hi"]
-        }
+        },              
       ]
     }
   };
@@ -159,10 +169,10 @@ export function Contact() {
         <div className="w-full min-h-screen bg-neutral-950 text-white flex flex-col overflow-x-hidden">
             <Helmet>
         {/* Core Meta */}
-        <title>Contact Us | Immuno+</title>
+        <title>Immuno+ Support and Sales, We Are Here to Help | Contact Us</title>
         <meta
           name="title"
-          content="Contact Us & Customer Support | Immuno+"
+          content="Immuno+ Support and Sales, We Are Here to Help | Contact Us"
         />
         <meta
           name="description"
@@ -179,13 +189,13 @@ export function Contact() {
         <meta property="og:url" content="https://immunoplus.in/contact" />
         <meta
           property="og:title"
-          content="Contact Immuno+ Customer Care & Support"
+          content="We Are Here to Help | The Immuno+ Support and Sales"
         />
         <meta
           property="og:description"
-          content="Speak with our certified water specialists for support, installation, and product inquiries across India."
+          content="Reach out to Immuno+ for water ionizer assistance, warranty support, home installation requests, and authorized dealership inquiries."
         />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:image" content="https://immunoplus.in/seo/og-contact.jpg" />
         <meta property="og:site_name" content="Immuno+" />
 
         {/* Twitter Card */}
@@ -193,13 +203,13 @@ export function Contact() {
         <meta name="twitter:url" content="https://immunoplus.in/contact" />
         <meta
           name="twitter:title"
-          content="Contact Immuno+ Customer Care & Support"
+          content="We Are Here to Help | The Immuno+ Support and Sales"
         />
         <meta
           name="twitter:description"
           content="Direct customer support, technical assistance, and inquiries for Immuno+ alkaline water systems."
         />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta name="twitter:image" content="https://immunoplus.in/seo/og-contact.jpg" />
 
         {/* Structured Data (Schema.org ContactPage) */}
         <script type="application/ld+json">

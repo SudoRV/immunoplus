@@ -364,9 +364,9 @@ export function Products() {
   const productsSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Immuno+ Water Ionizers & Hydrogen Generators Catalog",
+    "name": "Immuno+ Water Ionizers Catalog",
     "url": "https://immunoplus.in/products",
-    "description": "Explore Immuno+ certified alkaline water ionizers and hydrogen generators equipped with solid-state platinum-titanium electrolysis plates.",
+    "description": "Explore Immuno+ certified alkaline water ionizers equipped with solid-state platinum-titanium electrolysis plates.",
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": products?.length || 0,
@@ -417,49 +417,78 @@ export function Products() {
     <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden">
       <Helmet>
         {/* Core Primary Meta */}
-        <title>Products | Immuno+</title>
-        <meta
-          name="title"
-          content="Alkaline Water Ionizers & Hydrogen Systems | Immuno+ Catalog"
-        />
-        <meta
-          name="description"
-          content="Explore the complete Immuno+ catalog of alkaline water ionizers, solid-state electrolysis plates, and hydrogen-rich water systems for residential and commercial health."
-        />
-        <meta
-          name="keywords"
-          content="alkaline water ionizers, hydrogen water machines, platinum titanium plates, Immuno+ models, water ionizer price, ionizer catalog"
-        />
-        <link rel="canonical" href="https://immunoplus.in/products" />
+        <title>Alkaline Water Ionizers & Products | Immuno+ Catalog</title>
 
-        {/* Open Graph / Facebook / WhatsApp */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://immunoplus.in/products" />
-        <meta
-          property="og:title"
-          content="Immuno+ Product Catalog | Alkaline & Hydrogen Water Ionizers"
-        />
-        <meta
-          property="og:description"
-          content="Discover certified medical-grade water ionizers engineered for high ORP, micro-clustered hydration, and solid-state chamber longevity."
-        />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
-        <meta property="og:site_name" content="Immuno+" />
-        <meta property="og:locale" content="en_IN" />
+<meta
+  name="title"
+  content="Alkaline Water Ionizers & Products | Immuno+ Catalog"
+/>
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://immunoplus.in/products" />
-        <meta
-          name="twitter:title"
-          content="Immuno+ Product Catalog | Alkaline & Hydrogen Water Ionizers"
-        />
-        <meta
-          name="twitter:description"
-          content="Browse medical-grade water ionizers and hydrogen generators with certified platinum-titanium electrolysis plates."
-        />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+<meta
+  name="description"
+  content="Explore the Immuno+ range of alkaline water ionizers and related products, designed for everyday use and commercial applications with modern technology and thoughtful engineering."
+/>
 
+<meta
+  name="keywords"
+  content="alkaline water ionizers, alkaline water ionizer products, water ionizer machines, alkaline water machine, commercial water ionizer, home water ionizer, Immuno+ products, water ionizer India"
+/>
+
+<link
+  rel="canonical"
+  href="https://immunoplus.in/products"
+/>
+
+{/* Open Graph / Facebook / WhatsApp */}
+
+<meta property="og:type" content="website" />
+
+<meta
+  property="og:url"
+  content="https://immunoplus.in/products"
+/>
+
+<meta
+  property="og:title"
+  content="Alkaline Water Ionizers & Products | Immuno+ Catalog"
+/>
+
+<meta
+  property="og:description"
+  content="Explore the Immuno+ range of alkaline water ionizers and related products, designed for everyday use and commercial applications."
+/>
+
+<meta
+  property="og:image"
+  content="https://immunoplus.in/seo/og-products.jpg"
+/>
+
+<meta property="og:site_name" content="Immuno+" />
+<meta property="og:locale" content="en_IN" />
+
+{/* Twitter Card */}
+
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta
+  name="twitter:url"
+  content="https://immunoplus.in/products"
+/>
+
+<meta
+  name="twitter:title"
+  content="Alkaline Water Ionizers & Products | Immuno+ Catalog"
+/>
+
+<meta
+  name="twitter:description"
+  content="Explore Immuno+ alkaline water ionizers and related products for everyday use and commercial applications."
+/>
+
+<meta
+  name="twitter:image"
+  content="https://immunoplus.in/seo/og-products.jpg"
+/>
         {/* Structured Data (Schema.org CollectionPage + ItemList of Products) */}
         <script type="application/ld+json">
           {JSON.stringify(productsSchema)}

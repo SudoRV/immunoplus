@@ -55,37 +55,49 @@ const SocialIcons = {
 
 export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
   const linkTreeSchema = {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "name": "Immuno+ Official Hub & Links",
-    "url": "https://links.immunoplus.in",
-    "description": "Official Immuno+ portal for customer support, social media channels, warranty verification, and flagship water ionizer products.",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Immuno+",
-      "url": "https://immunoplus.in",
-      "logo": "https://immunoplus.in/logo.png",
-      "sameAs": [
-        "https://www.instagram.com/plusimmuno",
-        "https://youtube.com/@immunoplus_uk",
-        "https://www.facebook.com/ImmunoPlusIndia",
-        "https://linkedin.com/in/immunoplus"
-      ],
-      "contactPoint": {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "name": "Immuno+ Official Links | Hub & Connect",
+  "url": "https://links.immunoplus.in",
+  "description": "Official Immuno+ link hub for customer support, social profiles, authorized dealership inquiries, warranty verification, and alkaline water ionizers.",
+  "mainEntity": {
+    "@type": "Organization",
+    "@id": "https://immunoplus.in/#organization",
+    "name": "Immuno+",
+    "url": "https://immunoplus.in",
+    "logo": "https://immunoplus.in/images/immunoplus-logo.png",
+    "sameAs": [
+      "https://www.instagram.com/plusimmuno",
+      "https://youtube.com/@immunoplus_uk",
+      "https://www.facebook.com/ImmunoPlusIndia",
+      "https://linkedin.com/in/immunoplus"
+    ],
+    "contactPoint": [
+      {
         "@type": "ContactPoint",
         "telephone": "+91-9762170838",
         "contactType": "customer service",
-        "contactOption": "WhatsApp Support",
-        "areaServed": "IN"
+        "contactOption": "TollFree",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "hi"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-9762170838",
+        "contactType": "sales",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "hi"]
       }
-    }
-  };
+    ]
+  }
+};
+
   
   const socialLinks = [
     {
       name: "WhatsApp Support",
       id: "whatsapp",
-      handle: "Instant Assistance & Chat",
+      handle: "+91 97621 70838",
       icon: SocialIcons.WhatsApp,
       href: "https://wa.me/919762170838?text=Hi%20Immuno%2B%20Team",
       colorClass: "bg-[#25D366] text-white hover:bg-[#20ba59] shadow-emerald-500/20",
@@ -103,7 +115,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     {
       name: "YouTube Channel",
       id: "youtube",
-      handle: "Water Science & Guides",
+      handle: "@immunoplus_uk",
       icon: SocialIcons.YouTube,
       href: "https://youtube.com/@immunoplus_uk",
       colorClass: "bg-[#FF0000] text-white hover:bg-[#e60000] shadow-red-500/20",
@@ -111,7 +123,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     {
       name: "LinkedIn",
       id: "linkedin",
-      handle: "Immuno+ Healthcare Solutions",
+      handle: "@immunoplus",
       icon: SocialIcons.LinkedIn,
       href: "https://linkedin.com/in/immunoplus",
       colorClass: "bg-[#0A66C2] text-white hover:bg-[#084e96] shadow-sky-600/20",
@@ -119,7 +131,7 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
     {
       name: "Facebook",
       id: "facebook",
-      handle: "Immuno+ Official Community",
+      handle: "@ImmunoPlusIndia",
       icon: SocialIcons.Facebook,
       href: "https://www.facebook.com/ImmunoPlusIndia",
       colorClass: "bg-[#1877F2] text-white hover:bg-[#166fe5] shadow-blue-600/20",
@@ -156,40 +168,46 @@ export default function LinkTree({ pageMetadata = defaultPageMetadata }) {
   return (
     <div className="relative w-full min-h-screen bg-neutral-50 text-neutral-800 flex flex-col items-center justify-start overflow-x-hidden selection:bg-blue-500 selection:text-white font-sans pb-10 sm:pb-14">
       <Helmet>
-        {/* Core Primary Meta */}
-        <title>Official Links & Resources | Immuno+</title>
-        <meta name="title" content="Official Links & Resources | Immuno+" />
+                {/* Core Primary Meta */}
+        <title>Immuno+ Official Links | Hub & Connect</title>
+        <meta name="title" content="Immuno+ Official Links | Hub & Connect" />
         <meta
           name="description"
-          content="Connect with Immuno+ Healthcare Solutions. Access our official social channels, WhatsApp support, warranty verification, and flagship alkaline water products."
+          content="Access official Immuno+ links for WhatsApp support, social channels, warranty verification, authorized dealerships, and alkaline water ionizers."
         />
         <meta
           name="keywords"
-          content="Immuno+ links, Immuno+ support, Immuno+ WhatsApp, alkaline water ionizer contact, Immuno+ official, LinkTree"
+          content="Immuno+, Immuno+ links, Immuno+ WhatsApp, Immuno+ support, alkaline water ionizer, warranty verification, official hub"
         />
         <link rel="canonical" href="https://links.immunoplus.in/" />
 
         {/* Open Graph / Facebook / WhatsApp / LinkedIn */}
         <meta property="og:type" content="profile" />
         <meta property="og:url" content="https://links.immunoplus.in/" />
-        <meta property="og:title" content="Immuno+ Official Links & Resources" />
+        <meta
+          property="og:title"
+          content="Immuno+ Official Links | Hub & Connect"
+        />
         <meta
           property="og:description"
-          content="Access official support, social media communities, warranty registration, and product catalogs in one place."
+          content="Connect with Immuno+. Quick access to customer support, social communities, warranty verification, and medical-grade alkaline water ionizers."
         />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:image" content="https://immunoplus.in/og-linktree.jpg" />
         <meta property="og:site_name" content="Immuno+" />
         <meta property="og:locale" content="en_IN" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://links.immunoplus.in/" />
-        <meta name="twitter:title" content="Immuno+ Official Links & Resources" />
+        <meta
+          name="twitter:title"
+          content="Immuno+ Official Links | Hub & Connect"
+        />
         <meta
           name="twitter:description"
-          content="Access official support, social media communities, and flagship products in one place."
+          content="Connect with Immuno+. Quick access to customer support, social communities, warranty verification, and medical-grade alkaline water ionizers."
         />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta name="twitter:image" content="https://immunoplus.in/og-linktree.jpg" />
 
         {/* Structured Data (Schema.org ProfilePage) */}
         <script type="application/ld+json">

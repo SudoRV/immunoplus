@@ -67,7 +67,7 @@ export default function WarrantyPage({
       "@type": "Organization",
       "name": "Immuno+",
       "url": "https://immunoplus.in",
-      "logo": "https://immunoplus.in/logo.png"
+      "logo": "https://immunoplus.in/images/immuno-logo-full.png"
     },
     "mainEntity": {
       "@type": "WarrantyPromise",
@@ -76,7 +76,7 @@ export default function WarrantyPage({
         "value": 5,
         "unitCode": "ANN"
       },
-      "warrantyScope": "5 years coverage on platinum-titanium electrolysis plates, 3 years coverage on power SMPS boards, micro-controllers, and electronic sensors.",
+      "warrantyScope": "5 years coverage on electrolysis chamber, 3 years coverage on power SMPS boards, micro-controllers, and electronic sensors.",
       "claimProcedure": claimSteps.map((step) => `${step.step}. ${step.title}: ${step.desc}`).join(" ")
     }
   };
@@ -111,7 +111,7 @@ export default function WarrantyPage({
           property="og:description"
           content="Check real-time coverage for your electrolysis chamber and electronics. Easy 4-step claim process with doorstep engineer visits."
         />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:image" content="https://immunoplus.in/seo/og-warranty.jpg" />
         <meta property="og:site_name" content="Immuno+" />
         <meta property="og:locale" content="en_IN" />
 
@@ -126,7 +126,7 @@ export default function WarrantyPage({
           name="twitter:description"
           content="Verify remaining validity for platinum-titanium electrolysis chambers and electronic components."
         />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta name="twitter:image" content="https://immunoplus.in/images/og-warranty.jpg" />
 
         {/* Structured Data (Schema.org WarrantyPromise) */}
         <script type="application/ld+json">

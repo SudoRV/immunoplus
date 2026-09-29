@@ -254,9 +254,9 @@ export function About() {
       "@type": "Organization",
       "name": "Immuno+",
       "url": "https://immunoplus.in",
-      "logo": "https://immunoplus.in/logo.png",
+      "logo": "https://immunoplus.in/images/immuno-logo-full.png",
       "foundingDate": "2026",
-      "description": "Immuno+ Healthcare Solutions engineers advanced hydrogen and alkaline water electrolysis systems with medical-grade platinum-titanium chamber technology.",
+      "description": "Monal Enterprises is the innovation house behind Immuno+, pioneering medical grade alkaline water electrolysis systems for healthier living.",
       "sameAs": [
         "https://www.instagram.com/plusimmuno",
         "https://youtube.com/@immunoplus_uk",
@@ -277,19 +277,21 @@ export function About() {
         <div className="w-full bg-neutral-950 text-white flex flex-col overflow-x-hidden">
             <Helmet>
         {/* Core Meta */}
-        <title>About Us | Immuno+ Water Ionizer Technology</title>
+        <title>The Immuno+ Story & Vision | About Us</title>
         <meta
           name="title"
-          content="About Us | Immuno+ Water Ionizer Technology"
+          content="The Immuno+ Story & Vision | About Us"
         />
         <meta
           name="description"
-          content="Learn about Immuno+'s mission to provide certified platinum-titanium alkaline water ionizers and hydrogen generators for health, wellness, and longevity."
+          content="Learn about Immuno+, our vision, and our commitment to advanced water ionization technology. Explore platinum-titanium alkaline water ionizers and hydrogen water generators for modern wellness and healthier living."
         />
+       
         <meta
           name="keywords"
           content="about Immuno+, water ionizer manufacturer, platinum titanium electrolysis plates, alkaline water technology, health and wellness"
         />
+        <meta name="author" content="Immuno+" />
         <link rel="canonical" href="https://immunoplus.in/about" />
 
         {/* Open Graph / Facebook / WhatsApp */}
@@ -297,13 +299,13 @@ export function About() {
         <meta property="og:url" content="https://immunoplus.in/about" />
         <meta
           property="og:title"
-          content="About Us | Immuno+ Healthcare Solutions"
+          content="The Immuno+ Story & Vision"
         />
         <meta
           property="og:description"
-          content="Pioneering advanced water electrolysis, certified chamber protection, and molecular hydrogen wellness."
+          content="Learn about Immuno+, our vision, and our commitment to advanced water ionization technology. Explore platinum-titanium alkaline water ionizers and hydrogen water generators for modern wellness and healthier living."
         />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:image" content="https://immunoplus.in/seo/og-about.jpg" />
         <meta property="og:site_name" content="Immuno+" />
 
         {/* Twitter Card */}
@@ -311,13 +313,13 @@ export function About() {
         <meta name="twitter:url" content="https://immunoplus.in/about" />
         <meta
           name="twitter:title"
-          content="About Us | Immuno+ Healthcare Solutions"
+          content="The Immuno+ Story & Vision"
         />
         <meta
           name="twitter:description"
-          content="Discover our mission, solid-state electrolysis chamber technology, and commitment to pure alkaline hydration."
+          content="Learn about Immuno+, our vision, and our commitment to advanced water ionization technology. Explore platinum-titanium alkaline water ionizers and hydrogen water generators for modern wellness and healthier living."
         />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta name="twitter:image" content="https://immunoplus.in/seo/og-about.jpg" />
 
         {/* Structured Data (Schema.org AboutPage) */}
         <script type="application/ld+json">

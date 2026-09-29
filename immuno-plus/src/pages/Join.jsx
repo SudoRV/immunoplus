@@ -136,14 +136,15 @@ export function Join() {
     const joinSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Partner With Immuno+ | Dealership, Distributorship & Careers",
+    "name": "Immuno+ Partnership and Dealership | Join Us",
     "url": "https://immunoplus.in/join",
-    "description": "Join Immuno+ Healthcare Solutions as an authorized dealer, regional distributor, or sales partner for alkaline and hydrogen water ionizer technology across India.",
+    "description": "Partner With Immuno+ as an authorized dealer or regional distributor for alkaline water ionizer technology across India.",
     "publisher": {
       "@type": "Organization",
-      "name": "Immuno+",
-      "url": "https://immunoplus.in",
-      "logo": "https://immunoplus.in/logo.png",
+      "name": "Immuno+",      
+      "url": "https://immunoplus.in",      
+      "logo": "https://immunoplus.in/images/immuno-logo-full.png",
+      "@id": "https://immunoplus.in/#organization",
       "sameAs": [
         "https://www.instagram.com/plusimmuno",
         "https://youtube.com/@immunoplus_uk",
@@ -151,35 +152,6 @@ export function Join() {
         "https://linkedin.com/in/immunoplus"
       ]
     },
-    "mainEntity": {
-      "@type": "Service",
-      "name": "Immuno+ Franchise & Dealership Program",
-      "provider": {
-        "@type": "Organization",
-        "name": "Immuno+"
-      },
-      "areaServed": "IN",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Partnership Opportunities",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Authorized Dealership"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Regional Distribution"
-            }
-          }
-        ]
-      }
-    }
   };
 
     const location = useLocation();
@@ -212,19 +184,19 @@ export function Join() {
     return (
         <div className="w-full min-h-screen bg-neutral-950 text-white flex flex-col overflow-x-hidden">
             <Helmet>
-        {/* Core Primary Meta */}
-        <title>Join Immuno+ | Dealership, Distribution & Career Opportunities</title>
+                {/* Core Meta */}
+        <title>Immuno+ Partnership & Dealership | Join Our Network</title>
         <meta
           name="title"
-          content="Join Immuno+ | Dealership, Distribution & Career Opportunities"
+          content="Immuno+ Partnership & Dealership | Join Our Network"
         />
         <meta
           name="description"
-          content="Become an authorized Immuno+ partner. Explore high-growth franchise, dealership, and business distribution opportunities in alkaline water ionization technology."
+          content="Partner with Immuno+. Explore franchise, dealership, and distribution opportunities in advanced alkaline water ionization technology."
         />
         <meta
           name="keywords"
-          content="Immuno+ dealership, water ionizer distributorship, become a dealer, franchise opportunity, alkaline water business, join Immuno+"
+          content="Immuno+, Immuno+ dealership, water ionizer distributorship, become a dealer, franchise opportunity, alkaline water business"
         />
         <link rel="canonical" href="https://immunoplus.in/join" />
 
@@ -233,13 +205,13 @@ export function Join() {
         <meta property="og:url" content="https://immunoplus.in/join" />
         <meta
           property="og:title"
-          content="Partner With Immuno+ | Dealership & Distribution Opportunities"
+          content="Immuno+ Partnership & Dealership | Become a Partner"
         />
         <meta
           property="og:description"
-          content="Scale your business with medical-grade alkaline water ionizers. Join India's expanding network of Immuno+ authorized dealers."
+          content="Scale your business with medical-grade alkaline water ionizers. Join India's expanding network of authorized Immuno+ partners."
         />
-        <meta property="og:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta property="og:image" content="https://immunoplus.in/seo/og-join.jpg" />
         <meta property="og:site_name" content="Immuno+" />
         <meta property="og:locale" content="en_IN" />
 
@@ -248,13 +220,13 @@ export function Join() {
         <meta name="twitter:url" content="https://immunoplus.in/join" />
         <meta
           name="twitter:title"
-          content="Partner With Immuno+ | Dealership & Distribution Opportunities"
+          content="Immuno+ Partnership & Dealership | Become a Partner"
         />
         <meta
           name="twitter:description"
-          content="Explore authorized dealership and distributor opportunities with Immuno+ Healthcare Solutions."
+          content="Scale your business with medical-grade alkaline water ionizers. Join India's expanding network of authorized Immuno+ partners."
         />
-        <meta name="twitter:image" content="https://immunoplus.in/og-image.jpg" />
+        <meta name="twitter:image" content="https://immunoplus.in/seo/og-join.jpg" />
 
         {/* Structured Data (Schema.org WebPage & Service Catalog) */}
         <script type="application/ld+json">
