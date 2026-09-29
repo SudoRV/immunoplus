@@ -14,8 +14,8 @@ import {
 import { Link } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa";
 
-import heroBg from "../assets/hero_bg4.png";
-import heroImg from "../assets/hero_team.png";
+import heroBg from "../assets/hero-bg.png";
+import heroTeam from "../assets/hero-team.png";
 import TrackedCTA from "../components/ui/TrackedCTA";
 
 // Team profile pictures
@@ -247,7 +247,7 @@ export function Team() {
             </div>
 
             <img
-              src={heroImg}
+              src={heroTeam}
               alt="Immuno+ Engineering Team"
               className="absolute max-[900px]:hidden z-0 w-[45%] xl:w-[40%] right-12 -bottom-2"
             />

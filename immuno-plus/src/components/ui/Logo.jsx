@@ -1,5 +1,5 @@
-import logo from "../../assets/logo.png";
-import navLogo from "../../assets/nav_logo.png";
+import fullLogo from "../../assets/immuno-logo-full.png";
+import navbarLogo from "../../assets/navbar-logo.png";
 
 
 export default function Logo({ type, className }) {    
@@ -15,7 +15,7 @@ export default function Logo({ type, className }) {
     
     {/* Logo */}
     <img 
-      src={logo} 
+      src={fullLogo} 
       alt="Immun💧+" 
       // Note: changed h-18 to h-16/h-20 as h-18 is not a standard Tailwind class
       className={`relative h-16 sm:h-20 w-auto object-contain drop-shadow-sm ${className}`} 
@@ -26,9 +26,9 @@ export default function Logo({ type, className }) {
     }
 
     if (type === "custom") {
-        return <img src={navLogo} alt="Immuno+ Logo" className={`h-10 sm:h-14 w-fit ${className}`} />;
+        return <img src={navbarLogo} alt="Immuno+ Logo" className={`h-10 sm:h-14 w-fit ${className}`} />;
     }
 
     // Default
-    return <img src={logo} alt="Immuno+ Logo" />;
+    return <img src={fullLogo} alt="Immuno+ Logo" />;
 }

@@ -14,13 +14,12 @@ import {
 
 import { Building2, FileCheck } from 'lucide-react';
 
-import heroBg from "../assets/hero_bg4.png";
-import waterDrop from "../assets/water_drop.png";
-import waterDropSplash from "../assets/water_drop_splash.png";
-import waterSplashRL from "../assets/water_splash_rl2.png";
-import elementsIonizedWater from "../assets/elements_ionized_water.png";
+import heroBg from "../assets/hero-bg.png";
+import waterDrop from "../assets/water-drop.png";
+import waterSplashRL from "../assets/water-splash-rl.png";
+import ionizedWaterElements from "../assets/ionized-water-elements.png";
 import TrackedCTA from "../components/ui/TrackedCTA";
-import heroImg from "../assets/hero_about.png";
+import heroAbout from "../assets/hero-about.png";
 
 const valueBadges = [
     {
@@ -107,7 +106,7 @@ export function WhoWeAre() {
                     {/* Body Paragraphs */}
                     <div className="space-y-4 text-neutral-800 text-base lg:text-lg leading-relaxed max-w-xl">
                         <p>
-                            Monal Enterprises is the parent company and official operator of IMMUNO+ Advanced Water Technology. Headquartered in Khatima, Uttarakhand, the enterprise delivers high-performance hydration and commercial purification solutions that combine engineering, water science, and personal wellness.
+                            <span className="font-bold">Monal Enterprises</span> is the parent company and official operator of <span className="font-bold">IMMUNO+</span> Advanced Water Technology. Headquartered in <span className="font-bold">Khatima, Uttarakhand</span>, the enterprise delivers high-performance hydration and commercial purification solutions that combine engineering, water science, and personal wellness.
                         </p>
                         <p>
                             We partner with organizations and entrepreneurs to provide premium
@@ -387,7 +386,7 @@ export function About() {
                             })}
                         </div>
 
-                    <img src={heroImg} className="absolute max-[900px]:hidden z-0 w-[45%] xl:w-[40%] right-12 bottom-0" />         
+                    <img src={heroAbout} className="absolute max-[900px]:hidden z-0 w-[45%] xl:w-[40%] right-12 bottom-0" />         
                     </div>
                 </div>
             </section>
@@ -414,18 +413,19 @@ export function About() {
 
                             <div className="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed">
                                 <p>
-                                  The story of IMMUNO+ began with a clear realization: traditional drinking water filtration methods—such as standard Reverse Osmosis (RO)—often strip water of essential natural minerals, leaving behind acidic, "dead" water. While clean, this water lacks the vital antioxidants and mineral balance required for optimal body function. To address this gap, Monal Enterprises introduced IMMUNO+ Alkaline Ionizers. Designed as a health-first solution, IMMUNO+ units utilize electrolysis with multi-plate technology to transform tap water into hydrogen-rich, antioxidant-dense alkaline water.
-                                </p>
-                                <p>
-                                    Today, Immuno+ is a growing network of innovators, professionals, and partners working together to build a healthier, stronger future through the power of water.
-                                </p>
+    The story of <strong>IMMUNO+</strong> began with a clear realization: traditional drinking water filtration methods, such as standard <strong>Reverse Osmosis (RO)</strong>, often strip water of essential natural minerals, leaving behind acidic, <em>"dead" water</em>. While clean, this water lacks the vital antioxidants and mineral balance required for optimal body function. To address this gap, <strong>Monal Enterprises</strong> introduced <strong>IMMUNO+ Alkaline Ionizers</strong>. Designed as a <strong>health-first solution</strong>, IMMUNO+ units utilize <strong>electrolysis with multi-plate technology</strong> to transform tap water into <strong>hydrogen-rich, antioxidant-dense alkaline water</strong>.
+</p>
+
+<p>
+    Today, <strong>Immuno+</strong> is a growing network of <strong>innovators, professionals, and partners</strong> working together to build a <em>healthier, stronger future</em> through the power of water.
+</p>
                             </div>                           
                         </div>
 
                         {/* Right Column: Image */}
                         <div className="col-span-2.5 md:col-span-2 w-full aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 mt-0 md:mt-8">
                             <img
-                                src={elementsIonizedWater}
+                                src={ionizedWaterElements}
                                 alt="Water crown splash"
                                 className="w-full h-full object-cover"
                             />
@@ -497,7 +497,7 @@ export function About() {
 
                     <div className="w-full flex gap-8 lg:col-span-2 flex-wrap sm:flex-nowrap">
                         {/* Middle Column: Our Vision */}
-                        <div className="w-full flex flex-col justify-between rounded-3xl bg-gradient-to-b from-blue-50/60 to-blue-50/20 border border-blue-100/50 space-y-8">
+                        <div className="w-full flex flex-col justify-between rounded-3xl bg-gradient-to-b from-blue-50/60 to-blue-50/20 border border-blue-100/50 shadow-lg space-y-8">
 
                             <div className="w-full h-full space-y-8 p-8">
                                 <div className="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
@@ -513,10 +513,8 @@ export function About() {
                         </div>
 
                         {/* Right Column: Our Mission */}
-                        <div className="w-full relative flex flex-col justify-between rounded-3xl border border-blue-100/50 overflow-hidden">
-
-                            <img src={waterDropSplash} className="absolute w-full h-full right-0 bottom-0 z-10" />
-
+                        <div className="w-full relative flex flex-col justify-between rounded-3xl border border-blue-100/50 shadow-lg overflow-hidden">
+                          
                             <div className="p-8 h-full space-y-8 z-20 bg-linear-to-r from-white via-to-white/90 to-white/40 ">
                                 <div className="relative z-10 w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
                                     <Target className="w-7 h-7 stroke-[2]" />

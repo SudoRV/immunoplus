@@ -19,12 +19,12 @@ import { FaWhatsapp } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import waterDropSplash from "../assets/water_drop_splash.png";
-import waterSplashBT from "../assets/water_splash_bt.png";
+import waterDropSplash from "../assets/water-drop-splash.png";
+import waterSplashBT from "../assets/water-splash-bt.png";
 
 import { Navbar } from "../components/Navbar";
-import heroBg from "../assets/hero_bg4.png";
-import heroProducts from "../assets/hero_products.png";
+import heroBg from "../assets/hero-bg.png";
+import heroProducts from "../assets/hero-products.png";
 
 import ProductModal from "../components/ProductModal";
 import TrackedCTA from "../components/ui/TrackedCTA";

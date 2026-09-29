@@ -21,9 +21,9 @@ import {
 import { Helmet } from "react-helmet-async";
 
 import { Navbar } from "../components/Navbar";
-import heroBg from "../assets/hero_bg4.png";
-import waterHandshake from "../assets/water_handshake.png";
-import waterDropSplash2 from "../assets/water_drop_splash2.png";
+import heroBg from "../assets/hero-bg.png";
+import waterHandshake from "../assets/water-handshake.png";
+import waterDropSplash2 from "../assets/water-drop-splash2.png";
 import PartnerContactSection from "../components/Contact";
 import { useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";

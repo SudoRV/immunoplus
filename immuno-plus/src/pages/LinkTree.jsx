@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
-import profilePic from "../assets/immunoplus_profile.png";
+import profilePic from "../assets/immuno-profile.png";
 import products from "../data/products";
 import TrackedCTA from "../components/ui/TrackedCTA";
 import { logByEvent } from "../services/fcmAnalytics";

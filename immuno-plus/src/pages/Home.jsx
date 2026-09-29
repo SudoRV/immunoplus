@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
-import heroBg from "../assets/hero_bg4.png";
-import heroHome from "../assets/hero_home.png";
+import heroBg from "../assets/hero-bg.png";
+import heroHome from "../assets/hero-home.png";
 
 import Features from "../components/Features";
 import { WhoWeAre } from "./About";
