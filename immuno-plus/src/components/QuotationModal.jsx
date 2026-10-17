@@ -368,12 +368,12 @@ export default function QuotationModal({
                                     <div className="text-right">
                                         {selectedProduct?.price && (
                                             <p className="font-semibold text-neutral-900">
-                                                Rs {isOrder && totalAmount ? totalAmount : selectedProduct.price}
+                                                Rs {isOrder && totalAmount ? totalAmount : selectedProduct?.details?.launchPrice}
                                             </p>
                                         )}
                                         {isOrder && selectedProduct?.price && formData.quantity > 1 && (
                                             <span className="block text-[10px] text-neutral-400">
-                                                Rs {selectedProduct.price} × {formData.quantity}
+                                                Rs {selectedProduct?.details?.launchPrice} × {formData.quantity}
                                             </span>
                                         )}
                                     </div>

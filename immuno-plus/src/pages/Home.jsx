@@ -21,6 +21,7 @@ import TrackedCTA from "../components/ui/TrackedCTA";
 import Gallery from "../components/HeroGallery";
 import FAQs from "../components/HomeFaqs";
 import TestimonialGallery from "../components/TestimonialGallery";
+import CertificationsBrief from "../components/Certifications";
 
 const targetAudiences = [    
     {
@@ -320,6 +321,9 @@ export function Home() {
 
             {/* Products Solutions */}
             <ProductSolutions />
+                
+            {/* Certifications */}
+            <CertificationsBrief />
                 
             {/* Testimonials */}
             {/*<TestimonialGallery />*/}

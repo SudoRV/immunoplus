@@ -133,11 +133,11 @@ export default function ImmunoProductModal({ selectedProduct, setSelectedProduct
 
               <div className="flex items-start gap-3">
   <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">
-    ₹{selectedProduct.price}
+    {selectedProduct?.details?.launchPrice}
   </h3>
   <div className="flex flex-col justify-center">
     <span className="text-sm text-gray-500 line-through font-medium">
-      MRP ₹{selectedProduct.mrp}
+      MRP ₹{selectedProduct?.details?.mrp}
     </span>
     <span className="text-xs font-bold text-green-600 uppercase tracking-wide">
       Save {(((selectedProduct.mrp - selectedProduct.price) / selectedProduct.mrp) * 100).toFixed()}%

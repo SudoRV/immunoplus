@@ -22,6 +22,7 @@ import TrackedCTA from "../components/ui/TrackedCTA";
 import ManagingDirector from "../assets/team/MDF_Vineeta_Saxena.jpg";
 import TechnicalDirector from "../assets/team/TD_Nivid_Saxena.jpg";
 import MarketingHead from "../assets/team/MH_Abhay_Saxena.jpg";
+import Consultant from "../assets/team/CT_Vinay_Khanna.jpg";
 
 const features = [
   {
@@ -47,22 +48,25 @@ const leaders = [
     role: "Founder & Managing Director",
     bio: "Overseeing executive leadership, institutional governance, and long-term organizational strategy.",
     image: ManagingDirector,
-    linkedin: "https://www.linkedin.com/company/immunoplus",
   },
   {
     name: "Er. Nivid Saxena",
     role: "Technical Director",
     bio: "Directing technical strategy, system architecture, and core engineering operations.",
     image: TechnicalDirector,
-    linkedin: "https://www.linkedin.com/company/immunoplus",
   },
   {
-    name: "Mr. Abhay Kumar Saxena",
+    name: "Mr. Abhay Kumar",
     role: "Marketing Head",
     bio: "Managing brand positioning, business development, and market engagement initiatives.",
     image: MarketingHead,
-    linkedin: "https://www.linkedin.com/company/immunoplus",
   },
+  {
+    name: "Dr. Vinay Khanna",
+    role: "Consultant",
+    bio: "Providing expert consultation and professional guidance in his area of specialization.",
+    image: Consultant,
+  }
 ];
 
 const extendedTeam = [
@@ -325,15 +329,19 @@ export function Team() {
                     {leader.bio}
                   </p>
 
-                  <a
-                    href={leader.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${leader.name}'s Profile`}
-                    className="w-9 h-9 rounded-full border border-blue-200 bg-blue-50/50 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-colors"
-                  >
-                    <FaLinkedinIn className="w-4 h-4 fill-current" />
-                  </a>
+                  {
+                      leader?.linkedin && (
+                      <a
+                        href={leader.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${leader.name}'s Profile`}
+                        className="w-9 h-9 rounded-full border border-blue-200 bg-blue-50/50 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-colors"
+                      >
+                        <FaLinkedinIn className="w-4 h-4 fill-current" />
+                      </a>
+                      )
+                  }
                 </div>
               ))}
             </div>

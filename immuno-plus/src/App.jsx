@@ -8,6 +8,7 @@ import { Products } from "./pages/Products";
 import { Team } from "./pages/Team";
 import { Join } from "./pages/Join";
 import { Contact } from "./pages/Contact";
+import Certifications from "./pages/Certifications";
 import WarrantyPage from "./pages/Warranty";
 import LinkTree from "./pages/LinkTree";
 import Footer from "./components/Footer";
@@ -40,7 +41,11 @@ function AppContent() {
         <Route path="/join" element={<Join />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/warranty" element={<WarrantyPage />} />
-        <Route path="/links" element={<LinkTree />} />
+            
+        <Route path="/certifications" element={<Certifications />} />
+        <Route path="/certifications/:certificate_id" element={<Certifications />} />
+        
+        <Route path="/links" element={<LinkTree />} />        
         <Route path="/qrscan/:appname" element={<QrScan />} />
 
         {/* 404 Catch-All Route */}

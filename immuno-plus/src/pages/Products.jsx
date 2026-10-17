@@ -656,11 +656,11 @@ export function Products() {
                   {/* MRP & Price */}
 <div className="flex items-start gap-3">
   <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">
-    ₹{item.price}
+    {item.details.launchPrice}
   </h3>
   <div className="flex flex-col justify-center">
     <span className="text-sm text-gray-500 line-through font-medium">
-      MRP ₹{item.mrp}
+      MRP {item.details.mrp}
     </span>
     <span className="text-xs font-bold text-green-600 uppercase tracking-wide">
       Save {(((item.mrp - item.price) / item.mrp) * 100).toFixed()}%

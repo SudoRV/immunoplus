@@ -173,10 +173,10 @@ const products = [
       "Ideal for homes & wellness spaces",
     ],
     mrp: 169999,
-    price: 99999,
+    price: 109999,
     details: {
       mrp: "₹1,69,999",
-      launchPrice: "₹99,999",
+      launchPrice: "₹1,09,999",
 
       warranty: {
         default: {
@@ -234,10 +234,10 @@ const products = [
       "Ideal for everyday home use",
     ],
     mrp: 149999,
-    price: 89999,
+    price: 99999,
     details: {
       mrp: "₹1,49,999",
-      launchPrice: "₹89,999",
+      launchPrice: "₹99,999",
 
       warranty: {
         default: {
